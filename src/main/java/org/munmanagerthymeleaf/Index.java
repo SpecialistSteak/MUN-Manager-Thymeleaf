@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class index {
+public class Index {
 
     @GetMapping("/index")
     String getIndex(Model model) {

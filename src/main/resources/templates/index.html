@@ -1,10 +1,187 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}">
+
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js}"></script>
+    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+
+    <link th:href="@{/css/jqueryDataTables.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/jqueryDataTables.js}"></script>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+
+    <title>MUN Manager</title>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function () {
+            $('.table').DataTable({
+                "paging": true,
+                "info": false,
+                "searching": true
+            });
+        });
+        /*]]>*/
+    </script>
 </head>
 <body>
-<h1>HIS</h1>
+<div id="main-content">
+    <div class="jumbotron jumbotron-fluid bg-primary text-white"
+         style="background-image: url(/img/blue-banner.webp); background-size: cover; background-position: center; background-repeat: no-repeat; margin-bottom: 0; padding: 3rem 0 3rem 0">
+
+        <div class="container" style="margin-left: 0">
+            <div class="row" style="margin-left: 50px">
+                <div class="col-2" onclick="location.reload();" style="cursor: pointer;">
+                    <img th:src="@{/img/LOGO2.webp}" class="img-fluid" alt="Conference Image">
+                </div>
+                <div class="col-10">
+                    <h1 class="display-4" id="conference-title">Conference Title</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="margin-top: 2rem;">
+        <div class="row">
+            <div class="col-3">
+                <div class="list-group">
+                    <h3 class="p-3">Choose a MUN Conference:</h3>
+                    <label for="conf-select"></label><select class="custom-select" name="Conference" id="conf-select"
+                                                             th:field="*{conferences}">
+                    <option th:each="conference : ${conferences}" th:value="${conference.getConferenceId()}"
+                            th:text="${conference.getConferenceName()}"></option>
+                </select>
+                    <h3 class="p-3">Choose an Assignment:</h3>
+                    <label for="assign-select"></label><select class="custom-select" name="Assignment"
+                                                               id="assign-select"
+                                                               th:field="*{assignments}">
+                    <option th:each="assignment : ${assignments}" th:value="${assignment.getAssignmentId()}"
+                            th:text="${assignment.getAssignmentName()}"></option>
+                </select>
+                    <button class="btn btn-primary btn-block" style="margin-top: 20px; margin-bottom: 20px"
+                            onclick="logTest()">Submit
+                    </button>
+                    <hr class="default-hr" style="margin-bottom: 20px"/>
+                    <div id="dual-button-holder">
+                        <button type="button" class="btn btn-primary half-button" data-toggle="modal"
+                                data-target="#projectModal">
+                            Create New Project
+                        </button>
+                        <div class="modal" tabindex="-1" role="dialog" id="projectModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">New Project</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="project-name">Project Name</label>
+                                                <input type="text" class="form-control" id="project-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="students">Students</label>
+                                                <div id="students">
+                                                    <div th:each="student : ${students}">
+                                                        <label>
+                                                            <input type="checkbox" checked th:id="${student.studentId}"
+                                                                   th:name="${student.studentName}"
+                                                                   th:value="${student.studentName}">
+                                                        </label>
+                                                        <label th:for="${student.studentId}"
+                                                               th:text="${student.studentName}">
+                                                        </label><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" onclick="submitProject()"
+                                                data-dismiss="modal">Submit
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary half-button" data-toggle="modal"
+                                data-target="#assignmentModal">
+                            Create New Assignment
+                        </button>
+                        <div class="modal" tabindex="-1" role="dialog" id="assignmentModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">New Assignment</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="assignment-name">Assignment Name</label>
+                                                <input type="text" class="form-control" id="assignment-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="assignment-description">Assignment Description</label>
+                                                <textarea class="form-control" id="assignment-description" rows="3"
+                                                          required></textarea></div>
+                                            <div class="form-group"><label for="due-date">Due Date</label> <input
+                                                    type="date" class="form-control" id="due-date" required></div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" onclick="submitAssignment()"
+                                                data-dismiss="modal">Submit
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <table class="table table-striped" aria-label="Table of student information">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Delegation</th>
+                        <th>Turnitin Score</th>
+                        <th>Date Submitted</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="student : ${students}" th:id="${student.getStudentId()}">
+                        <td th:text="${student.studentName}"></td>
+                        <td th:text="${student.delegation}"></td>
+                        <td th:text="${student.turnitinScore + '%'}"></td>
+                        <td th:text="${#dates.format(student.dateSubmitted, 'MMMM dd, yyyy hh:mm a')}"></td>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer-container">
+    <footer>
+        <div id="footer">
+            <p style="margin: 0">MUN Manager <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span></p>
+        </div>
+    </footer>
+</div>
 </body>
 </html>

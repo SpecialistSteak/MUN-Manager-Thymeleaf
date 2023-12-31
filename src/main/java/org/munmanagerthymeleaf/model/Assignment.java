@@ -8,13 +8,19 @@ import lombok.Data;
 @Table(name = "assignments")
 public class Assignment {
     @Id
-    @Column(name = "AssignmentId")
+    @Column(name = "assignment_id")
     private int assignmentId;
 
-    @Column(name = "AssignmentName")
+    @Column(name = "assignment_name")
     private String assignmentName;
 
     @ManyToOne
-    @JoinColumn(name = "ConferenceId")
+    @JoinColumn(name = "conference_id")
     private Conference conference;
+
+    @Column(name = "due_date")
+    private String dueDate;
+
+    @Column(name = "assignment_description")
+    private String assignmentDescription;
 }

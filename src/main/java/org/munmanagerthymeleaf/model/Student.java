@@ -13,18 +13,18 @@ import java.util.Date;
 @Table(name = "students")
 public class Student {
     @Id
-    @Column(name = "StudentId")
+    @Column(name = "student_id")
     private int studentId;
 
-    @Column(name = "StudentName")
+    @Column(name = "student_name")
     private String studentName;
 
-    @Column(name = "Delegation")
+    @Column(name = "delegation")
     private String delegation;
 
-    @Column(name = "TurnitinScore")
+    @Column(name = "turnitin_score")
     private int turnitinScore;
 
-    @Column(name = "DateSubmitted")
+    @Column(name = "date_submitted")
     private Date dateSubmitted;
 }

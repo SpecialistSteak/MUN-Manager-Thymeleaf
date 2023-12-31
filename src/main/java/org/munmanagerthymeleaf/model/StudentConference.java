@@ -7,13 +7,16 @@ import lombok.Data;
 @Entity
 @Table(name = "student_conferences")
 public class StudentConference {
-    @Id
+    @EmbeddedId
+    private StudentConferenceId id;
+
+    @MapsId("studentId")
     @ManyToOne
-    @JoinColumn(name = "StudentId")
+    @JoinColumn(name = "student_id")
     private Student student;
 
-    @Id
+    @MapsId("conferenceId")
     @ManyToOne
-    @JoinColumn(name = "ConferenceId")
+    @JoinColumn(name = "conference_id")
     private Conference conference;
 }

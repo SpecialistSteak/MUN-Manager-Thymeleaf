@@ -8,9 +8,10 @@ import jakarta.persistence.*;
 @Table(name = "conferences")
 public class Conference {
     @Id
-    @Column(name = "ConferenceId")
+    @Column(name = "conference_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int conferenceId;
 
-    @Column(name = "ConferenceName")
+    @Column(name = "conference_name")
     private String conferenceName;
 }
