@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#main-content {
+    flex: 1;
+    overflow: auto;
+    margin-bottom: 25px;
+}
+
+#dual-button-holder {
+    display: flex;
+    justify-content: space-between;
+}
+
+.half-button {
+    flex-basis: 48.5%;
+}
+
+.default-hr {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+    border: 1px #ced4da solid;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #0062cc;
+    border-color: #0062cc;
+}
+
+#students {
+    max-height: 30vh;
+    overflow-y: auto;
+}
+
+#footer-container {
+    bottom: 0;
+    width: 100%;
+    /*height: 60px;*/
+}
+
+#footer {
+    background-color: #113da0;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
