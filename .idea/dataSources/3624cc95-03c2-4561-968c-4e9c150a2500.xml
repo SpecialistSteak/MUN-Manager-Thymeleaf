@@ -1145,8 +1145,8 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
     </schema>
     <schema id="325" parent="1" name="mun-manager">
       <Current>1</Current>
-      <IntrospectionTimestamp>2024-01-01.08:31:07</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-12-31.21:31:07</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2024-01-02.09:16:46</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-01-01.22:16:46</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_bin</CollationName>
     </schema>
     <schema id="326" parent="1" name="mysql">
@@ -1184,141 +1184,180 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_bin</CollationName>
     </table>
-    <table id="337" parent="325" name="student_conferences">
+    <table id="337" parent="325" name="student_assignments">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_bin</CollationName>
     </table>
-    <table id="338" parent="325" name="students">
+    <table id="338" parent="325" name="student_conferences">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_bin</CollationName>
     </table>
-    <column id="339" parent="335" name="assignment_id">
+    <table id="339" parent="325" name="students">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_bin</CollationName>
+    </table>
+    <column id="340" parent="335" name="assignment_id">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="340" parent="335" name="assignment_name">
+    <column id="341" parent="335" name="assignment_name">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="341" parent="335" name="conference_id">
+    <column id="342" parent="335" name="conference_id">
       <DasType>int(11)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="342" parent="335" name="due_date">
+    <column id="343" parent="335" name="due_date">
       <DasType>date|0s</DasType>
       <DefaultExpression>current_timestamp()</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="343" parent="335" name="assignment_description">
+    <column id="344" parent="335" name="assignment_description">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <foreign-key id="344" parent="335" name="assignments_ibfk_1">
+    <foreign-key id="345" parent="335" name="assignments_ibfk_1">
       <ColNames>conference_id</ColNames>
       <RefColNames>conference_id</RefColNames>
       <RefTableName>conferences</RefTableName>
     </foreign-key>
-    <index id="345" parent="335" name="PRIMARY">
+    <index id="346" parent="335" name="PRIMARY">
       <ColNames>assignment_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="346" parent="335" name="ConferenceId">
+    <index id="347" parent="335" name="ConferenceId">
       <ColNames>conference_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="347" parent="335" name="PRIMARY">
+    <key id="348" parent="335" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="348" parent="336" name="conference_id">
+    <column id="349" parent="336" name="conference_id">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="349" parent="336" name="conference_name">
+    <column id="350" parent="336" name="conference_name">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <index id="350" parent="336" name="PRIMARY">
+    <index id="351" parent="336" name="PRIMARY">
       <ColNames>conference_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="351" parent="336" name="PRIMARY">
+    <key id="352" parent="336" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="352" parent="337" name="student_id">
+    <column id="353" parent="337" name="student_id">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="353" parent="337" name="conference_id">
+    <column id="354" parent="337" name="assignment_id">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="354" parent="337" name="student_conferences_ibfk_1">
+    <column id="355" parent="337" name="date_submitted">
+      <DasType>datetime(6)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="356" parent="337" name="turnitin_score">
+      <DasType>int(11)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="357" parent="337" name="student_assignments_ibfk_1">
       <ColNames>student_id</ColNames>
       <RefColNames>student_id</RefColNames>
       <RefTableName>students</RefTableName>
     </foreign-key>
-    <foreign-key id="355" parent="337" name="student_conferences_ibfk_2">
+    <foreign-key id="358" parent="337" name="student_assignments_ibfk_2">
+      <ColNames>assignment_id</ColNames>
+      <RefColNames>assignment_id</RefColNames>
+      <RefTableName>assignments</RefTableName>
+    </foreign-key>
+    <index id="359" parent="337" name="PRIMARY">
+      <ColNames>student_id
+assignment_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="360" parent="337" name="AssignmentId">
+      <ColNames>assignment_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="361" parent="337" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="362" parent="338" name="student_id">
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="363" parent="338" name="conference_id">
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="364" parent="338" name="delegation">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <foreign-key id="365" parent="338" name="student_conferences_ibfk_1">
+      <ColNames>student_id</ColNames>
+      <RefColNames>student_id</RefColNames>
+      <RefTableName>students</RefTableName>
+    </foreign-key>
+    <foreign-key id="366" parent="338" name="student_conferences_ibfk_2">
       <ColNames>conference_id</ColNames>
       <RefColNames>conference_id</RefColNames>
       <RefTableName>conferences</RefTableName>
     </foreign-key>
-    <index id="356" parent="337" name="PRIMARY">
+    <index id="367" parent="338" name="PRIMARY">
       <ColNames>student_id
 conference_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="357" parent="337" name="student_id">
+    <index id="368" parent="338" name="student_id">
       <ColNames>student_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="358" parent="337" name="ConferenceId">
+    <index id="369" parent="338" name="ConferenceId">
       <ColNames>conference_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="359" parent="337" name="PRIMARY">
+    <key id="370" parent="338" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="360" parent="338" name="student_id">
+    <column id="371" parent="339" name="student_id">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="361" parent="338" name="student_name">
+    <column id="372" parent="339" name="student_name">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="362" parent="338" name="delegation">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>3</Position>
-    </column>
-    <column id="363" parent="338" name="turnitin_score">
-      <DasType>int(11)|0s</DasType>
-      <Position>4</Position>
-    </column>
-    <column id="364" parent="338" name="date_submitted">
-      <DasType>datetime(6)|0s</DasType>
-      <Position>5</Position>
-    </column>
-    <index id="365" parent="338" name="PRIMARY">
+    <index id="373" parent="339" name="PRIMARY">
       <ColNames>student_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="366" parent="338" name="PRIMARY">
+    <key id="374" parent="339" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

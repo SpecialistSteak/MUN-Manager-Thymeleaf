@@ -1,13 +1,7 @@
 package org.munmanagerthymeleaf.service;
 
-import org.munmanagerthymeleaf.controller.AssignmentRepository;
-import org.munmanagerthymeleaf.controller.ConferenceRepository;
-import org.munmanagerthymeleaf.controller.StudentConferenceRepository;
-import org.munmanagerthymeleaf.controller.StudentRepository;
-import org.munmanagerthymeleaf.model.Assignment;
-import org.munmanagerthymeleaf.model.Conference;
-import org.munmanagerthymeleaf.model.Student;
-import org.munmanagerthymeleaf.model.StudentConference;
+import org.munmanagerthymeleaf.model.*;
+import org.munmanagerthymeleaf.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +13,15 @@ public class DataService {
     private final AssignmentRepository assignmentRepository;
     private final StudentRepository studentRepository;
     private final StudentConferenceRepository studentConferenceRepository;
+    private final StudentAssignmentRepository studentAssignmentRepository;
 
     @Autowired
-    public DataService(ConferenceRepository conferenceRepository, AssignmentRepository assignmentRepository, StudentRepository studentRepository, StudentConferenceRepository studentConferenceRepository) {
+    public DataService(ConferenceRepository conferenceRepository, AssignmentRepository assignmentRepository, StudentRepository studentRepository, StudentConferenceRepository studentConferenceRepository, StudentAssignmentRepository studentAssignmentRepository) {
         this.conferenceRepository = conferenceRepository;
         this.assignmentRepository = assignmentRepository;
         this.studentRepository = studentRepository;
         this.studentConferenceRepository = studentConferenceRepository;
+        this.studentAssignmentRepository = studentAssignmentRepository;
     }
 
     public List<Conference> getConferences() {
@@ -44,6 +40,10 @@ public class DataService {
         return studentConferenceRepository.findAll();
     }
 
+    public List<StudentAssignment> getStudentAssignments() {
+        return studentAssignmentRepository.findAll();
+    }
+
     public Conference updateConference(Conference conference) {
         return conferenceRepository.save(conference);
     }
@@ -58,5 +58,9 @@ public class DataService {
 
     public StudentConference updateStudentConference(StudentConference studentConference) {
         return studentConference;
+    }
+
+    public StudentAssignment updateStudentAssignment(StudentAssignment studentAssignment) {
+        return studentAssignment;
     }
 }

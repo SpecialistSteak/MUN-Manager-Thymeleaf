@@ -22,6 +22,7 @@ public class DataController {
         model.addAttribute("assignments", dataService.getAssignments());
         model.addAttribute("students", dataService.getStudents());
         model.addAttribute("studentConferences", dataService.getStudentConferences());
+        model.addAttribute("studentAssignments", dataService.getStudentAssignments());
         return "index";
     }
 }

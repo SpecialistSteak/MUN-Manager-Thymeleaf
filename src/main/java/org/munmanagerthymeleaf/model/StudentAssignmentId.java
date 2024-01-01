@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Embeddable
 @Data
-public class StudentConferenceId implements Serializable {
+public class StudentAssignmentId implements Serializable {
     private int studentId;
-    private int conferenceId;
+    private int assignmentId;
 }
