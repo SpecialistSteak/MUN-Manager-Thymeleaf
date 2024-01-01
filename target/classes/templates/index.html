@@ -32,6 +32,18 @@
             });
         });
         /*]]>*/
+
+        $(document).ready(function () {
+            $('.table').on('click', 'tr', function () {
+                const id = $(this).attr('id');
+                console.log(id);
+                // const id = $(this).attr('id');
+                // const name = $(this).find('td').html();
+                // const conference = $('#conf-select').val();
+                // const assignment = $('#assign-select').val();
+                // window.location.href = "/student/" + id + "?conference=" + conference + "&assignment=" + assignment;
+            });
+        })
     </script>
 </head>
 <body>
@@ -164,17 +176,11 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Delegation</th>
-                        <th>Turnitin Score</th>
-                        <th>Date Submitted</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="student : ${students}" th:id="${student.getStudentId()}">
                         <td th:text="${student.studentName}"></td>
-                        <td th:text="${student.delegation}"></td>
-                        <td th:text="${student.turnitinScore + '%'}"></td>
-                        <td th:text="${#dates.format(student.dateSubmitted, 'MMMM dd, yyyy hh:mm a')}"></td>
                     </tbody>
                 </table>
             </div>
