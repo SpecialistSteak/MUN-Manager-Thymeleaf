@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}">
 
@@ -10,17 +10,21 @@
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js}"></script>
     <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
 
-    <link th:href="@{/css/jqueryDataTables.css}" rel="stylesheet">
-    <script type="text/javascript" th:src="@{/js/jqueryDataTables.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/jqueryDataTables.css}">
+    <script th:src="@{/js/jqueryDataTables.js}" type="text/javascript"></script>
 
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}" type="text/javascript"></script>
+
+    <!--  I am using moment.js to properly sort dates on the datatable  -->
+    <script th:src="@{/js/moment.js}" type="text/javascript"></script>
 
     <title>MUN Manager</title>
 
     <script th:inline="javascript">
         /*<![CDATA[*/
         $(document).ready(function () {
+            DataTable.datetime('MMMM dd, yyyy hh:mm a');
             $('.table').DataTable({
                 "paging": true,
                 "info": false,
@@ -34,11 +38,10 @@
 <div id="main-content">
     <div class="jumbotron jumbotron-fluid bg-primary text-white"
          style="background-image: url(/img/blue-banner.webp); background-size: cover; background-position: center; background-repeat: no-repeat; margin-bottom: 0; padding: 3rem 0 3rem 0">
-
         <div class="container" style="margin-left: 0">
             <div class="row" style="margin-left: 50px">
                 <div class="col-2" onclick="location.reload();" style="cursor: pointer;">
-                    <img th:src="@{/img/LOGO2.webp}" class="img-fluid" alt="Conference Image">
+                    <img alt="Conference Image" class="img-fluid" th:src="@{/img/LOGO2.webp}">
                 </div>
                 <div class="col-10">
                     <h1 class="display-4" id="conference-title">Conference Title</h1>
@@ -51,33 +54,33 @@
             <div class="col-3">
                 <div class="list-group">
                     <h3 class="p-3">Choose a MUN Conference:</h3>
-                    <label for="conf-select"></label><select class="custom-select" name="Conference" id="conf-select"
+                    <label for="conf-select"></label><select class="custom-select" id="conf-select" name="Conference"
                                                              th:field="*{conferences}">
-                    <option th:each="conference : ${conferences}" th:value="${conference.getConferenceId()}"
-                            th:text="${conference.getConferenceName()}"></option>
+                    <option th:each="conference : ${conferences}" th:text="${conference.getConferenceName()}"
+                            th:value="${conference.getConferenceId()}"></option>
                 </select>
                     <h3 class="p-3">Choose an Assignment:</h3>
-                    <label for="assign-select"></label><select class="custom-select" name="Assignment"
-                                                               id="assign-select"
+                    <label for="assign-select"></label><select class="custom-select" id="assign-select"
+                                                               name="Assignment"
                                                                th:field="*{assignments}">
-                    <option th:each="assignment : ${assignments}" th:value="${assignment.getAssignmentId()}"
-                            th:text="${assignment.getAssignmentName()}"></option>
+                    <option th:each="assignment : ${assignments}" th:text="${assignment.getAssignmentName()}"
+                            th:value="${assignment.getAssignmentId()}"></option>
                 </select>
-                    <button class="btn btn-primary btn-block" style="margin-top: 20px; margin-bottom: 20px"
-                            onclick="logTest()">Submit
+                    <button class="btn btn-primary btn-block" onclick="logTest()"
+                            style="margin-top: 20px; margin-bottom: 20px">Submit
                     </button>
                     <hr class="default-hr" style="margin-bottom: 20px"/>
                     <div id="dual-button-holder">
-                        <button type="button" class="btn btn-primary half-button" data-toggle="modal"
-                                data-target="#projectModal">
+                        <button class="btn btn-primary half-button" data-target="#projectModal" data-toggle="modal"
+                                type="button">
                             Create New Project
                         </button>
-                        <div class="modal" tabindex="-1" role="dialog" id="projectModal">
+                        <div class="modal" id="projectModal" role="dialog" tabindex="-1">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">New Project</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -85,16 +88,17 @@
                                         <form>
                                             <div class="form-group">
                                                 <label for="project-name">Project Name</label>
-                                                <input type="text" class="form-control" id="project-name" required>
+                                                <input class="form-control" id="project-name" required type="text">
                                             </div>
                                             <div class="form-group">
                                                 <label for="students">Students</label>
                                                 <div id="students">
                                                     <div th:each="student : ${students}">
                                                         <label>
-                                                            <input type="checkbox" checked th:id="${student.studentId}"
+                                                            <input checked th:id="${student.studentId}"
                                                                    th:name="${student.studentName}"
-                                                                   th:value="${student.studentName}">
+                                                                   th:value="${student.studentName}"
+                                                                   type="checkbox">
                                                         </label>
                                                         <label th:for="${student.studentId}"
                                                                th:text="${student.studentName}">
@@ -105,25 +109,25 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" onclick="submitProject()"
-                                                data-dismiss="modal">Submit
+                                        <button class="btn btn-primary" data-dismiss="modal" onclick="submitProject()"
+                                                type="button">Submit
                                         </button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary half-button" data-toggle="modal"
-                                data-target="#assignmentModal">
+                        <button class="btn btn-primary half-button" data-target="#assignmentModal" data-toggle="modal"
+                                type="button">
                             Create New Assignment
                         </button>
-                        <div class="modal" tabindex="-1" role="dialog" id="assignmentModal">
+                        <div class="modal" id="assignmentModal" role="dialog" tabindex="-1">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">New Assignment</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -131,21 +135,22 @@
                                         <form>
                                             <div class="form-group">
                                                 <label for="assignment-name">Assignment Name</label>
-                                                <input type="text" class="form-control" id="assignment-name" required>
+                                                <input class="form-control" id="assignment-name" required type="text">
                                             </div>
                                             <div class="form-group">
                                                 <label for="assignment-description">Assignment Description</label>
-                                                <textarea class="form-control" id="assignment-description" rows="3"
-                                                          required></textarea></div>
+                                                <textarea class="form-control" id="assignment-description" required
+                                                          rows="3"></textarea></div>
                                             <div class="form-group"><label for="due-date">Due Date</label> <input
-                                                    type="date" class="form-control" id="due-date" required></div>
+                                                    class="form-control" id="due-date" required type="date"></div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" onclick="submitAssignment()"
-                                                data-dismiss="modal">Submit
+                                        <button class="btn btn-primary" data-dismiss="modal"
+                                                onclick="submitAssignment()"
+                                                type="button">Submit
                                         </button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel
                                         </button>
                                     </div>
                                 </div>
@@ -155,7 +160,7 @@
                 </div>
             </div>
             <div class="col-9">
-                <table class="table table-striped" aria-label="Table of student information">
+                <table aria-label="Table of student information" class="table table-striped">
                     <thead>
                     <tr>
                         <th>Name</th>
@@ -170,7 +175,7 @@
                         <td th:text="${student.delegation}"></td>
                         <td th:text="${student.turnitinScore + '%'}"></td>
                         <td th:text="${#dates.format(student.dateSubmitted, 'MMMM dd, yyyy hh:mm a')}"></td>
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>

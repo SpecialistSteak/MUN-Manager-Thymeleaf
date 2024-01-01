@@ -16,6 +16,9 @@ public class Student {
     @Column(name = "student_id")
     private int studentId;
 
+    // RETHINK IS NEEDED - a student can't be submitted, so the dateSubmitted should be in the assignment, not the student
+    // Same issues for delegation and turnitin score - those are assignment/conference specific, so I need to work that out
+
     @Column(name = "student_name")
     private String studentName;
 
