@@ -5,16 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e1ea06a-dcc6-4b50-81db-2880ed97b9c4" name="Changes" comment="updated code">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/1/11f08f1faed3577b3dc985c67c11096e12895911" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/c/7c1e489813304fa40617bf6811f55b51ad635435" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/5/9555227bb3cb445114fa9b43c3113ebb57d7c9b7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/d/9da7edb3cecb1513cd96ae60b73790956cd60312" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/4/c4f0310f0cb459562d217360f72f2342c7763f77" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/b/cb98985e484f502bf76ec252317c0b4bf3aa1bc2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/1/e1b9ae889b8b9192a2018b7fb41a322432c43197" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/1/1/11f08f1faed3577b3dc985c67c11096e12895911" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/7/c/7c1e489813304fa40617bf6811f55b51ad635435" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/5/9555227bb3cb445114fa9b43c3113ebb57d7c9b7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/d/9da7edb3cecb1513cd96ae60b73790956cd60312" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/4/c4f0310f0cb459562d217360f72f2342c7763f77" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/b/cb98985e484f502bf76ec252317c0b4bf3aa1bc2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/1/e1b9ae889b8b9192a2018b7fb41a322432c43197" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/jqueryDataTables.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/jqueryDataTables.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/jqueryDataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/jqueryDataTables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/moment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/moment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/controller/AssignmentRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/controller/ConferenceRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/controller/DataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/controller/DataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/controller/StudentConferenceRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/controller/StudentRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/StudentConferenceId.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/StudentConferenceId.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/service/DataService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/service/DataService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,10 +52,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": -1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2aEYMF6IArzIEFJ4WF6Pe57ihgc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -57,8 +71,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "Spring Boot.MunmanagerthymeleafApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Luke/Documents/Code/munmanagerthymeleaf/src/main/resources/static",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -66,6 +82,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "35e9d7a5bd796b105425eb716453e75c",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -130,6 +147,13 @@
       </method>
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -138,7 +162,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1703885158603</updated>
-      <workItem from="1703885159585" duration="28212000" />
+      <workItem from="1703885159585" duration="28666000" />
+      <workItem from="1704148731857" duration="1336000" />
+      <workItem from="1704156574307" duration="550000" />
+      <workItem from="1704157158402" duration="442000" />
+      <workItem from="1704157898337" duration="28000" />
+      <workItem from="1704158036950" duration="760000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -180,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704147443852</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="updated code">
+      <option name="closed" value="true" />
+      <created>1704148061935</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704148061935</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,5 +227,9 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="updated code" />
     <option name="LAST_COMMIT_MESSAGE" value="updated code" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
