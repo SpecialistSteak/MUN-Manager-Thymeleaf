@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e1ea06a-dcc6-4b50-81db-2880ed97b9c4" name="Changes" comment="updated code">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500/storage_v2/_src_/schema/mun-manager.pnS2NA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500/storage_v2/_src_/schema/mun-manager.pnS2NA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/StudentAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/StudentAssignment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/StudentAssignmentId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/StudentConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/StudentConference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/StudentConferenceId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/init.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/studentView.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/studentView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/controller/DataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/controller/DataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/StudentConference.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/StudentConference.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/StudentConferenceId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +157,7 @@
       <workItem from="1704157158402" duration="442000" />
       <workItem from="1704157898337" duration="28000" />
       <workItem from="1704158036950" duration="832000" />
-      <workItem from="1704158898824" duration="26170000" />
+      <workItem from="1704158898824" duration="26275000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -246,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704305689747</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="updated code">
+      <option name="closed" value="true" />
+      <created>1704323408483</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1704323408483</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -106,8 +106,9 @@
     <button class="btn btn-primary" th:onclick="lastPage()">Previous</button>
     <select class="custom-select" id="student-select" name="student-select"
             th:field="*{students}">
-        <option th:each="student : ${students}" th:if="${student.getStudentId() == studentId}"
-                th:text="${student.getStudentName()}" th:value="${student.getStudentId()}"></option>
+        <option th:each="student : ${students}"
+                th:if="${student.getStudentId() == studentId}" th:text="${student.getStudentName()}"
+                th:value="${student.getStudentId()}"></option>
         <option th:each="student : ${students}" th:if="${student.getStudentId() != studentId}"
                 th:text="${student.getStudentName()}" th:value="${student.getStudentId()}"></option>
     </select>
