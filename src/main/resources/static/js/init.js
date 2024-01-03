@@ -21,7 +21,7 @@ $(document).ready(function () {
     $('#conf-select').change(function () {
         const confId = $(this).val();
         $.ajax({
-            url: '/api/getAssignments',
+            url: '/api/getAssignmentsByConference',
             type: 'GET',
             data: jQuery.param({confId: confId})
         }).done(function (data) {

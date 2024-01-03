@@ -1,10 +1,12 @@
 package org.munmanagerthymeleaf.controller;
 
+import org.munmanagerthymeleaf.service.API;
 import org.munmanagerthymeleaf.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class DataController {
@@ -24,6 +26,19 @@ public class DataController {
         model.addAttribute("studentConferences", dataService.getStudentConferences());
         model.addAttribute("studentAssignments", dataService.getStudentAssignments());
         return "index";
+    }
+
+    @GetMapping("/studentView/{studentId}")
+    public String studentView(Model model, @PathVariable int studentId) {
+        API api = new API(dataService);
+        model.addAttribute("conferences", dataService.getConferences());
+        model.addAttribute("assignments", dataService.getAssignments());
+        model.addAttribute("students", dataService.getStudents());
+        model.addAttribute("studentConferences", dataService.getStudentConferences());
+        model.addAttribute("studentAssignments", dataService.getStudentAssignments());
+        model.addAttribute("studentAssignmentsList", api.getStudentAssignmentsByStudent(studentId));
+        model.addAttribute("assignmentList", api.getAssignmentsByStudent(studentId));
+        return "studentView";
     }
 }
 

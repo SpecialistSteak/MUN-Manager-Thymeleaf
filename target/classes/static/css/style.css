@@ -13,7 +13,6 @@ body {
     flex: 1;
     overflow: auto;
     margin-bottom: 25px;
-    background-color: #123fa4;
 }
 
 #dual-button-holder {
@@ -57,4 +56,8 @@ body {
 
 .pointer {
     cursor: pointer;
+}
+
+#banner {
+    background-color: #123fa4 !important;
 }
