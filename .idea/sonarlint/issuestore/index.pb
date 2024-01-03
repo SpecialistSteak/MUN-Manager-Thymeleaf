@@ -56,8 +56,6 @@ w
 G.idea/sonarlint/issuestore/1/f/1f1763f358c257ea3515417352b82b0165647ad1,4\4\441e6168af36afe9568996929caf6842abd87b08
 Å
 Q.idea/sonarlint/securityhotspotstore/3/f/3f66914c50cf909347b3f9f9bc86523c47aef2eb,1\5\152bef6b2f5a13328442afc4d8e8f63911bc0f95
-E
-.vscode/settings.json,8\9\89aa447020cdcb580cea0495694d46a55941edbe
 >
 munmanager.iml,0\6\0690ecf79faac4e5f368f33a918a57646fd96506
 Å
@@ -114,3 +112,7 @@ w
 Gsrc/main/java/org/munmanagerthymeleaf/repository/StudentRepository.java,1\2\123586eab6aa452c7afa0ed606586523bb9f2d65
 Å
 Qsrc/main/java/org/munmanagerthymeleaf/repository/StudentConferenceRepository.java,1\6\16602ad622cb6e96cd08e25fe495e0ff72a7fc61
+f
+6src/main/java/org/munmanagerthymeleaf/service/api.java,f\e\fe192c1c0f380fda9706888d53e2004cc0815976
+f
+6src/main/java/org/munmanagerthymeleaf/service/API.java,4\c\4c8aaf6627652cc7bff1ab35fea6b1721eb6826c

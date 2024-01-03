@@ -5,32 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e1ea06a-dcc6-4b50-81db-2880ed97b9c4" name="Changes" comment="updated code">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/1/11f08f1faed3577b3dc985c67c11096e12895911" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/c/7c1e489813304fa40617bf6811f55b51ad635435" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/5/9555227bb3cb445114fa9b43c3113ebb57d7c9b7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/d/9da7edb3cecb1513cd96ae60b73790956cd60312" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/4/c4f0310f0cb459562d217360f72f2342c7763f77" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/b/cb98985e484f502bf76ec252317c0b4bf3aa1bc2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/1/e1b9ae889b8b9192a2018b7fb41a322432c43197" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/API.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/init.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/1/1/11f08f1faed3577b3dc985c67c11096e12895911" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/7/c/7c1e489813304fa40617bf6811f55b51ad635435" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/5/9555227bb3cb445114fa9b43c3113ebb57d7c9b7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/d/9da7edb3cecb1513cd96ae60b73790956cd60312" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/4/c4f0310f0cb459562d217360f72f2342c7763f77" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/b/cb98985e484f502bf76ec252317c0b4bf3aa1bc2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/1/e1b9ae889b8b9192a2018b7fb41a322432c43197" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/jqueryDataTables.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/jqueryDataTables.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/Assignment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/jqueryDataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/jqueryDataTables.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/moment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/moment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/Index.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/MunmanagerthymeleafApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/controller/DataController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/Assignment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/Conference.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/Student.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/StudentConference.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/StudentConferenceId.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/service/DataService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/jqueryDataTables.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/LOGO2.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/blue-banner.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/jqueryDataTables.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +45,18 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -64,6 +72,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "JAR Application.munmanager-1.0T.jar.executor": "Run",
+    "Maven.munmanager [build].executor": "Run",
+    "Maven.munmanager [clean].executor": "Run",
+    "Maven.munmanager [spring-boot:build-image].executor": "Run",
+    "Notification.DisplayName-DoNotAsk-Material Theme Notifications": "Material theme UI notifications",
+    "Notification.DoNotAsk-Material Theme Notifications": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -106,6 +120,9 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean:clean clean" />
+      <command value="mvn build" />
+      <command value="mvn spring-boot:build-image" />
+      <command value="mvn clean" />
     </option>
   </component>
   <component name="RunManager">
@@ -167,7 +184,8 @@
       <workItem from="1704156574307" duration="550000" />
       <workItem from="1704157158402" duration="442000" />
       <workItem from="1704157898337" duration="28000" />
-      <workItem from="1704158036950" duration="760000" />
+      <workItem from="1704158036950" duration="832000" />
+      <workItem from="1704158898824" duration="8824000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -217,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704148061935</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="updated code">
+      <option name="closed" value="true" />
+      <created>1704158837930</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1704158837930</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

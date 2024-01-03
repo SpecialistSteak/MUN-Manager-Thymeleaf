@@ -7,5 +7,6 @@ function submitProject() {
 }
 
 function logTest() {
-    console.log("logTest");
+    console.log($('#assign-select').val());
+    console.log($('#conf-select').val());
 }

@@ -58,8 +58,7 @@
         // Browser
         window.DataTable = factory(jQuery, window, document);
     }
-}
-(function ($, window, document, undefined) {
+}(function ($, window, document, undefined) {
     "use strict";
 
 
@@ -182,11 +181,7 @@
          * @return {DataTables.Api}
          */
         this.api = function (traditional) {
-            return traditional ?
-                new _Api(
-                    _fnSettingsFromNode(this[_ext.iApiIndex])
-                ) :
-                new _Api(this);
+            return traditional ? new _Api(_fnSettingsFromNode(this[_ext.iApiIndex])) : new _Api(this);
         };
 
 
@@ -232,9 +227,7 @@
             var api = this.api(true);
 
             /* Check if we want to add multiple rows or not */
-            var rows = Array.isArray(data) && (Array.isArray(data[0]) || $.isPlainObject(data[0])) ?
-                api.rows.add(data) :
-                api.row.add(data);
+            var rows = Array.isArray(data) && (Array.isArray(data[0]) || $.isPlainObject(data[0])) ? api.rows.add(data) : api.row.add(data);
 
             if (redraw === undefined || redraw) {
                 api.draw();
@@ -484,9 +477,7 @@
             if (src !== undefined) {
                 var type = src.nodeName ? src.nodeName.toLowerCase() : '';
 
-                return col !== undefined || type == 'td' || type == 'th' ?
-                    api.cell(src, col).data() :
-                    api.row(src).data() || null;
+                return col !== undefined || type == 'td' || type == 'th' ? api.cell(src, col).data() : api.row(src).data() || null;
             }
 
             return api.data().toArray();
@@ -514,9 +505,7 @@
         this.fnGetNodes = function (iRow) {
             var api = this.api(true);
 
-            return iRow !== undefined ?
-                api.row(iRow).node() :
-                api.rows().nodes().flatten().toArray();
+            return iRow !== undefined ? api.row(iRow).node() : api.rows().nodes().flatten().toArray();
         };
 
 
@@ -557,11 +546,7 @@
             } else if (nodeName == 'TD' || nodeName == 'TH') {
                 var cell = api.cell(node).index();
 
-                return [
-                    cell.row,
-                    cell.columnVisible,
-                    cell.column
-                ];
+                return [cell.row, cell.columnVisible, cell.column];
             }
             return null;
         };
@@ -830,8 +815,7 @@
             // object that can be bashed around
             var o = {};
             var oInit = len > 1 ? // optimisation for single table case
-                _fnExtend(o, options, true) :
-                options;
+                _fnExtend(o, options, true) : options;
 
             /*global oInit,_that,emptyInit*/
             var i = 0, iLen, j, jLen, k, kLen;
@@ -865,11 +849,7 @@
                 var s = allSettings[i];
 
                 /* Base check on table node */
-                if (
-                    s.nTable == this ||
-                    (s.nTHead && s.nTHead.parentNode == this) ||
-                    (s.nTFoot && s.nTFoot.parentNode == this)
-                ) {
+                if (s.nTable == this || (s.nTHead && s.nTHead.parentNode == this) || (s.nTFoot && s.nTFoot.parentNode == this)) {
                     var bRetrieve = oInit.bRetrieve !== undefined ? oInit.bRetrieve : defaults.bRetrieve;
                     var bDestroy = oInit.bDestroy !== undefined ? oInit.bDestroy : defaults.bDestroy;
 
@@ -903,9 +883,7 @@
 
             /* Create the settings object for this table and set some of the default parameters */
             var oSettings = $.extend(true, {}, DataTable.models.oSettings, {
-                "sDestroyWidth": $this[0].style.width,
-                "sInstance": sId,
-                "sTableId": sId
+                "sDestroyWidth": $this[0].style.width, "sInstance": sId, "sTableId": sId
             });
             oSettings.nTable = this;
             oSettings.oApi = _that.internal;
@@ -923,8 +901,7 @@
 
             // If the length menu is given, but the init display length is not, use the length menu
             if (oInit.aLengthMenu && !oInit.iDisplayLength) {
-                oInit.iDisplayLength = Array.isArray(oInit.aLengthMenu[0]) ?
-                    oInit.aLengthMenu[0][0] : oInit.aLengthMenu[0];
+                oInit.iDisplayLength = Array.isArray(oInit.aLengthMenu[0]) ? oInit.aLengthMenu[0][0] : oInit.aLengthMenu[0];
             }
 
             // Apply the defaults and init options to make a single init object will all
@@ -933,51 +910,10 @@
 
 
             // Map the initialisation options onto the settings object
-            _fnMap(oSettings.oFeatures, oInit, [
-                "bPaginate",
-                "bLengthChange",
-                "bFilter",
-                "bSort",
-                "bSortMulti",
-                "bInfo",
-                "bProcessing",
-                "bAutoWidth",
-                "bSortClasses",
-                "bServerSide",
-                "bDeferRender"
-            ]);
-            _fnMap(oSettings, oInit, [
-                "asStripeClasses",
-                "ajax",
-                "fnServerData",
-                "fnFormatNumber",
-                "sServerMethod",
-                "aaSorting",
-                "aaSortingFixed",
-                "aLengthMenu",
-                "sPaginationType",
-                "sAjaxSource",
-                "sAjaxDataProp",
-                "iStateDuration",
-                "sDom",
-                "bSortCellsTop",
-                "iTabIndex",
-                "fnStateLoadCallback",
-                "fnStateSaveCallback",
-                "renderer",
-                "searchDelay",
-                "rowId",
-                ["iCookieDuration", "iStateDuration"], // backwards compat
-                ["oSearch", "oPreviousSearch"],
-                ["aoSearchCols", "aoPreSearchCols"],
-                ["iDisplayLength", "_iDisplayLength"]
-            ]);
-            _fnMap(oSettings.oScroll, oInit, [
-                ["sScrollX", "sX"],
-                ["sScrollXInner", "sXInner"],
-                ["sScrollY", "sY"],
-                ["bScrollCollapse", "bCollapse"]
-            ]);
+            _fnMap(oSettings.oFeatures, oInit, ["bPaginate", "bLengthChange", "bFilter", "bSort", "bSortMulti", "bInfo", "bProcessing", "bAutoWidth", "bSortClasses", "bServerSide", "bDeferRender"]);
+            _fnMap(oSettings, oInit, ["asStripeClasses", "ajax", "fnServerData", "fnFormatNumber", "sServerMethod", "aaSorting", "aaSortingFixed", "aLengthMenu", "sPaginationType", "sAjaxSource", "sAjaxDataProp", "iStateDuration", "sDom", "bSortCellsTop", "iTabIndex", "fnStateLoadCallback", "fnStateSaveCallback", "renderer", "searchDelay", "rowId", ["iCookieDuration", "iStateDuration"], // backwards compat
+                ["oSearch", "oPreviousSearch"], ["aoSearchCols", "aoPreSearchCols"], ["iDisplayLength", "_iDisplayLength"]]);
+            _fnMap(oSettings.oScroll, oInit, [["sScrollX", "sX"], ["sScrollXInner", "sXInner"], ["sScrollY", "sY"], ["bScrollCollapse", "bCollapse"]]);
             _fnMap(oSettings.oLanguage, oInit, "fnInfoCallback");
 
             /* Callback functions which are array driven */
@@ -1027,17 +963,14 @@
 				 * _fnInitialise will be fired by the returned Ajax handler, rather than the constructor
 				 */
                 $.ajax({
-                    dataType: 'json',
-                    url: oLanguage.sUrl,
-                    success: function (json) {
+                    dataType: 'json', url: oLanguage.sUrl, success: function (json) {
                         _fnCamelToHungarian(defaults.oLanguage, json);
                         _fnLanguageCompat(json);
                         $.extend(true, oLanguage, json, oSettings.oInit.oLanguage);
 
                         _fnCallbackFire(oSettings, null, 'i18n', [oSettings]);
                         _fnInitialise(oSettings);
-                    },
-                    error: function () {
+                    }, error: function () {
                         // Error occurred loading language file, continue on as best we can
                         _fnInitialise(oSettings);
                     }
@@ -1051,10 +984,7 @@
 			 * Stripes
 			 */
             if (oInit.asStripeClasses === null) {
-                oSettings.asStripeClasses = [
-                    oClasses.sStripeOdd,
-                    oClasses.sStripeEven
-                ];
+                oSettings.asStripeClasses = [oClasses.sStripeOdd, oClasses.sStripeEven];
             }
 
             /* Remove row stripe classes if they are already on the table row */
@@ -1320,9 +1250,7 @@
         if (!_re_dic[decimalPoint]) {
             _re_dic[decimalPoint] = new RegExp(_fnEscapeRegex(decimalPoint), 'g');
         }
-        return typeof num === 'string' && decimalPoint !== '.' ?
-            num.replace(/\./g, '').replace(_re_dic[decimalPoint], '.') :
-            num;
+        return typeof num === 'string' && decimalPoint !== '.' ? num.replace(/\./g, '').replace(_re_dic[decimalPoint], '.') : num;
     };
 
 
@@ -1365,11 +1293,7 @@
         }
 
         var html = _isHtml(d);
-        return !html ?
-            null :
-            _isNumber(_stripHtml(d), decimalPoint, formatted) ?
-                true :
-                null;
+        return !html ? null : _isNumber(_stripHtml(d), decimalPoint, formatted) ? true : null;
     };
 
 
@@ -1506,11 +1430,7 @@
         // but this doesn't work with arrays or objects, which we must also
         // consider. See jsperf.com/compare-array-unique-versions/4 for more
         // information.
-        var
-            out = [],
-            val,
-            i, ien = src.length,
-            j, k = 0;
+        var out = [], val, i, ien = src.length, j, k = 0;
 
         again: for (i = 0; i < ien; i++) {
             val = src[i];
@@ -1594,16 +1514,10 @@
          * @return {function} Wrapped function
          */
         throttle: function (fn, freq) {
-            var
-                frequency = freq !== undefined ? freq : 200,
-                last,
-                timer;
+            var frequency = freq !== undefined ? freq : 200, last, timer;
 
             return function () {
-                var
-                    that = this,
-                    now = +new Date(),
-                    args = arguments;
+                var that = this, now = +new Date(), args = arguments;
 
                 if (last && now < last + frequency) {
                     clearTimeout(timer);
@@ -1651,8 +1565,7 @@
                 return function (data, val, meta) {
                     source(data, 'set', val, meta);
                 };
-            } else if (typeof source === 'string' && (source.indexOf('.') !== -1 ||
-                source.indexOf('[') !== -1 || source.indexOf('(') !== -1)) {
+            } else if (typeof source === 'string' && (source.indexOf('.') !== -1 || source.indexOf('[') !== -1 || source.indexOf('(') !== -1)) {
                 // Like the get, we need to get data from a nested object
                 var setData = function (data, val, src) {
                     var a = _fnSplitObjNotation(src), b;
@@ -1748,9 +1661,7 @@
 
                 return function (data, type, row, meta) {
                     var t = o[type] || o._;
-                    return t !== undefined ?
-                        t(data, type, row, meta) :
-                        data;
+                    return t !== undefined ? t(data, type, row, meta) : data;
                 };
             } else if (source === null) {
                 // Give an empty string for rendering / sorting etc
@@ -1761,8 +1672,7 @@
                 return function (data, type, row, meta) {
                     return source(data, type, row, meta);
                 };
-            } else if (typeof source === 'string' && (source.indexOf('.') !== -1 ||
-                source.indexOf('[') !== -1 || source.indexOf('(') !== -1)) {
+            } else if (typeof source === 'string' && (source.indexOf('.') !== -1 || source.indexOf('[') !== -1 || source.indexOf('(') !== -1)) {
                 /* If there is a . in the source string then the data source is in a
 				 * nested object so we loop over the data for each level to get the next
 				 * level down. On each loop we test for undefined, and if found immediately
@@ -1850,11 +1760,7 @@
      *  @memberof DataTable#oApi
      */
     function _fnHungarianMap(o) {
-        var
-            hungarian = 'a aa ai ao as b fn i m o s ',
-            match,
-            newKey,
-            map = {};
+        var hungarian = 'a aa ai ao as b fn i m o s ', match, newKey, map = {};
 
         $.each(o, function (key, val) {
             match = key.match(/^([^A-Z]+?)([A-Z])/);
@@ -1935,14 +1841,12 @@
 
             // Backwards compatibility - if there is no sEmptyTable given, then use the same as
             // sZeroRecords - assuming that is given.
-            if (!lang.sEmptyTable && zeroRecords &&
-                defaults.sEmptyTable === "No data available in table") {
+            if (!lang.sEmptyTable && zeroRecords && defaults.sEmptyTable === "No data available in table") {
                 _fnMap(lang, lang, 'sZeroRecords', 'sEmptyTable');
             }
 
             // Likewise with loading records
-            if (!lang.sLoadingRecords && zeroRecords &&
-                defaults.sLoadingRecords === "Loading...") {
+            if (!lang.sLoadingRecords && zeroRecords && defaults.sLoadingRecords === "Loading...") {
                 _fnMap(lang, lang, 'sZeroRecords', 'sLoadingRecords');
             }
 
@@ -2048,30 +1952,17 @@
             // Scrolling feature / quirks detection
             var n = $('<div/>')
                 .css({
-                    position: 'fixed',
-                    top: 0,
-                    left: $(window).scrollLeft() * -1, // allow for scrolling
-                    height: 1,
-                    width: 1,
-                    overflow: 'hidden'
+                    position: 'fixed', top: 0, left: $(window).scrollLeft() * -1, // allow for scrolling
+                    height: 1, width: 1, overflow: 'hidden'
                 })
-                .append(
-                    $('<div/>')
+                .append($('<div/>')
+                    .css({
+                        position: 'absolute', top: 1, left: 1, width: 100, overflow: 'scroll'
+                    })
+                    .append($('<div/>')
                         .css({
-                            position: 'absolute',
-                            top: 1,
-                            left: 1,
-                            width: 100,
-                            overflow: 'scroll'
-                        })
-                        .append(
-                            $('<div/>')
-                                .css({
-                                    width: '100%',
-                                    height: 10
-                                })
-                        )
-                )
+                            width: '100%', height: 10
+                        })))
                 .appendTo('body');
 
             var outer = n.children();
@@ -2117,10 +2008,7 @@
      *  @memberof DataTable#oApi
      */
     function _fnReduce(that, fn, init, start, end, inc) {
-        var
-            i = start,
-            value,
-            isSet = false;
+        var i = start, value, isSet = false;
 
         if (init !== undefined) {
             value = init;
@@ -2132,9 +2020,7 @@
                 continue;
             }
 
-            value = isSet ?
-                fn(value, that[i], i, that) :
-                that[i];
+            value = isSet ? fn(value, that[i], i, that) : that[i];
 
             isSet = true;
             i += inc;
@@ -2258,17 +2144,13 @@
         var attrTest = function (src) {
             return typeof src === 'string' && src.indexOf('@') !== -1;
         };
-        oCol._bAttrSrc = $.isPlainObject(mDataSrc) && (
-            attrTest(mDataSrc.sort) || attrTest(mDataSrc.type) || attrTest(mDataSrc.filter)
-        );
+        oCol._bAttrSrc = $.isPlainObject(mDataSrc) && (attrTest(mDataSrc.sort) || attrTest(mDataSrc.type) || attrTest(mDataSrc.filter));
         oCol._setter = null;
 
         oCol.fnGetData = function (rowData, type, meta) {
             var innerData = mData(rowData, type, undefined, meta);
 
-            return mRender && type ?
-                mRender(innerData, type, rowData, meta) :
-                innerData;
+            return mRender && type ? mRender(innerData, type, rowData, meta) : innerData;
         };
         oCol.fnSetData = function (rowData, val, meta) {
             return _fnSetObjectDataFn(mDataSrc)(rowData, val, meta);
@@ -2342,9 +2224,7 @@
     function _fnVisibleToColumnIndex(oSettings, iMatch) {
         var aiVis = _fnGetColumns(oSettings, 'bVisible');
 
-        return typeof aiVis[iMatch] === 'number' ?
-            aiVis[iMatch] :
-            null;
+        return typeof aiVis[iMatch] === 'number' ? aiVis[iMatch] : null;
     }
 
 
@@ -2491,11 +2371,7 @@
                 def = aoColDefs[i];
 
                 /* Each definition can target multiple columns, as it is an array */
-                var aTargets = def.target !== undefined
-                    ? def.target
-                    : def.targets !== undefined
-                        ? def.targets
-                        : def.aTargets;
+                var aTargets = def.target !== undefined ? def.target : def.targets !== undefined ? def.targets : def.aTargets;
 
                 if (!Array.isArray(aTargets)) {
                     aTargets = [aTargets];
@@ -2516,8 +2392,7 @@
                     } else if (typeof aTargets[j] === 'string') {
                         /* Class name matching on TH element */
                         for (k = 0, kLen = columns.length; k < kLen; k++) {
-                            if (aTargets[j] == "_all" ||
-                                $(columns[k].nTh).hasClass(aTargets[j])) {
+                            if (aTargets[j] == "_all" || $(columns[k].nTh).hasClass(aTargets[j])) {
                                 fn(k, def);
                             }
                         }
@@ -2551,8 +2426,7 @@
         /* Create the object for storing information about this new row */
         var iRow = oSettings.aoData.length;
         var oData = $.extend(true, {}, DataTable.models.oRow, {
-            src: nTr ? 'dom' : 'data',
-            idx: iRow
+            src: nTr ? 'dom' : 'data', idx: iRow
         });
 
         oData._aData = aDataIn;
@@ -2655,16 +2529,12 @@
         var rowData = settings.aoData[rowIdx]._aData;
         var defaultContent = col.sDefaultContent;
         var cellData = col.fnGetData(rowData, type, {
-            settings: settings,
-            row: rowIdx,
-            col: colIdx
+            settings: settings, row: rowIdx, col: colIdx
         });
 
         if (cellData === undefined) {
             if (settings.iDrawError != draw && defaultContent === null) {
-                _fnLog(settings, 0, "Requested unknown parameter " +
-                    (typeof col.mData == 'function' ? '{function}' : "'" + col.mData + "'") +
-                    " for row " + rowIdx + ", column " + colIdx, 4);
+                _fnLog(settings, 0, "Requested unknown parameter " + (typeof col.mData == 'function' ? '{function}' : "'" + col.mData + "'") + " for row " + rowIdx + ", column " + colIdx, 4);
                 settings.iDrawError = draw;
             }
             return defaultContent;
@@ -2709,9 +2579,7 @@
         var rowData = settings.aoData[rowIdx]._aData;
 
         col.fnSetData(rowData, val, {
-            settings: settings,
-            row: rowIdx,
-            col: colIdx
+            settings: settings, row: rowIdx, col: colIdx
         });
     }
 
@@ -2833,10 +2701,7 @@
         // Are we reading last data from DOM or the data object?
         if (src === 'dom' || ((!src || src === 'auto') && row.src === 'dom')) {
             // Read the data from the DOM
-            row._aData = _fnGetRowElements(
-                settings, row, colIdx, colIdx === undefined ? undefined : row._aData
-            )
-                .data;
+            row._aData = _fnGetRowElements(settings, row, colIdx, colIdx === undefined ? undefined : row._aData).data;
         } else {
             // Reading from data object, update the DOM
             var cells = row.anCells;
@@ -2891,19 +2756,11 @@
      * @memberof DataTable#oApi
      */
     function _fnGetRowElements(settings, row, colIdx, d) {
-        var
-            tds = [],
-            td = row.firstChild,
-            name, col, o, i = 0, contents,
-            columns = settings.aoColumns,
+        var tds = [], td = row.firstChild, name, col, o, i = 0, contents, columns = settings.aoColumns,
             objectRead = settings._rowReadObject;
 
         // Allow the data object to be passed in, or construct
-        d = d !== undefined ?
-            d :
-            objectRead ?
-                {} :
-                [];
+        d = d !== undefined ? d : objectRead ? {} : [];
 
         var attr = function (str, td) {
             if (typeof str === 'string') {
@@ -2981,8 +2838,7 @@
         }
 
         return {
-            data: d,
-            cells: tds
+            data: d, cells: tds
         };
     }
 
@@ -2997,12 +2853,7 @@
      *  @memberof DataTable#oApi
      */
     function _fnCreateTr(oSettings, iRow, nTrIn, anTds) {
-        var
-            row = oSettings.aoData[iRow],
-            rowData = row._aData,
-            cells = [],
-            nTr, nTd, oCol,
-            i, iLen, create;
+        var row = oSettings.aoData[iRow], rowData = row._aData, cells = [], nTr, nTd, oCol, i, iLen, create;
 
         if (row.nTr === null) {
             nTr = nTrIn || document.createElement('tr');
@@ -3030,16 +2881,13 @@
                 }
 
                 nTd._DT_CellIndex = {
-                    row: iRow,
-                    column: i
+                    row: iRow, column: i
                 };
 
                 cells.push(nTd);
 
                 // Need to create the HTML if new, or if a rendering function is defined
-                if (create || ((oCol.mRender || oCol.mData !== i) &&
-                    (!$.isPlainObject(oCol.mData) || oCol.mData._ !== i + '.display')
-                )) {
+                if (create || ((oCol.mRender || oCol.mData !== i) && (!$.isPlainObject(oCol.mData) || oCol.mData._ !== i + '.display'))) {
                     nTd.innerHTML = _fnGetCellData(oSettings, iRow, i, 'display');
                 }
 
@@ -3056,9 +2904,7 @@
                 }
 
                 if (oCol.fnCreatedCell) {
-                    oCol.fnCreatedCell.call(oSettings.oInstance,
-                        nTd, _fnGetCellData(oSettings, iRow, i), rowData, iRow, i
-                    );
+                    oCol.fnCreatedCell.call(oSettings.oInstance, nTd, _fnGetCellData(oSettings, iRow, i), rowData, iRow, i);
                 }
             }
 
@@ -3088,9 +2934,7 @@
             if (data.DT_RowClass) {
                 // Remove any classes added by DT_RowClass before
                 var a = data.DT_RowClass.split(' ');
-                row.__rowc = row.__rowc ?
-                    _unique(row.__rowc.concat(a)) :
-                    a;
+                row.__rowc = row.__rowc ? _unique(row.__rowc.concat(a)) : a;
 
                 $(tr)
                     .removeClass(row.__rowc.join(' '))
@@ -3150,9 +2994,7 @@
                 cell.html(column.sTitle);
             }
 
-            _fnRenderer(oSettings, 'header')(
-                oSettings, cell, column, classes
-            );
+            _fnRenderer(oSettings, 'header')(oSettings, cell, column, classes);
         }
 
         if (createHeader) {
@@ -3253,15 +3095,13 @@
                     aApplied[i][j] = 1;
 
                     /* Expand the cell to cover as many rows as needed */
-                    while (aoLocal[i + iRowspan] !== undefined &&
-                    aoLocal[i][j].cell == aoLocal[i + iRowspan][j].cell) {
+                    while (aoLocal[i + iRowspan] !== undefined && aoLocal[i][j].cell == aoLocal[i + iRowspan][j].cell) {
                         aApplied[i + iRowspan][j] = 1;
                         iRowspan++;
                     }
 
                     /* Expand the cell to cover as many columns as needed */
-                    while (aoLocal[i][j + iColspan] !== undefined &&
-                    aoLocal[i][j].cell == aoLocal[i][j + iColspan].cell) {
+                    while (aoLocal[i][j + iColspan] !== undefined && aoLocal[i][j].cell == aoLocal[i][j + iColspan].cell) {
                         /* Must update the applied array over the rows for the columns */
                         for (k = 0; k < iRowspan; k++) {
                             aApplied[i + k][j + iColspan] = 1;
@@ -3345,8 +3185,7 @@
                 // Row callback functions - might want to manipulate the row
                 // iRowCount and j are not currently documented. Are they at all
                 // useful?
-                _fnCallbackFire(oSettings, 'aoRowCallback', null,
-                    [nRow, aoData._aData, iRowCount, j, iDataIndex]);
+                _fnCallbackFire(oSettings, 'aoRowCallback', null, [nRow, aoData._aData, iRowCount, j, iDataIndex]);
 
                 anRows.push(nRow);
                 iRowCount++;
@@ -3362,18 +3201,14 @@
 
             anRows[0] = $('<tr/>', {'class': iStripes ? asStripeClasses[0] : ''})
                 .append($('<td />', {
-                    'valign': 'top',
-                    'colSpan': _fnVisbleColumns(oSettings),
-                    'class': oSettings.oClasses.sRowEmpty
+                    'valign': 'top', 'colSpan': _fnVisbleColumns(oSettings), 'class': oSettings.oClasses.sRowEmpty
                 }).html(sZero))[0];
         }
 
         /* Header and footer callbacks */
-        _fnCallbackFire(oSettings, 'aoHeaderCallback', 'header', [$(oSettings.nTHead).children('tr')[0],
-            _fnGetDataMaster(oSettings), iDisplayStart, iDisplayEnd, aiDisplay]);
+        _fnCallbackFire(oSettings, 'aoHeaderCallback', 'header', [$(oSettings.nTHead).children('tr')[0], _fnGetDataMaster(oSettings), iDisplayStart, iDisplayEnd, aiDisplay]);
 
-        _fnCallbackFire(oSettings, 'aoFooterCallback', 'footer', [$(oSettings.nTFoot).children('tr')[0],
-            _fnGetDataMaster(oSettings), iDisplayStart, iDisplayEnd, aiDisplay]);
+        _fnCallbackFire(oSettings, 'aoFooterCallback', 'footer', [$(oSettings.nTFoot).children('tr')[0], _fnGetDataMaster(oSettings), iDisplayStart, iDisplayEnd, aiDisplay]);
 
         var body = $(oSettings.nTBody);
 
@@ -3398,10 +3233,7 @@
      *  @memberof DataTable#oApi
      */
     function _fnReDraw(settings, holdPosition) {
-        var
-            features = settings.oFeatures,
-            sort = features.bSort,
-            filter = features.bFilter;
+        var features = settings.oFeatures, sort = features.bSort, filter = features.bFilter;
 
         if (sort) {
             _fnSort(settings);
@@ -3585,8 +3417,7 @@
             /* For every cell in the row... */
             nCell = nTr.firstChild;
             while (nCell) {
-                if (nCell.nodeName.toUpperCase() == "TD" ||
-                    nCell.nodeName.toUpperCase() == "TH") {
+                if (nCell.nodeName.toUpperCase() == "TD" || nCell.nodeName.toUpperCase() == "TH") {
                     /* Get the col and rowspan attributes from the DOM and sanitise them */
                     iColspan = nCell.getAttribute('colspan') * 1;
                     iRowspan = nCell.getAttribute('rowspan') * 1;
@@ -3605,8 +3436,7 @@
                     for (l = 0; l < iColspan; l++) {
                         for (k = 0; k < iRowspan; k++) {
                             aLayout[i + k][iColShifted + l] = {
-                                "cell": nCell,
-                                "unique": bUnique
+                                "cell": nCell, "unique": bUnique
                             };
                             aLayout[i + k].nTr = nTr;
                         }
@@ -3638,8 +3468,7 @@
 
         for (var i = 0, iLen = aLayout.length; i < iLen; i++) {
             for (var j = 0, jLen = aLayout[i].length; j < jLen; j++) {
-                if (aLayout[i][j].unique &&
-                    (!aReturn[j] || !oSettings.bSortCellsTop)) {
+                if (aLayout[i][j].unique && (!aReturn[j] || !oSettings.bSortCellsTop)) {
                     aReturn[j] = aLayout[i][j].cell;
                 }
             }
@@ -3658,11 +3487,7 @@
 
         // Check and see if we have an initial draw position from state saving
         if (iInitDisplayStart !== undefined && iInitDisplayStart !== -1) {
-            oSettings._iDisplayStart = bServerSide ?
-                iInitDisplayStart :
-                iInitDisplayStart >= oSettings.fnRecordsDisplay() ?
-                    0 :
-                    iInitDisplayStart;
+            oSettings._iDisplayStart = bServerSide ? iInitDisplayStart : iInitDisplayStart >= oSettings.fnRecordsDisplay() ? 0 : iInitDisplayStart;
 
             oSettings.iInitDisplayStart = -1;
         }
@@ -3709,9 +3534,7 @@
         var ajax = oSettings.ajax;
         var instance = oSettings.oInstance;
         var callback = function (json) {
-            var status = oSettings.jqXHR
-                ? oSettings.jqXHR.status
-                : null;
+            var status = oSettings.jqXHR ? oSettings.jqXHR.status : null;
 
             if (json === null || (typeof status === 'number' && status == 204)) {
                 json = {};
@@ -3732,14 +3555,11 @@
         if ($.isPlainObject(ajax) && ajax.data) {
             ajaxData = ajax.data;
 
-            var newData = typeof ajaxData === 'function' ?
-                ajaxData(data, oSettings) :  // fn can manipulate data or return
+            var newData = typeof ajaxData === 'function' ? ajaxData(data, oSettings) :  // fn can manipulate data or return
                 ajaxData;                      // an object object or array to merge
 
             // If the function returned something, use that alone
-            data = typeof ajaxData === 'function' && newData ?
-                newData :
-                $.extend(true, data, newData);
+            data = typeof ajaxData === 'function' && newData ? newData : $.extend(true, data, newData);
 
             // Remove the data property as we've resolved it already and don't want
             // jQuery to do it again (it is restored at the end of the function)
@@ -3775,14 +3595,9 @@
 
         if (oSettings.fnServerData) {
             // DataTables 1.9- compatibility
-            oSettings.fnServerData.call(instance,
-                oSettings.sAjaxSource,
-                $.map(data, function (val, key) { // Need to convert back to 1.9 trad format
-                    return {name: key, value: val};
-                }),
-                callback,
-                oSettings
-            );
+            oSettings.fnServerData.call(instance, oSettings.sAjaxSource, $.map(data, function (val, key) { // Need to convert back to 1.9 trad format
+                return {name: key, value: val};
+            }), callback, oSettings);
         } else if (oSettings.sAjaxSource || typeof ajax === 'string') {
             // DataTables 1.9- compatibility
             oSettings.jqXHR = $.ajax($.extend(baseAjax, {
@@ -3814,15 +3629,11 @@
         // Keep track of drawHold state to handle scrolling after the Ajax call
         var drawHold = settings._drawHold;
 
-        _fnBuildAjax(
-            settings,
-            _fnAjaxParameters(settings),
-            function (json) {
-                settings._drawHold = drawHold;
-                _fnAjaxUpdateDraw(settings, json);
-                settings._drawHold = false;
-            }
-        );
+        _fnBuildAjax(settings, _fnAjaxParameters(settings), function (json) {
+            settings._drawHold = drawHold;
+            _fnAjaxUpdateDraw(settings, json);
+            settings._drawHold = false;
+        });
     }
 
 
@@ -3838,18 +3649,10 @@
      *  @memberof DataTable#oApi
      */
     function _fnAjaxParameters(settings) {
-        var
-            columns = settings.aoColumns,
-            columnCount = columns.length,
-            features = settings.oFeatures,
-            preSearch = settings.oPreviousSearch,
-            preColSearch = settings.aoPreSearchCols,
-            i, data = [], dataProp, column, columnSearch,
-            sort = _fnSortFlatten(settings),
-            displayStart = settings._iDisplayStart,
-            displayLength = features.bPaginate !== false ?
-                settings._iDisplayLength :
-                -1;
+        var columns = settings.aoColumns, columnCount = columns.length, features = settings.oFeatures,
+            preSearch = settings.oPreviousSearch, preColSearch = settings.aoPreSearchCols, i, data = [], dataProp,
+            column, columnSearch, sort = _fnSortFlatten(settings), displayStart = settings._iDisplayStart,
+            displayLength = features.bPaginate !== false ? settings._iDisplayLength : -1;
 
         var param = function (name, value) {
             data.push({'name': name, 'value': value});
@@ -3864,14 +3667,8 @@
 
         // DataTables 1.10+ method
         var d = {
-            draw: settings.iDraw,
-            columns: [],
-            order: [],
-            start: displayStart,
-            length: displayLength,
-            search: {
-                value: preSearch.sSearch,
-                regex: preSearch.bRegex
+            draw: settings.iDraw, columns: [], order: [], start: displayStart, length: displayLength, search: {
+                value: preSearch.sSearch, regex: preSearch.bRegex
             }
         };
 
@@ -3886,8 +3683,7 @@
                 searchable: column.bSearchable,
                 orderable: column.bSortable,
                 search: {
-                    value: columnSearch.sSearch,
-                    regex: columnSearch.bRegex
+                    value: columnSearch.sSearch, regex: columnSearch.bRegex
                 }
             });
 
@@ -3997,9 +3793,7 @@
      *  @return {array} Array of data to use
      */
     function _fnAjaxDataSrc(oSettings, json, write) {
-        var dataSrc = $.isPlainObject(oSettings.ajax) && oSettings.ajax.dataSrc !== undefined ?
-            oSettings.ajax.dataSrc :
-            oSettings.sAjaxDataProp; // Compatibility with 1.9-.
+        var dataSrc = $.isPlainObject(oSettings.ajax) && oSettings.ajax.dataSrc !== undefined ? oSettings.ajax.dataSrc : oSettings.sAjaxDataProp; // Compatibility with 1.9-.
 
         if (!write) {
             if (dataSrc === 'data') {
@@ -4008,9 +3802,7 @@
                 return json.aaData || json[dataSrc];
             }
 
-            return dataSrc !== "" ?
-                _fnGetObjectDataFn(dataSrc)(json) :
-                json;
+            return dataSrc !== "" ? _fnGetObjectDataFn(dataSrc)(json) : json;
         }
 
         // set
@@ -4032,13 +3824,10 @@
         var input = '<input type="search" class="' + classes.sFilterInput + '"/>';
 
         var str = language.sSearch;
-        str = str.match(/_INPUT_/) ?
-            str.replace('_INPUT_', input) :
-            str + input;
+        str = str.match(/_INPUT_/) ? str.replace('_INPUT_', input) : str + input;
 
         var filter = $('<div/>', {
-            'id': !features.f ? tableId + '_filter' : null,
-            'class': classes.sFilter
+            'id': !features.f ? tableId + '_filter' : null, 'class': classes.sFilter
         })
             .append($('<label/>').append(str));
 
@@ -4065,21 +3854,12 @@
             }
         };
 
-        var searchDelay = settings.searchDelay !== null ?
-            settings.searchDelay :
-            _fnDataSource(settings) === 'ssp' ?
-                400 :
-                0;
+        var searchDelay = settings.searchDelay !== null ? settings.searchDelay : _fnDataSource(settings) === 'ssp' ? 400 : 0;
 
         var jqFilter = $('input', filter)
             .val(previousSearch.sSearch)
             .attr('placeholder', language.sSearchPlaceholder)
-            .on(
-                'keyup.DT search.DT input.DT paste.DT cut.DT',
-                searchDelay ?
-                    _fnThrottle(searchFn, searchDelay) :
-                    searchFn
-            )
+            .on('keyup.DT search.DT input.DT paste.DT cut.DT', searchDelay ? _fnThrottle(searchFn, searchDelay) : searchFn)
             .on('mouseup.DT', function (e) {
                 // Edge fix! Edge 17 does not trigger anything other than mouse events when clicking
                 // on the clear icon (Edge bug 17584515). This is safe in other browsers as `searchFn`
@@ -4149,8 +3929,7 @@
 
             /* Now do the individual column filter */
             for (var i = 0; i < aoPrevSearch.length; i++) {
-                _fnFilterColumn(oSettings, aoPrevSearch[i].sSearch, i, fnRegex(aoPrevSearch[i]),
-                    aoPrevSearch[i].bSmart, aoPrevSearch[i].bCaseInsensitive);
+                _fnFilterColumn(oSettings, aoPrevSearch[i].sSearch, i, fnRegex(aoPrevSearch[i]), aoPrevSearch[i].bSmart, aoPrevSearch[i].bCaseInsensitive);
             }
 
             /* Custom filtering */
@@ -4258,13 +4037,8 @@
             settings.aiDisplay = displayMaster.slice();
         } else {
             // New search - start from the master array
-            if (invalidated ||
-                force ||
-                regex ||
-                prevSearch.length > input.length ||
-                input.indexOf(prevSearch) !== 0 ||
-                settings.bSorted // On resort, the display master needs to be
-                                 // re-filtered since indexes will have changed
+            if (invalidated || force || regex || prevSearch.length > input.length || input.indexOf(prevSearch) !== 0 || settings.bSorted // On resort, the display master needs to be
+                                                                                                                                         // re-filtered since indexes will have changed
             ) {
                 settings.aiDisplay = displayMaster.slice();
             }
@@ -4293,9 +4067,7 @@
      *  @memberof DataTable#oApi
      */
     function _fnFilterCreateSearch(search, regex, smart, caseInsensitive) {
-        search = regex ?
-            search :
-            _fnEscapeRegex(search);
+        search = regex ? search : _fnEscapeRegex(search);
 
         if (smart) {
             /* For smart filtering we want to allow the search to work regardless of
@@ -4373,9 +4145,7 @@
                     // method used here is much faster https://jsperf.com/html-decode
                     if (cellData.indexOf && cellData.indexOf('&') !== -1) {
                         __filter_div.innerHTML = cellData;
-                        cellData = __filter_div_textContent ?
-                            __filter_div.textContent :
-                            __filter_div.innerText;
+                        cellData = __filter_div_textContent ? __filter_div.textContent : __filter_div.innerText;
                     }
 
                     if (cellData.replace) {
@@ -4404,10 +4174,7 @@
      */
     function _fnSearchToCamel(obj) {
         return {
-            search: obj.sSearch,
-            smart: obj.bSmart,
-            regex: obj.bRegex,
-            caseInsensitive: obj.bCaseInsensitive
+            search: obj.sSearch, smart: obj.bSmart, regex: obj.bRegex, caseInsensitive: obj.bCaseInsensitive
         };
     }
 
@@ -4421,10 +4188,7 @@
      */
     function _fnSearchToHung(obj) {
         return {
-            sSearch: obj.search,
-            bSmart: obj.smart,
-            bRegex: obj.regex,
-            bCaseInsensitive: obj.caseInsensitive
+            sSearch: obj.search, bSmart: obj.smart, bRegex: obj.regex, bCaseInsensitive: obj.caseInsensitive
         };
     }
 
@@ -4435,19 +4199,14 @@
      *  @memberof DataTable#oApi
      */
     function _fnFeatureHtmlInfo(settings) {
-        var
-            tid = settings.sTableId,
-            nodes = settings.aanFeatures.i,
-            n = $('<div/>', {
-                'class': settings.oClasses.sInfo,
-                'id': !nodes ? tid + '_info' : null
-            });
+        var tid = settings.sTableId, nodes = settings.aanFeatures.i, n = $('<div/>', {
+            'class': settings.oClasses.sInfo, 'id': !nodes ? tid + '_info' : null
+        });
 
         if (!nodes) {
             // Update display on each draw
             settings.aoDrawCallback.push({
-                "fn": _fnUpdateInfo,
-                "sName": "information"
+                "fn": _fnUpdateInfo, "sName": "information"
             });
 
             n
@@ -4474,15 +4233,9 @@
             return;
         }
 
-        var
-            lang = settings.oLanguage,
-            start = settings._iDisplayStart + 1,
-            end = settings.fnDisplayEnd(),
-            max = settings.fnRecordsTotal(),
-            total = settings.fnRecordsDisplay(),
-            out = total ?
-                lang.sInfo :
-                lang.sInfoEmpty;
+        var lang = settings.oLanguage, start = settings._iDisplayStart + 1, end = settings.fnDisplayEnd(),
+            max = settings.fnRecordsTotal(), total = settings.fnRecordsDisplay(),
+            out = total ? lang.sInfo : lang.sInfoEmpty;
 
         if (total !== max) {
             /* Record set after filtering */
@@ -4495,9 +4248,7 @@
 
         var callback = lang.fnInfoCallback;
         if (callback !== null) {
-            out = callback.call(settings.oInstance,
-                settings, start, end, max, total, out
-            );
+            out = callback.call(settings.oInstance, settings, start, end, max, total, out);
         }
 
         $(nodes).html(out);
@@ -4507,12 +4258,8 @@
     function _fnInfoMacros(settings, str) {
         // When infinite scrolling, we are always starting at 1. _iDisplayStart is used only
         // internally
-        var
-            formatter = settings.fnFormatNumber,
-            start = settings._iDisplayStart + 1,
-            len = settings._iDisplayLength,
-            vis = settings.fnRecordsDisplay(),
-            all = len === -1;
+        var formatter = settings.fnFormatNumber, start = settings._iDisplayStart + 1, len = settings._iDisplayLength,
+            vis = settings.fnRecordsDisplay(), all = len === -1;
 
         return str.replace(/_START_/g, formatter.call(settings, start)).replace(/_END_/g, formatter.call(settings, settings.fnDisplayEnd())).replace(/_MAX_/g, formatter.call(settings, settings.fnRecordsTotal())).replace(/_TOTAL_/g, formatter.call(settings, vis)).replace(/_PAGE_/g, formatter.call(settings, all ? 1 : Math.ceil(start / len))).replace(/_PAGES_/g, formatter.call(settings, all ? 1 : Math.ceil(vis / len)));
     }
@@ -4639,27 +4386,15 @@
      *  @memberof DataTable#oApi
      */
     function _fnFeatureHtmlLength(settings) {
-        var
-            classes = settings.oClasses,
-            tableId = settings.sTableId,
-            menu = settings.aLengthMenu,
-            d2 = Array.isArray(menu[0]),
-            lengths = d2 ? menu[0] : menu,
-            language = d2 ? menu[1] : menu;
+        var classes = settings.oClasses, tableId = settings.sTableId, menu = settings.aLengthMenu,
+            d2 = Array.isArray(menu[0]), lengths = d2 ? menu[0] : menu, language = d2 ? menu[1] : menu;
 
         var select = $('<select/>', {
-            'name': tableId + '_length',
-            'aria-controls': tableId,
-            'class': classes.sLengthSelect
+            'name': tableId + '_length', 'aria-controls': tableId, 'class': classes.sLengthSelect
         });
 
         for (var i = 0, ien = lengths.length; i < ien; i++) {
-            select[0][i] = new Option(
-                typeof language[i] === 'number' ?
-                    settings.fnFormatNumber(language[i]) :
-                    language[i],
-                lengths[i]
-            );
+            select[0][i] = new Option(typeof language[i] === 'number' ? settings.fnFormatNumber(language[i]) : language[i], lengths[i]);
         }
 
         var div = $('<div><label/></div>').addClass(classes.sLength);
@@ -4667,9 +4402,7 @@
             div[0].id = tableId + '_length';
         }
 
-        div.children().append(
-            settings.oLanguage.sLengthMenu.replace('_MENU_', select[0].outerHTML)
-        );
+        div.children().append(settings.oLanguage.sLengthMenu.replace('_MENU_', select[0].outerHTML));
 
         // Can't use `select` variable as user might provide their own and the
         // reference is broken by the use of outerHTML
@@ -4703,15 +4436,10 @@
      *  @memberof DataTable#oApi
      */
     function _fnFeatureHtmlPaginate(settings) {
-        var
-            type = settings.sPaginationType,
-            plugin = DataTable.ext.pager[type],
-            modern = typeof plugin === 'function',
+        var type = settings.sPaginationType, plugin = DataTable.ext.pager[type], modern = typeof plugin === 'function',
             redraw = function (settings) {
                 _fnDraw(settings);
-            },
-            node = $('<div/>').addClass(settings.oClasses.sPaging + type)[0],
-            features = settings.aanFeatures;
+            }, node = $('<div/>').addClass(settings.oClasses.sPaging + type)[0], features = settings.aanFeatures;
 
         if (!modern) {
             plugin.fnInit(settings, node, redraw);
@@ -4724,26 +4452,18 @@
             settings.aoDrawCallback.push({
                 "fn": function (settings) {
                     if (modern) {
-                        var
-                            start = settings._iDisplayStart,
-                            len = settings._iDisplayLength,
-                            visRecords = settings.fnRecordsDisplay(),
-                            all = len === -1,
-                            page = all ? 0 : Math.ceil(start / len),
-                            pages = all ? 1 : Math.ceil(visRecords / len),
-                            buttons = plugin(page, pages),
-                            i, ien;
+                        var start = settings._iDisplayStart, len = settings._iDisplayLength,
+                            visRecords = settings.fnRecordsDisplay(), all = len === -1,
+                            page = all ? 0 : Math.ceil(start / len), pages = all ? 1 : Math.ceil(visRecords / len),
+                            buttons = plugin(page, pages), i, ien;
 
                         for (i = 0, ien = features.p.length; i < ien; i++) {
-                            _fnRenderer(settings, 'pageButton')(
-                                settings, features.p[i], i, buttons, page, pages
-                            );
+                            _fnRenderer(settings, 'pageButton')(settings, features.p[i], i, buttons, page, pages);
                         }
                     } else {
                         plugin.fnUpdate(settings, redraw);
                     }
-                },
-                "sName": "pagination"
+                }, "sName": "pagination"
             });
         }
 
@@ -4761,10 +4481,7 @@
      *  @memberof DataTable#oApi
      */
     function _fnPageChange(settings, action, redraw) {
-        var
-            start = settings._iDisplayStart,
-            len = settings._iDisplayLength,
-            records = settings.fnRecordsDisplay();
+        var start = settings._iDisplayStart, len = settings._iDisplayLength, records = settings.fnRecordsDisplay();
 
         if (records === 0 || len === -1) {
             start = 0;
@@ -4777,9 +4494,7 @@
         } else if (action == "first") {
             start = 0;
         } else if (action == "previous") {
-            start = len >= 0 ?
-                start - len :
-                0;
+            start = len >= 0 ? start - len : 0;
 
             if (start < 0) {
                 start = 0;
@@ -4894,62 +4609,36 @@
 		 *          tfoot - tfoot
 		 */
         var scroller = $(_div, {'class': classes.sScrollWrapper})
-            .append(
-                $(_div, {'class': classes.sScrollHead})
+            .append($(_div, {'class': classes.sScrollHead})
+                .css({
+                    overflow: 'hidden', position: 'relative', border: 0, width: scrollX ? size(scrollX) : '100%'
+                })
+                .append($(_div, {'class': classes.sScrollHeadInner})
                     .css({
-                        overflow: 'hidden',
-                        position: 'relative',
-                        border: 0,
-                        width: scrollX ? size(scrollX) : '100%'
+                        'box-sizing': 'content-box', width: scroll.sXInner || '100%'
                     })
-                    .append(
-                        $(_div, {'class': classes.sScrollHeadInner})
-                            .css({
-                                'box-sizing': 'content-box',
-                                width: scroll.sXInner || '100%'
-                            })
-                            .append(
-                                headerClone
-                                    .removeAttr('id')
-                                    .css('margin-left', 0)
-                                    .append(captionSide === 'top' ? caption : null)
-                                    .append(
-                                        table.children('thead')
-                                    )
-                            )
-                    )
-            )
-            .append(
-                $(_div, {'class': classes.sScrollBody})
-                    .css({
-                        position: 'relative',
-                        overflow: 'auto',
-                        width: size(scrollX)
-                    })
-                    .append(table)
-            );
+                    .append(headerClone
+                        .removeAttr('id')
+                        .css('margin-left', 0)
+                        .append(captionSide === 'top' ? caption : null)
+                        .append(table.children('thead')))))
+            .append($(_div, {'class': classes.sScrollBody})
+                .css({
+                    position: 'relative', overflow: 'auto', width: size(scrollX)
+                })
+                .append(table));
 
         if (footer) {
-            scroller.append(
-                $(_div, {'class': classes.sScrollFoot})
-                    .css({
-                        overflow: 'hidden',
-                        border: 0,
-                        width: scrollX ? size(scrollX) : '100%'
-                    })
-                    .append(
-                        $(_div, {'class': classes.sScrollFootInner})
-                            .append(
-                                footerClone
-                                    .removeAttr('id')
-                                    .css('margin-left', 0)
-                                    .append(captionSide === 'bottom' ? caption : null)
-                                    .append(
-                                        table.children('tfoot')
-                                    )
-                            )
-                    )
-            );
+            scroller.append($(_div, {'class': classes.sScrollFoot})
+                .css({
+                    overflow: 'hidden', border: 0, width: scrollX ? size(scrollX) : '100%'
+                })
+                .append($(_div, {'class': classes.sScrollFootInner})
+                    .append(footerClone
+                        .removeAttr('id')
+                        .css('margin-left', 0)
+                        .append(captionSide === 'bottom' ? caption : null)
+                        .append(table.children('tfoot')))));
         }
 
         var children = scroller.children();
@@ -4981,8 +4670,7 @@
 
         // On redraw - align columns
         settings.aoDrawCallback.push({
-            "fn": _fnScrollDraw,
-            "sName": "scrolling"
+            "fn": _fnScrollDraw, "sName": "scrolling"
         });
 
         return scroller[0];
@@ -5006,38 +4694,17 @@
     function _fnScrollDraw(settings) {
         // Given that this is such a monster function, a lot of variables are use
         // to try and keep the minimised size as small as possible
-        var
-            scroll = settings.oScroll,
-            scrollX = scroll.sX,
-            scrollXInner = scroll.sXInner,
-            scrollY = scroll.sY,
-            barWidth = scroll.iBarWidth,
-            divHeader = $(settings.nScrollHead),
-            divHeaderStyle = divHeader[0].style,
-            divHeaderInner = divHeader.children('div'),
-            divHeaderInnerStyle = divHeaderInner[0].style,
-            divHeaderTable = divHeaderInner.children('table'),
-            divBodyEl = settings.nScrollBody,
-            divBody = $(divBodyEl),
-            divBodyStyle = divBodyEl.style,
-            divFooter = $(settings.nScrollFoot),
-            divFooterInner = divFooter.children('div'),
-            divFooterTable = divFooterInner.children('table'),
-            header = $(settings.nTHead),
-            table = $(settings.nTable),
-            tableEl = table[0],
-            tableStyle = tableEl.style,
-            footer = settings.nTFoot ? $(settings.nTFoot) : null,
-            browser = settings.oBrowser,
-            ie67 = browser.bScrollOversize,
-            dtHeaderCells = _pluck(settings.aoColumns, 'nTh'),
-            headerTrgEls, footerTrgEls,
-            headerSrcEls, footerSrcEls,
-            headerCopy, footerCopy,
-            headerWidths = [], footerWidths = [],
-            headerContent = [], footerContent = [],
-            idx, correction, sanityWidth,
-            zeroOut = function (nSizer) {
+        var scroll = settings.oScroll, scrollX = scroll.sX, scrollXInner = scroll.sXInner, scrollY = scroll.sY,
+            barWidth = scroll.iBarWidth, divHeader = $(settings.nScrollHead), divHeaderStyle = divHeader[0].style,
+            divHeaderInner = divHeader.children('div'), divHeaderInnerStyle = divHeaderInner[0].style,
+            divHeaderTable = divHeaderInner.children('table'), divBodyEl = settings.nScrollBody, divBody = $(divBodyEl),
+            divBodyStyle = divBodyEl.style, divFooter = $(settings.nScrollFoot),
+            divFooterInner = divFooter.children('div'), divFooterTable = divFooterInner.children('table'),
+            header = $(settings.nTHead), table = $(settings.nTable), tableEl = table[0], tableStyle = tableEl.style,
+            footer = settings.nTFoot ? $(settings.nTFoot) : null, browser = settings.oBrowser,
+            ie67 = browser.bScrollOversize, dtHeaderCells = _pluck(settings.aoColumns, 'nTh'), headerTrgEls,
+            footerTrgEls, headerSrcEls, footerSrcEls, headerCopy, footerCopy, headerWidths = [], footerWidths = [],
+            headerContent = [], footerContent = [], idx, correction, sanityWidth, zeroOut = function (nSizer) {
                 var style = nSizer.style;
                 style.paddingTop = "0";
                 style.paddingBottom = "0";
@@ -5113,9 +4780,7 @@
             // IE7 will make the width of the table when 100% include the scrollbar
             // - which is shouldn't. When there is a scrollbar we need to take this
             // into account.
-            if (ie67 && (table.find('tbody').height() > divBodyEl.offsetHeight ||
-                divBody.css('overflow-y') == "scroll")
-            ) {
+            if (ie67 && (table.find('tbody').height() > divBodyEl.offsetHeight || divBody.css('overflow-y') == "scroll")) {
                 tableStyle.width = _fnStringToCss(table.outerWidth() - barWidth);
             }
 
@@ -5137,9 +4802,7 @@
 
         // Read all widths in next pass
         _fnApplyToChildren(function (nSizer) {
-            var style = window.getComputedStyle ?
-                window.getComputedStyle(nSizer).width :
-                _fnStringToCss($(nSizer).width());
+            var style = window.getComputedStyle ? window.getComputedStyle(nSizer).width : _fnStringToCss($(nSizer).width());
 
             headerContent.push(nSizer.innerHTML);
             headerWidths.push(style);
@@ -5197,15 +4860,10 @@
         // misalignment - try to prevent this by not allowing the table to shrink below its min width
         if (Math.round(table.outerWidth()) < Math.round(sanityWidth)) {
             // The min width depends upon if we have a vertical scrollbar visible or not */
-            correction = ((divBodyEl.scrollHeight > divBodyEl.offsetHeight ||
-                divBody.css('overflow-y') == "scroll")) ?
-                sanityWidth + barWidth :
-                sanityWidth;
+            correction = ((divBodyEl.scrollHeight > divBodyEl.offsetHeight || divBody.css('overflow-y') == "scroll")) ? sanityWidth + barWidth : sanityWidth;
 
             // IE6/7 are a law unto themselves...
-            if (ie67 && (divBodyEl.scrollHeight >
-                divBodyEl.offsetHeight || divBody.css('overflow-y') == "scroll")
-            ) {
+            if (ie67 && (divBodyEl.scrollHeight > divBodyEl.offsetHeight || divBody.css('overflow-y') == "scroll")) {
                 tableStyle.width = _fnStringToCss(correction - barWidth);
             }
 
@@ -5315,22 +4973,12 @@
      *  @memberof DataTable#oApi
      */
     function _fnCalculateColumnWidths(oSettings) {
-        var
-            table = oSettings.nTable,
-            columns = oSettings.aoColumns,
-            scroll = oSettings.oScroll,
-            scrollY = scroll.sY,
-            scrollX = scroll.sX,
-            scrollXInner = scroll.sXInner,
-            columnCount = columns.length,
-            visibleColumns = _fnGetColumns(oSettings, 'bVisible'),
-            headerCells = $('th', oSettings.nTHead),
+        var table = oSettings.nTable, columns = oSettings.aoColumns, scroll = oSettings.oScroll, scrollY = scroll.sY,
+            scrollX = scroll.sX, scrollXInner = scroll.sXInner, columnCount = columns.length,
+            visibleColumns = _fnGetColumns(oSettings, 'bVisible'), headerCells = $('th', oSettings.nTHead),
             tableWidthAttr = table.getAttribute('width'), // from DOM element
-            tableContainer = table.parentNode,
-            userInputs = false,
-            i, column, columnIdx, width, outerWidth,
-            browser = oSettings.oBrowser,
-            ie67 = browser.bScrollOversize;
+            tableContainer = table.parentNode, userInputs = false, i, column, columnIdx, width, outerWidth,
+            browser = oSettings.oBrowser, ie67 = browser.bScrollOversize;
 
         var styleWidth = table.style.width;
         if (styleWidth && styleWidth.indexOf('%') !== -1) {
@@ -5355,10 +5003,7 @@
 		 * the web- browser. No custom sizes can be set in order for this to happen,
 		 * nor scrolling used
 		 */
-        if (ie67 || !userInputs && !scrollX && !scrollY &&
-            columnCount == _fnVisbleColumns(oSettings) &&
-            columnCount == headerCells.length
-        ) {
+        if (ie67 || !userInputs && !scrollX && !scrollY && columnCount == _fnVisbleColumns(oSettings) && columnCount == headerCells.length) {
             for (i = 0; i < columnCount; i++) {
                 var colIdx = _fnVisibleToColumnIndex(oSettings, i);
 
@@ -5396,20 +5041,14 @@
             for (i = 0; i < visibleColumns.length; i++) {
                 column = columns[visibleColumns[i]];
 
-                headerCells[i].style.width = column.sWidthOrig !== null && column.sWidthOrig !== '' ?
-                    _fnStringToCss(column.sWidthOrig) :
-                    '';
+                headerCells[i].style.width = column.sWidthOrig !== null && column.sWidthOrig !== '' ? _fnStringToCss(column.sWidthOrig) : '';
 
                 // For scrollX we need to force the column width otherwise the
                 // browser will collapse it. If this width is smaller than the
                 // width the column requires, then it will have no effect
                 if (column.sWidthOrig && scrollX) {
                     $(headerCells[i]).append($('<div/>').css({
-                        width: column.sWidthOrig,
-                        margin: 0,
-                        padding: 0,
-                        border: 0,
-                        height: 1
+                        width: column.sWidthOrig, margin: 0, padding: 0, border: 0, height: 1
                     }));
                 }
             }
@@ -5436,17 +5075,9 @@
             // with minimal height, so it has no effect on if the container scrolls
             // or not. Otherwise it might trigger scrolling when it actually isn't
             // needed
-            var holder = $('<div/>').css(scrollX || scrollY ?
-                {
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    height: 1,
-                    right: 0,
-                    overflow: 'hidden'
-                } :
-                {}
-            )
+            var holder = $('<div/>').css(scrollX || scrollY ? {
+                position: 'absolute', top: 0, left: 0, height: 1, right: 0, overflow: 'hidden'
+            } : {})
                 .append(tmpTable)
                 .appendTo(tableContainer);
 
@@ -5483,9 +5114,7 @@
 
                 // Use getBounding... where possible (not IE8-) because it can give
                 // sub-pixel accuracy, which we then want to round up!
-                var bounding = browser.bBounding ?
-                    Math.ceil(headerCells[i].getBoundingClientRect().width) :
-                    cell.outerWidth();
+                var bounding = browser.bBounding ? Math.ceil(headerCells[i].getBoundingClientRect().width) : cell.outerWidth();
 
                 // Total is tracked to remove any sub-pixel errors as the outerWidth
                 // of the table might not equal the total given here (IE!).
@@ -5554,11 +5183,9 @@
         // Add the elements in a single loop so we only need to reflow once
         for (var i = 0; i < widths.length; i++) {
             if (widths[i]) {
-                els.push(
-                    $('<div/>')
-                        .css('width', _fnStringToCss(widths[i]))
-                        .appendTo(parent || document.body)
-                )
+                els.push($('<div/>')
+                    .css('width', _fnStringToCss(widths[i]))
+                    .appendTo(parent || document.body))
             } else {
                 els.push(null);
             }
@@ -5591,8 +5218,7 @@
 
         var data = settings.aoData[idx];
         return !data.nTr ? // Might not have been created when deferred rendering
-            $('<td/>').html(_fnGetCellData(settings, idx, colIdx, 'display'))[0] :
-            data.anCells[colIdx];
+            $('<td/>').html(_fnGetCellData(settings, idx, colIdx, 'display'))[0] : data.anCells[colIdx];
     }
 
 
@@ -5633,29 +5259,17 @@
         }
 
         if (typeof s == 'number') {
-            return s < 0 ?
-                '0px' :
-                s + 'px';
+            return s < 0 ? '0px' : s + 'px';
         }
 
         // Check it has a unit character already
-        return s.match(/\d$/) ?
-            s + 'px' :
-            s;
+        return s.match(/\d$/) ? s + 'px' : s;
     }
 
 
     function _fnSortFlatten(settings) {
-        var
-            i, iLen, k, kLen,
-            aSort = [],
-            aiOrig = [],
-            aoColumns = settings.aoColumns,
-            aDataSort, iCol, sType, srcCol,
-            fixed = settings.aaSortingFixed,
-            fixedObj = $.isPlainObject(fixed),
-            nestedSort = [],
-            add = function (a) {
+        var i, iLen, k, kLen, aSort = [], aiOrig = [], aoColumns = settings.aoColumns, aDataSort, iCol, sType, srcCol,
+            fixed = settings.aaSortingFixed, fixedObj = $.isPlainObject(fixed), nestedSort = [], add = function (a) {
                 if (a.length && !Array.isArray(a[0])) {
                     // 1D array
                     nestedSort.push(a);
@@ -5714,18 +5328,9 @@
      *  @todo This really needs split up!
      */
     function _fnSort(oSettings) {
-        var
-            i, ien, iLen, j, jLen, k, kLen,
-            sDataType, nTh,
-            aiOrig = [],
-            oExtSort = DataTable.ext.type.order,
-            aoData = oSettings.aoData,
-            aoColumns = oSettings.aoColumns,
-            aDataSort, data, iCol, sType, oSort,
-            formatters = 0,
-            sortCol,
-            displayMaster = oSettings.aiDisplayMaster,
-            aSort;
+        var i, ien, iLen, j, jLen, k, kLen, sDataType, nTh, aiOrig = [], oExtSort = DataTable.ext.type.order,
+            aoData = oSettings.aoData, aoColumns = oSettings.aoColumns, aDataSort, data, iCol, sType, oSort,
+            formatters = 0, sortCol, displayMaster = oSettings.aiDisplayMaster, aSort;
 
         // Resolve any column types that are unknown due to addition or invalidation
         // @todo Can this be moved into a 'data-ready' handler which is called when
@@ -5778,10 +5383,7 @@
             if (formatters === aSort.length) {
                 // All sort types have formatting functions
                 displayMaster.sort(function (a, b) {
-                    var
-                        x, y, k, test, sort,
-                        len = aSort.length,
-                        dataA = aoData[a]._aSortData,
+                    var x, y, k, test, sort, len = aSort.length, dataA = aoData[a]._aSortData,
                         dataB = aoData[b]._aSortData;
 
                     for (k = 0; k < len; k++) {
@@ -5805,10 +5407,7 @@
                 // Not all sort types have formatting methods, so we have to call their sorting
                 // methods.
                 displayMaster.sort(function (a, b) {
-                    var
-                        x, y, k, l, test, sort, fn,
-                        len = aSort.length,
-                        dataA = aoData[a]._aSortData,
+                    var x, y, k, l, test, sort, fn, len = aSort.length, dataA = aoData[a]._aSortData,
                         dataB = aoData[b]._aSortData;
 
                     for (k = 0; k < len; k++) {
@@ -5864,10 +5463,7 @@
                     nextSort = asSorting[0];
                 }
 
-                label = sTitle + (nextSort === "asc" ?
-                        oAria.sSortAscending :
-                        oAria.sSortDescending
-                );
+                label = sTitle + (nextSort === "asc" ? oAria.sSortAscending : oAria.sSortDescending);
             } else {
                 label = sTitle;
             }
@@ -5898,11 +5494,7 @@
                 idx = $.inArray(a[1], asSorting);
             }
 
-            return idx + 1 < asSorting.length ?
-                idx + 1 :
-                overflow ?
-                    null :
-                    0;
+            return idx + 1 < asSorting.length ? idx + 1 : overflow ? null : 0;
         };
 
         // Convert to 2D array if needed
@@ -6041,9 +5633,7 @@
         var customData;
 
         if (customSort) {
-            customData = customSort.call(settings.oInstance, settings, idx,
-                _fnColumnIndexToVisible(settings, idx)
-            );
+            customData = customSort.call(settings.oInstance, settings, idx, _fnColumnIndexToVisible(settings, idx));
         }
 
         // Use / populate cache
@@ -6058,13 +5648,10 @@
             }
 
             if (!row._aSortData[idx] || customSort) {
-                cellData = customSort ?
-                    customData[i] : // If there was a custom sort function, use data from there
+                cellData = customSort ? customData[i] : // If there was a custom sort function, use data from there
                     _fnGetCellData(settings, i, idx, 'sort');
 
-                row._aSortData[idx] = formatter ?
-                    formatter(cellData) :
-                    cellData;
+                row._aSortData[idx] = formatter ? formatter(cellData) : cellData;
             }
         }
     }
@@ -6089,8 +5676,7 @@
             search: _fnSearchToCamel(settings.oPreviousSearch),
             columns: $.map(settings.aoColumns, function (col, i) {
                 return {
-                    visible: col.bVisible,
-                    search: _fnSearchToCamel(settings.aoPreSearchCols[i])
+                    visible: col.bVisible, search: _fnSearchToCamel(settings.aoPreSearchCols[i])
                 };
             })
         };
@@ -6198,10 +5784,7 @@
         if (s.order !== undefined) {
             settings.aaSorting = [];
             $.each(s.order, function (i, col) {
-                settings.aaSorting.push(col[0] >= columns.length ?
-                    [0, col[1]] :
-                    col
-                );
+                settings.aaSorting.push(col[0] >= columns.length ? [0, col[1]] : col);
             });
         }
 
@@ -6241,7 +5824,7 @@
         settings._bLoadingState = false;
         _fnCallbackFire(settings, 'aoStateLoaded', 'stateLoaded', [settings, s]);
         callback();
-    };
+    }
 
 
     /**
@@ -6254,9 +5837,7 @@
         var settings = DataTable.settings;
         var idx = $.inArray(table, _pluck(settings, 'nTable'));
 
-        return idx !== -1 ?
-            settings[idx] :
-            null;
+        return idx !== -1 ? settings[idx] : null;
     }
 
 
@@ -6269,12 +5850,10 @@
      *  @memberof DataTable#oApi
      */
     function _fnLog(settings, level, msg, tn) {
-        msg = 'DataTables warning: ' +
-            (settings ? 'table id=' + settings.sTableId + ' - ' : '') + msg;
+        msg = 'DataTables warning: ' + (settings ? 'table id=' + settings.sTableId + ' - ' : '') + msg;
 
         if (tn) {
-            msg += '. For more information about this error, please see ' +
-                'https://datatables.net/tn/' + tn;
+            msg += '. For more information about this error, please see ' + 'https://datatables.net/tn/' + tn;
         }
 
         if (!level) {
@@ -6411,8 +5990,7 @@
     function _fnCallbackReg(oSettings, sStore, fn, sName) {
         if (fn) {
             oSettings[sStore].push({
-                "fn": fn,
-                "sName": sName
+                "fn": fn, "sName": sName
             });
         }
     }
@@ -6461,10 +6039,7 @@
 
 
     function _fnLengthOverflow(settings) {
-        var
-            start = settings._iDisplayStart,
-            end = settings.fnDisplayEnd(),
-            len = settings._iDisplayLength;
+        var start = settings._iDisplayStart, end = settings.fnDisplayEnd(), len = settings._iDisplayLength;
 
         /* If we have space to show extra rows (backing up from the end point - then do so */
         if (start >= end) {
@@ -6707,9 +6282,7 @@
 
         // selector
         this.selector = {
-            rows: null,
-            cols: null,
-            opts: null
+            rows: null, cols: null, opts: null
         };
 
         _Api.extend(this, this, __apiStruct);
@@ -6748,9 +6321,7 @@
         eq: function (idx) {
             var ctx = this.context;
 
-            return ctx.length > idx ?
-                new _Api(ctx[idx], this[idx]) :
-                null;
+            return ctx.length > idx ? new _Api(ctx[idx], this[idx]) : null;
         },
 
 
@@ -6791,12 +6362,7 @@
         },
 
         iterator: function (flatten, type, fn, alwaysNew) {
-            var
-                a = [], ret,
-                i, ien, j, jen,
-                context = this.context,
-                rows, items, item,
-                selector = this.selector;
+            var a = [], ret, i, ien, j, jen, context = this.context, rows, items, item, selector = this.selector;
 
             // Argument shifting
             if (typeof flatten === 'string') {
@@ -6960,28 +6526,21 @@
             return;
         }
 
-        var
-            i, ien,
-            struct,
-            methodScoping = function (scope, fn, struc) {
-                return function () {
-                    var ret = fn.apply(scope, arguments);
+        var i, ien, struct, methodScoping = function (scope, fn, struc) {
+            return function () {
+                var ret = fn.apply(scope, arguments);
 
-                    // Method extension
-                    _Api.extend(ret, ret, struc.methodExt);
-                    return ret;
-                };
+                // Method extension
+                _Api.extend(ret, ret, struc.methodExt);
+                return ret;
             };
+        };
 
         for (i = 0, ien = ext.length; i < ien; i++) {
             struct = ext[i];
 
             // Value
-            obj[struct.name] = struct.type === 'function' ?
-                methodScoping(scope, struct.val, struct) :
-                struct.type === 'object' ?
-                    {} :
-                    struct.val;
+            obj[struct.name] = struct.type === 'function' ? methodScoping(scope, struct.val, struct) : struct.type === 'object' ? {} : struct.val;
 
             obj[struct.name].__dt_wrapper = true;
 
@@ -7032,11 +6591,7 @@
             return;
         }
 
-        var
-            i, ien,
-            heir = name.split('.'),
-            struct = __apiStruct,
-            key, method;
+        var i, ien, heir = name.split('.'), struct = __apiStruct, key, method;
 
         var find = function (src, name) {
             for (var i = 0, ien = src.length; i < ien; i++) {
@@ -7049,33 +6604,21 @@
 
         for (i = 0, ien = heir.length; i < ien; i++) {
             method = heir[i].indexOf('()') !== -1;
-            key = method ?
-                heir[i].replace('()', '') :
-                heir[i];
+            key = method ? heir[i].replace('()', '') : heir[i];
 
             var src = find(struct, key);
             if (!src) {
                 src = {
-                    name: key,
-                    val: {},
-                    methodExt: [],
-                    propExt: [],
-                    type: 'object'
+                    name: key, val: {}, methodExt: [], propExt: [], type: 'object'
                 };
                 struct.push(src);
             }
 
             if (i === ien - 1) {
                 src.val = val;
-                src.type = typeof val === 'function' ?
-                    'function' :
-                    $.isPlainObject(val) ?
-                        'object' :
-                        'other';
+                src.type = typeof val === 'function' ? 'function' : $.isPlainObject(val) ? 'object' : 'other';
             } else {
-                struct = method ?
-                    src.methodExt :
-                    src.propExt;
+                struct = method ? src.methodExt : src.propExt;
             }
         }
     };
@@ -7092,11 +6635,8 @@
             } else if (ret instanceof _Api) {
                 // New API instance returned, want the value from the first item
                 // in the returned array for the singular result.
-                return ret.length ?
-                    Array.isArray(ret[0]) ?
-                        new _Api(ret.context, ret[0]) : // Array results are 'enhanced'
-                        ret[0] :
-                    undefined;
+                return ret.length ? Array.isArray(ret[0]) ? new _Api(ret.context, ret[0]) : // Array results are 'enhanced'
+                    ret[0] : undefined;
             }
 
             // Non-API return - just fire it back
@@ -7155,9 +6695,7 @@
      */
     _api_register('tables()', function (selector) {
         // A new instance is created if there was a selector specified
-        return selector !== undefined && selector !== null ?
-            new _Api(__table_selector(selector, this.context)) :
-            this;
+        return selector !== undefined && selector !== null ? new _Api(__table_selector(selector, this.context)) : this;
     });
 
 
@@ -7166,9 +6704,7 @@
         var ctx = tables.context;
 
         // Truncate to the first matched table
-        return ctx.length ?
-            new _Api(ctx[0]) :
-            tables;
+        return ctx.length ? new _Api(ctx[0]) : tables;
     });
 
 
@@ -7216,9 +6752,7 @@
                 _fnDraw(settings);
             } else {
                 if (typeof paging === 'string') {
-                    paging = paging === 'full-hold' ?
-                        false :
-                        true;
+                    paging = paging === 'full-hold' ? false : true;
                 }
 
                 _fnReDraw(settings, paging === false);
@@ -7282,12 +6816,9 @@
             return undefined;
         }
 
-        var
-            settings = this.context[0],
-            start = settings._iDisplayStart,
+        var settings = this.context[0], start = settings._iDisplayStart,
             len = settings.oFeatures.bPaginate ? settings._iDisplayLength : -1,
-            visRecords = settings.fnRecordsDisplay(),
-            all = len === -1;
+            visRecords = settings.fnRecordsDisplay(), all = len === -1;
 
         return {
             "page": all ? 0 : Math.floor(start / len),
@@ -7319,9 +6850,7 @@
         // is a Javascript property of functions which defines how many arguments
         // the function expects.
         if (len === undefined) {
-            return this.context.length !== 0 ?
-                this.context[0]._iDisplayLength :
-                undefined;
+            return this.context.length !== 0 ? this.context[0]._iDisplayLength : undefined;
         }
 
         // else, set the page length
@@ -7439,11 +6968,7 @@
             }
             ctx = ctx[0];
 
-            return ctx.ajax ?
-                $.isPlainObject(ctx.ajax) ?
-                    ctx.ajax.url :
-                    ctx.ajax :
-                ctx.sAjaxSource;
+            return ctx.ajax ? $.isPlainObject(ctx.ajax) ? ctx.ajax.url : ctx.ajax : ctx.sAjaxSource;
         }
 
         // set
@@ -7479,10 +7004,7 @@
 
 
     var _selector_run = function (type, selector, selectFn, settings, opts) {
-        var
-            out = [], res,
-            a, i, ien, j, jen,
-            selectorType = typeof selector;
+        var out = [], res, a, i, ien, j, jen, selectorType = typeof selector;
 
         // Can't just check for isArray here, as an API or jQuery instance might be
         // given with their array like look
@@ -7492,9 +7014,7 @@
 
         for (i = 0, ien = selector.length; i < ien; i++) {
             // Only split on simple strings - complex expressions will be jQuery selectors
-            a = selector[i] && selector[i].split && !selector[i].match(/[\[\(:]/) ?
-                selector[i].split(',') :
-                [selector[i]];
+            a = selector[i] && selector[i].split && !selector[i].match(/[\[\(:]/) ? selector[i].split(',') : [selector[i]];
 
             for (j = 0, jen = a.length; j < jen; j++) {
                 res = selectFn(typeof a[j] === 'string' ? (a[j]).trim() : a[j]);
@@ -7529,9 +7049,7 @@
         }
 
         return $.extend({
-            search: 'none',
-            order: 'current',
-            page: 'all'
+            search: 'none', order: 'current', page: 'all'
         }, opts);
     };
 
@@ -7558,13 +7076,9 @@
 
 
     var _selector_row_indexes = function (settings, opts) {
-        var
-            i, ien, tmp, a = [],
-            displayFiltered = settings.aiDisplay,
-            displayMaster = settings.aiDisplayMaster;
+        var i, ien, tmp, a = [], displayFiltered = settings.aiDisplay, displayMaster = settings.aiDisplayMaster;
 
-        var
-            search = opts.search,  // none, applied, removed
+        var search = opts.search,  // none, applied, removed
             order = opts.order,   // applied, current, index (original - compatibility with 1.9)
             page = opts.page;    // all, current
 
@@ -7573,9 +7087,7 @@
             // rows not shown don't exist and the index order is the applied order
             // Removed is a special case - for consistency just return an empty
             // array
-            return search === 'removed' ?
-                [] :
-                _range(0, displayMaster.length);
+            return search === 'removed' ? [] : _range(0, displayMaster.length);
         } else if (page == 'current') {
             // Current page implies that order=current and filter=applied, since it is
             // fairly senseless otherwise, regardless of what order and search actually
@@ -7597,9 +7109,7 @@
                 }
 
                 a = $.map(displayMaster, function (el) {
-                    return !displayFilteredMap.hasOwnProperty(el) ?
-                        el :
-                        null;
+                    return !displayFilteredMap.hasOwnProperty(el) ? el : null;
                 });
             }
         } else if (order == 'index' || order == 'original') {
@@ -7609,8 +7119,7 @@
                 } else { // applied | removed
                     tmp = $.inArray(i, displayFiltered);
 
-                    if ((tmp === -1 && search == 'removed') ||
-                        (tmp >= 0 && search == 'applied')) {
+                    if ((tmp === -1 && search == 'removed') || (tmp >= 0 && search == 'applied')) {
                         a.push(i);
                     }
                 }
@@ -7672,18 +7181,12 @@
 
                 if (rowIdx !== undefined) {
                     // Make sure that the row is actually still present in the table
-                    return aoData[rowIdx] && aoData[rowIdx].nTr === sel ?
-                        [rowIdx] :
-                        [];
+                    return aoData[rowIdx] && aoData[rowIdx].nTr === sel ? [rowIdx] : [];
                 } else if (cellIdx) {
-                    return aoData[cellIdx.row] && aoData[cellIdx.row].nTr === sel.parentNode ?
-                        [cellIdx.row] :
-                        [];
+                    return aoData[cellIdx.row] && aoData[cellIdx.row].nTr === sel.parentNode ? [cellIdx.row] : [];
                 } else {
                     var host = $(sel).closest('*[data-dt-row]');
-                    return host.length ?
-                        [host.data('dt-row')] :
-                        [];
+                    return host.length ? [host.data('dt-row')] : [];
                 }
             }
 
@@ -7708,9 +7211,7 @@
             }
 
             // Get nodes in the order from the `rows` array with null values removed
-            var nodes = _removeEmpty(
-                _pluck_order(settings.aoData, rows, 'nTr')
-            );
+            var nodes = _removeEmpty(_pluck_order(settings.aoData, rows, 'nTr'));
 
             // Selector - jQuery selector string, array of nodes or jQuery object/
             // As jQuery's .filter() allows jQuery objects to be passed in filter,
@@ -7894,9 +7395,7 @@
 
         if (data === undefined) {
             // Get
-            return ctx.length && this.length ?
-                ctx[0].aoData[this[0]]._aData :
-                undefined;
+            return ctx.length && this.length ? ctx[0].aoData[this[0]]._aData : undefined;
         }
 
         // Set
@@ -7918,9 +7417,7 @@
     _api_register('row().node()', function () {
         var ctx = this.context;
 
-        return ctx.length && this.length ?
-            ctx[0].aoData[this[0]].nTr || null :
-            null;
+        return ctx.length && this.length ? ctx[0].aoData[this[0]].nTr || null : null;
     });
 
 
@@ -8026,12 +7523,9 @@
 
 
     // Make state saving of child row details async to allow them to be batch processed
-    var __details_state = DataTable.util.throttle(
-        function (ctx) {
-            _fnSaveState(ctx[0])
-        },
-        500
-    );
+    var __details_state = DataTable.util.throttle(function (ctx) {
+        _fnSaveState(ctx[0])
+    }, 500);
 
 
     var __details_remove = function (api, idx) {
@@ -8153,9 +7647,7 @@
 
         if (data === undefined) {
             // get
-            return ctx.length && this.length ?
-                ctx[0].aoData[this[0]]._details :
-                undefined;
+            return ctx.length && this.length ? ctx[0].aoData[this[0]]._details : undefined;
         } else if (data === true) {
             // show
             this.child.show();
@@ -8171,27 +7663,21 @@
     });
 
 
-    _api_register([
-        _child_obj + '.show()',
-        _child_mth + '.show()' // only when `child()` was called with parameters (without
+    _api_register([_child_obj + '.show()', _child_mth + '.show()' // only when `child()` was called with parameters (without
     ], function (show) {   // it returns an object and this method is not executed)
         __details_display(this, true);
         return this;
     });
 
 
-    _api_register([
-        _child_obj + '.hide()',
-        _child_mth + '.hide()' // only when `child()` was called with parameters (without
+    _api_register([_child_obj + '.hide()', _child_mth + '.hide()' // only when `child()` was called with parameters (without
     ], function () {         // it returns an object and this method is not executed)
         __details_display(this, false);
         return this;
     });
 
 
-    _api_register([
-        _child_obj + '.remove()',
-        _child_mth + '.remove()' // only when `child()` was called with parameters (without
+    _api_register([_child_obj + '.remove()', _child_mth + '.remove()' // only when `child()` was called with parameters (without
     ], function () {           // it returns an object and this method is not executed)
         __details_remove(this);
         return this;
@@ -8238,10 +7724,7 @@
 
 
     var __column_selector = function (settings, selector, opts) {
-        var
-            columns = settings.aoColumns,
-            names = _pluck(columns, 'sName'),
-            nodes = _pluck(columns, 'nTh');
+        var columns = settings.aoColumns, names = _pluck(columns, 'sName'), nodes = _pluck(columns, 'nTh');
 
         var run = function (s) {
             var selInt = _intVal(s);
@@ -8253,8 +7736,7 @@
 
             // Selector - index
             if (selInt !== null) {
-                return [selInt >= 0 ?
-                    selInt : // Count from left
+                return [selInt >= 0 ? selInt : // Count from left
                     columns.length + selInt // Count from right (+ because its a negative value)
                 ];
             }
@@ -8264,18 +7746,12 @@
                 var rows = _selector_row_indexes(settings, opts);
 
                 return $.map(columns, function (col, idx) {
-                    return s(
-                        idx,
-                        __columnData(settings, idx, 0, 0, rows),
-                        nodes[idx]
-                    ) ? idx : null;
+                    return s(idx, __columnData(settings, idx, 0, 0, rows), nodes[idx]) ? idx : null;
                 });
             }
 
             // jQuery or string selector
-            var match = typeof s === 'string' ?
-                s.match(__re_column_selector) :
-                '';
+            var match = typeof s === 'string' ? s.match(__re_column_selector) : '';
 
             if (match) {
                 switch (match[2]) {
@@ -8324,9 +7800,7 @@
             // Otherwise a node which might have a `dt-column` data attribute, or be
             // a child or such an element
             var host = $(s).closest('*[data-dt-column]');
-            return host.length ?
-                [host.data('dt-column')] :
-                [];
+            return host.length ? [host.data('dt-column')] : [];
         };
 
         return _selector_run('column', selector, run, settings, opts);
@@ -8334,11 +7808,7 @@
 
 
     var __setColumnVis = function (settings, column, vis) {
-        var
-            cols = settings.aoColumns,
-            col = cols[column],
-            data = settings.aoData,
-            row, cells, i, ien, tr;
+        var cols = settings.aoColumns, col = cols[column], data = settings.aoData, row, cells, i, ien, tr;
 
         // Get
         if (vis === undefined) {
@@ -8421,9 +7891,7 @@
 
     _api_registerPlural('columns().cache()', 'column().cache()', function (type) {
         return this.iterator('column-rows', function (settings, column, i, j, rows) {
-            return _pluck_order(settings.aoData, rows,
-                type === 'search' ? '_aFilterData' : '_aSortData', column
-            );
+            return _pluck_order(settings.aoData, rows, type === 'search' ? '_aFilterData' : '_aSortData', column);
         }, 1);
     });
 
@@ -8473,9 +7941,7 @@
 
     _api_registerPlural('columns().indexes()', 'column().index()', function (type) {
         return this.iterator('column', function (settings, column) {
-            return type === 'visible' ?
-                _fnColumnIndexToVisible(settings, column) :
-                column;
+            return type === 'visible' ? _fnColumnIndexToVisible(settings, column) : column;
         }, 1);
     });
 
@@ -8522,8 +7988,7 @@
 
                     for (j = 0; j < columns; j++) {
                         o = {
-                            row: row,
-                            column: j
+                            row: row, column: j
                         };
 
                         if (fnSelector) {
@@ -8546,9 +8011,7 @@
             // Selector - index
             if ($.isPlainObject(s)) {
                 // Valid cell index and its in the array of selectable rows
-                return s.column !== undefined && s.row !== undefined && $.inArray(s.row, rows) !== -1 ?
-                    [s] :
-                    [];
+                return s.column !== undefined && s.row !== undefined && $.inArray(s.row, rows) !== -1 ? [s] : [];
             }
 
             // Selector - jQuery filtered cells
@@ -8556,8 +8019,7 @@
                 .filter(s)
                 .map(function (i, el) {
                     return { // use a new object, in case someone changes the values
-                        row: el._DT_CellIndex.row,
-                        column: el._DT_CellIndex.column
+                        row: el._DT_CellIndex.row, column: el._DT_CellIndex.column
                     };
                 })
                 .toArray();
@@ -8570,12 +8032,9 @@
             // element might be a child of an element which has dt-row and dt-column
             // data attributes
             host = $(s).closest('*[data-dt-row]');
-            return host.length ?
-                [{
-                    row: host.data('dt-row'),
-                    column: host.data('dt-column')
-                }] :
-                [];
+            return host.length ? [{
+                row: host.data('dt-row'), column: host.data('dt-column')
+            }] : [];
         };
 
         return _selector_run('cell', selector, run, settings, opts);
@@ -8610,9 +8069,7 @@
 
         // The default built in options need to apply to row and columns
         var internalOpts = opts ? {
-            page: opts.page,
-            order: opts.order,
-            search: opts.search
+            page: opts.page, order: opts.order, search: opts.search
         } : {};
 
         // Row + column selector
@@ -8626,8 +8083,7 @@
             for (i = 0, ien = rows[idx].length; i < ien; i++) {
                 for (j = 0, jen = columns[idx].length; j < jen; j++) {
                     a.push({
-                        row: rows[idx][i],
-                        column: columns[idx][j]
+                        row: rows[idx][i], column: columns[idx][j]
                     });
                 }
             }
@@ -8638,14 +8094,10 @@
         // There is currently only one extension which uses a cell selector extension
         // It is a _major_ performance drag to run this if it isn't needed, so this is
         // an extension specific check at the moment
-        var cells = opts && opts.selected ?
-            this.cells(cellsNoOpts, opts) :
-            cellsNoOpts;
+        var cells = opts && opts.selected ? this.cells(cellsNoOpts, opts) : cellsNoOpts;
 
         $.extend(cells.selector, {
-            cols: columnSelector,
-            rows: rowSelector,
-            opts: opts
+            cols: columnSelector, rows: rowSelector, opts: opts
         });
 
         return cells;
@@ -8656,9 +8108,7 @@
         return this.iterator('cell', function (settings, row, column) {
             var data = settings.aoData[row];
 
-            return data && data.anCells ?
-                data.anCells[column] :
-                undefined;
+            return data && data.anCells ? data.anCells[column] : undefined;
         }, 1);
     });
 
@@ -8689,9 +8139,7 @@
     _api_registerPlural('cells().indexes()', 'cell().index()', function () {
         return this.iterator('cell', function (settings, row, column) {
             return {
-                row: row,
-                column: column,
-                columnVisible: _fnColumnIndexToVisible(settings, column)
+                row: row, column: column, columnVisible: _fnColumnIndexToVisible(settings, column)
             };
         }, 1);
     });
@@ -8715,9 +8163,7 @@
 
         if (data === undefined) {
             // Get
-            return ctx.length && cell.length ?
-                _fnGetCellData(ctx[0], cell[0].row, cell[0].column) :
-                undefined;
+            return ctx.length && cell.length ? _fnGetCellData(ctx[0], cell[0].row, cell[0].column) : undefined;
         }
 
         // Set
@@ -8762,9 +8208,7 @@
 
         if (order === undefined) {
             // get
-            return ctx.length !== 0 ?
-                ctx[0].aaSorting :
-                undefined;
+            return ctx.length !== 0 ? ctx[0].aaSorting : undefined;
         }
 
         // set
@@ -8803,13 +8247,9 @@
     _api_register('order.fixed()', function (set) {
         if (!set) {
             var ctx = this.context;
-            var fixed = ctx.length ?
-                ctx[0].aaSortingFixed :
-                undefined;
+            var fixed = ctx.length ? ctx[0].aaSortingFixed : undefined;
 
-            return Array.isArray(fixed) ?
-                {pre: fixed} :
-                fixed;
+            return Array.isArray(fixed) ? {pre: fixed} : fixed;
         }
 
         return this.iterator('table', function (settings) {
@@ -8819,10 +8259,7 @@
 
 
     // Order by the selected column(s)
-    _api_register([
-        'columns().order()',
-        'column().order()'
-    ], function (dir) {
+    _api_register(['columns().order()', 'column().order()'], function (dir) {
         var that = this;
 
         return this.iterator('table', function (settings, i) {
@@ -8842,9 +8279,7 @@
 
         if (input === undefined) {
             // get
-            return ctx.length !== 0 ?
-                ctx[0].oPreviousSearch.sSearch :
-                undefined;
+            return ctx.length !== 0 ? ctx[0].oPreviousSearch.sSearch : undefined;
         }
 
         // set
@@ -8863,43 +8298,37 @@
     });
 
 
-    _api_registerPlural(
-        'columns().search()',
-        'column().search()',
-        function (input, regex, smart, caseInsen) {
-            return this.iterator('column', function (settings, column) {
-                var preSearch = settings.aoPreSearchCols;
+    _api_registerPlural('columns().search()', 'column().search()', function (input, regex, smart, caseInsen) {
+        return this.iterator('column', function (settings, column) {
+            var preSearch = settings.aoPreSearchCols;
 
-                if (input === undefined) {
-                    // get
-                    return preSearch[column].sSearch;
-                }
+            if (input === undefined) {
+                // get
+                return preSearch[column].sSearch;
+            }
 
-                // set
-                if (!settings.oFeatures.bFilter) {
-                    return;
-                }
+            // set
+            if (!settings.oFeatures.bFilter) {
+                return;
+            }
 
-                $.extend(preSearch[column], {
-                    "sSearch": input + "",
-                    "bRegex": regex === null ? false : regex,
-                    "bSmart": smart === null ? true : smart,
-                    "bCaseInsensitive": caseInsen === null ? true : caseInsen
-                });
-
-                _fnFilterComplete(settings, settings.oPreviousSearch, 1);
+            $.extend(preSearch[column], {
+                "sSearch": input + "",
+                "bRegex": regex === null ? false : regex,
+                "bSmart": smart === null ? true : smart,
+                "bCaseInsensitive": caseInsen === null ? true : caseInsen
             });
-        }
-    );
+
+            _fnFilterComplete(settings, settings.oPreviousSearch, 1);
+        });
+    });
 
     /*
 	 * State API methods
 	 */
 
     _api_register('state()', function () {
-        return this.context.length ?
-            this.context[0].oSavedState :
-            null;
+        return this.context.length ? this.context[0].oSavedState : null;
     });
 
 
@@ -8912,9 +8341,7 @@
 
 
     _api_register('state.loaded()', function () {
-        return this.context.length ?
-            this.context[0].oLoadedState :
-            null;
+        return this.context.length ? this.context[0].oLoadedState : null;
     });
 
 
@@ -9072,9 +8499,7 @@
             }
         });
 
-        return api ?
-            new _Api(a) :
-            a;
+        return api ? new _Api(a) : a;
     };
 
 
@@ -9098,14 +8523,10 @@
      *
      */
     _api_register('$()', function (selector, opts) {
-        var
-            rows = this.rows(opts).nodes(), // Get all rows
+        var rows = this.rows(opts).nodes(), // Get all rows
             jqRows = $(rows);
 
-        return $([].concat(
-            jqRows.filter(selector).toArray(),
-            jqRows.find(selector).toArray()
-        ));
+        return $([].concat(jqRows.filter(selector).toArray(), jqRows.find(selector).toArray()));
     });
 
 
@@ -9116,9 +8537,7 @@
 
             // Add the `dt` namespace automatically if it isn't already present
             args[0] = $.map(args[0].split(/\s/), function (e) {
-                return !e.match(/\.dt\b/) ?
-                    e + '.dt' :
-                    e;
+                return !e.match(/\.dt\b/) ? e + '.dt' : e;
             }).join(' ');
 
             var inst = $(this.tables().nodes());
@@ -9205,9 +8624,7 @@
 
             $(rows).removeClass(settings.asStripeClasses.join(' '));
 
-            $('th, td', thead).removeClass(classes.sSortable + ' ' +
-                classes.sSortableAsc + ' ' + classes.sSortableDesc + ' ' + classes.sSortableNone
-            );
+            $('th, td', thead).removeClass(classes.sSortable + ' ' + classes.sSortableAsc + ' ' + classes.sSortableDesc + ' ' + classes.sSortableNone);
 
             // Add the TR elements back into the table in their original order
             jqTbody.children().detach();
@@ -9269,14 +8686,7 @@
                 //  arg2 - column index
                 //  arg3 - table counter
                 //  arg4 - loop counter
-                fn.call(
-                    api[type](
-                        arg1,
-                        type === 'cell' ? arg2 : opts,
-                        type === 'cell' ? opts : undefined
-                    ),
-                    arg1, arg2, arg3, arg4
-                );
+                fn.call(api[type](arg1, type === 'cell' ? arg2 : opts, type === 'cell' ? opts : undefined), arg1, arg2, arg3, arg4);
             });
         });
     });
@@ -9293,13 +8703,10 @@
         }
 
         if (plural !== undefined && $.isPlainObject(resolved)) {
-            resolved = resolved[plural] !== undefined ?
-                resolved[plural] :
-                resolved._;
+            resolved = resolved[plural] !== undefined ? resolved[plural] : resolved._;
         }
 
-        return typeof resolved === 'string'
-            ? resolved.replace('%d', plural) // nb: plural might be undefined,
+        return typeof resolved === 'string' ? resolved.replace('%d', plural) // nb: plural might be undefined,
             : resolved;
     });
     /**
@@ -10597,10 +10004,7 @@
          *    } );
          */
         "fnFormatNumber": function (toFormat) {
-            return toFormat.toString().replace(
-                /\B(?=(\d{3})+(?!\d))/g,
-                this.oLanguage.sThousands
-            );
+            return toFormat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, this.oLanguage.sThousands);
         },
 
 
@@ -10828,11 +10232,7 @@
          */
         "fnStateLoadCallback": function (settings) {
             try {
-                return JSON.parse(
-                    (settings.iStateDuration === -1 ? sessionStorage : localStorage).getItem(
-                        'DataTables_' + settings.sInstance + '_' + location.pathname
-                    )
-                );
+                return JSON.parse((settings.iStateDuration === -1 ? sessionStorage : localStorage).getItem('DataTables_' + settings.sInstance + '_' + location.pathname));
             } catch (e) {
                 return {};
             }
@@ -10932,10 +10332,7 @@
          */
         "fnStateSaveCallback": function (settings, data) {
             try {
-                (settings.iStateDuration === -1 ? sessionStorage : localStorage).setItem(
-                    'DataTables_' + settings.sInstance + '_' + location.pathname,
-                    JSON.stringify(data)
-                );
+                (settings.iStateDuration === -1 ? sessionStorage : localStorage).setItem('DataTables_' + settings.sInstance + '_' + location.pathname, JSON.stringify(data));
             } catch (e) {
             }
         },
@@ -11960,8 +11357,7 @@
          *      } );
          *    } );
          */
-        "aDataSort": null,
-        "iDataSort": -1,
+        "aDataSort": null, "iDataSort": -1,
 
 
         /**
@@ -13575,9 +12971,7 @@
          *  @type function
          */
         "fnRecordsTotal": function () {
-            return _fnDataSource(this) == 'ssp' ?
-                this._iRecordsTotal * 1 :
-                this.aiDisplayMaster.length;
+            return _fnDataSource(this) == 'ssp' ? this._iRecordsTotal * 1 : this.aiDisplayMaster.length;
         },
 
         /**
@@ -13585,9 +12979,7 @@
          *  @type function
          */
         "fnRecordsDisplay": function () {
-            return _fnDataSource(this) == 'ssp' ?
-                this._iRecordsDisplay * 1 :
-                this.aiDisplay.length;
+            return _fnDataSource(this) == 'ssp' ? this._iRecordsDisplay * 1 : this.aiDisplay.length;
         },
 
         /**
@@ -13595,22 +12987,13 @@
          *  @type function
          */
         "fnDisplayEnd": function () {
-            var
-                len = this._iDisplayLength,
-                start = this._iDisplayStart,
-                calc = start + len,
-                records = this.aiDisplay.length,
-                features = this.oFeatures,
-                paginate = features.bPaginate;
+            var len = this._iDisplayLength, start = this._iDisplayStart, calc = start + len,
+                records = this.aiDisplay.length, features = this.oFeatures, paginate = features.bPaginate;
 
             if (features.bServerSide) {
-                return paginate === false || len === -1 ?
-                    start + records :
-                    Math.min(start + len, this._iRecordsDisplay);
+                return paginate === false || len === -1 ? start + records : Math.min(start + len, this._iRecordsDisplay);
             } else {
-                return !paginate || calc > records || len === -1 ?
-                    records :
-                    calc;
+                return !paginate || calc > records || len === -1 ? records : calc;
             }
         },
 
@@ -13867,9 +13250,7 @@
          *  @type object
          */
         selector: {
-            cell: [],
-            column: [],
-            row: []
+            cell: [], column: [], row: []
         },
 
 
@@ -13953,8 +13334,7 @@
 
 
         renderer: {
-            pageButton: {},
-            header: {}
+            pageButton: {}, header: {}
         },
 
 
@@ -14293,11 +13673,7 @@
     var extPagination = DataTable.ext.pager;
 
     function _numbers(page, pages) {
-        var
-            numbers = [],
-            buttons = extPagination.numbers_length,
-            half = Math.floor(buttons / 2),
-            i = 1;
+        var numbers = [], buttons = extPagination.numbers_length, half = Math.floor(buttons / 2), i = 1;
 
         if (pages <= buttons) {
             numbers = _range(0, pages);
@@ -14422,8 +13798,7 @@
 
                                 default:
                                     btnDisplay = settings.fnFormatNumber(button + 1);
-                                    btnClass = page === button ?
-                                        classes.sPageButtonActive : '';
+                                    btnClass = page === button ? classes.sPageButtonActive : '';
                                     break;
                             }
 
@@ -14443,16 +13818,12 @@
                                     'aria-current': btnClass === classes.sPageButtonActive ? 'page' : null,
                                     'data-dt-idx': button,
                                     'tabindex': disabled ? -1 : settings.iTabIndex,
-                                    'id': idx === 0 && typeof button === 'string' ?
-                                        settings.sTableId + '_' + button :
-                                        null
+                                    'id': idx === 0 && typeof button === 'string' ? settings.sTableId + '_' + button : null
                                 })
                                     .html(btnDisplay)
                                     .appendTo(container);
 
-                                _fnBindAction(
-                                    node, {action: button}, clickHandler
-                                );
+                                _fnBindAction(node, {action: button}, clickHandler);
                             }
                         }
                     }
@@ -14484,8 +13855,7 @@
 
     // Built in type detection. See model.ext.aTypes for information about
     // what is required from this methods.
-    $.extend(DataTable.ext.type.detect, [
-        // Plain numbers - first since V8 detects some plain numbers as dates
+    $.extend(DataTable.ext.type.detect, [// Plain numbers - first since V8 detects some plain numbers as dates
         // e.g. Date.parse('55') (but not all, e.g. Date.parse('22')...).
         function (d, settings) {
             var decimal = settings.oLanguage.sDecimal;
@@ -14524,10 +13894,8 @@
 
         // HTML (this is strict checking - there must be html)
         function (d, settings) {
-            return _empty(d) || (typeof d === 'string' && d.indexOf('<') !== -1) ?
-                'html' : null;
-        }
-    ]);
+            return _empty(d) || (typeof d === 'string' && d.indexOf('<') !== -1) ? 'html' : null;
+        }]);
 
 
     // Filter formatting functions. See model.ext.ofnSearch for information about
@@ -14540,21 +13908,13 @@
 
     $.extend(DataTable.ext.type.search, {
         html: function (data) {
-            return _empty(data) ?
-                data :
-                typeof data === 'string' ?
-                    data
-                        .replace(_re_new_lines, " ")
-                        .replace(_re_html, "") :
-                    '';
+            return _empty(data) ? data : typeof data === 'string' ? data
+                .replace(_re_new_lines, " ")
+                .replace(_re_html, "") : '';
         },
 
         string: function (data) {
-            return _empty(data) ?
-                data :
-                typeof data === 'string' ?
-                    data.replace(_re_new_lines, " ") :
-                    data;
+            return _empty(data) ? data : typeof data === 'string' ? data.replace(_re_new_lines, " ") : data;
         }
     });
 
@@ -14595,38 +13955,35 @@
     // in a function to provide an easy ability for the language options to add
     // additional methods if a non-period decimal place is used.
     function _addNumericSort(decimalPlace) {
-        $.each(
-            {
-                // Plain numbers
-                "num": function (d) {
-                    return __numericReplace(d, decimalPlace);
-                },
-
-                // Formatted numbers
-                "num-fmt": function (d) {
-                    return __numericReplace(d, decimalPlace, _re_formatted_numeric);
-                },
-
-                // HTML numeric
-                "html-num": function (d) {
-                    return __numericReplace(d, decimalPlace, _re_html);
-                },
-
-                // HTML numeric, formatted
-                "html-num-fmt": function (d) {
-                    return __numericReplace(d, decimalPlace, _re_html, _re_formatted_numeric);
-                }
+        $.each({
+            // Plain numbers
+            "num": function (d) {
+                return __numericReplace(d, decimalPlace);
             },
-            function (key, fn) {
-                // Add the ordering method
-                _ext.type.order[key + decimalPlace + '-pre'] = fn;
 
-                // For HTML types add a search formatter that will strip the HTML
-                if (key.match(/^html\-/)) {
-                    _ext.type.search[key + decimalPlace] = _ext.type.search.html;
-                }
+            // Formatted numbers
+            "num-fmt": function (d) {
+                return __numericReplace(d, decimalPlace, _re_formatted_numeric);
+            },
+
+            // HTML numeric
+            "html-num": function (d) {
+                return __numericReplace(d, decimalPlace, _re_html);
+            },
+
+            // HTML numeric, formatted
+            "html-num-fmt": function (d) {
+                return __numericReplace(d, decimalPlace, _re_html, _re_formatted_numeric);
             }
-        );
+        }, function (key, fn) {
+            // Add the ordering method
+            _ext.type.order[key + decimalPlace + '-pre'] = fn;
+
+            // For HTML types add a search formatter that will strip the HTML
+            if (key.match(/^html\-/)) {
+                _ext.type.search[key + decimalPlace] = _ext.type.search.html;
+            }
+        });
     }
 
 
@@ -14640,24 +13997,14 @@
 
         // html
         "html-pre": function (a) {
-            return _empty(a) ?
-                '' :
-                a.replace ?
-                    a.replace(/<.*?>/g, "").toLowerCase() :
-                    a + '';
+            return _empty(a) ? '' : a.replace ? a.replace(/<.*?>/g, "").toLowerCase() : a + '';
         },
 
         // string
         "string-pre": function (a) {
             // This is a little complex, but faster than always calling toString,
             // https://jsperf.com/tostring-v-check
-            return _empty(a) ?
-                '' :
-                typeof a === 'string' ?
-                    a.toLowerCase() :
-                    !a.toString ?
-                        '' :
-                        a.toString();
+            return _empty(a) ? '' : typeof a === 'string' ? a.toLowerCase() : !a.toString ? '' : a.toString();
         },
 
         // string-asc and -desc are retained only for compatibility with the old
@@ -14692,15 +14039,8 @@
                     var colIdx = column.idx;
 
                     cell
-                        .removeClass(
-                            classes.sSortAsc + ' ' +
-                            classes.sSortDesc
-                        )
-                        .addClass(columns[colIdx] == 'asc' ?
-                            classes.sSortAsc : columns[colIdx] == 'desc' ?
-                                classes.sSortDesc :
-                                column.sSortingClass
-                        );
+                        .removeClass(classes.sSortAsc + ' ' + classes.sSortDesc)
+                        .addClass(columns[colIdx] == 'asc' ? classes.sSortAsc : columns[colIdx] == 'desc' ? classes.sSortDesc : column.sSortingClass);
                 });
             },
 
@@ -14709,8 +14049,7 @@
                     .addClass(classes.sSortJUIWrapper)
                     .append(cell.contents())
                     .append($('<span/>')
-                        .addClass(classes.sSortIcon + ' ' + column.sSortingClassJUI)
-                    )
+                        .addClass(classes.sSortIcon + ' ' + column.sSortingClassJUI))
                     .appendTo(cell);
 
                 // Attach a sort listener to update on sort
@@ -14723,26 +14062,12 @@
 
                     cell
                         .removeClass(classes.sSortAsc + " " + classes.sSortDesc)
-                        .addClass(columns[colIdx] == 'asc' ?
-                            classes.sSortAsc : columns[colIdx] == 'desc' ?
-                                classes.sSortDesc :
-                                column.sSortingClass
-                        );
+                        .addClass(columns[colIdx] == 'asc' ? classes.sSortAsc : columns[colIdx] == 'desc' ? classes.sSortDesc : column.sSortingClass);
 
                     cell
                         .find('span.' + classes.sSortIcon)
-                        .removeClass(
-                            classes.sSortJUIAsc + " " +
-                            classes.sSortJUIDesc + " " +
-                            classes.sSortJUI + " " +
-                            classes.sSortJUIAscAllowed + " " +
-                            classes.sSortJUIDescAllowed
-                        )
-                        .addClass(columns[colIdx] == 'asc' ?
-                            classes.sSortJUIAsc : columns[colIdx] == 'desc' ?
-                                classes.sSortJUIDesc :
-                                column.sSortingClassJUI
-                        );
+                        .removeClass(classes.sSortJUIAsc + " " + classes.sSortJUIDesc + " " + classes.sSortJUI + " " + classes.sSortJUIAscAllowed + " " + classes.sSortJUIDescAllowed)
+                        .addClass(columns[colIdx] == 'asc' ? classes.sSortJUIAsc : columns[colIdx] == 'desc' ? classes.sSortJUIDesc : column.sSortingClassJUI);
                 });
             }
         }
@@ -14760,13 +14085,11 @@
             d = d.join(',');
         }
 
-        return typeof d === 'string' ?
-            d
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;') :
-            d;
+        return typeof d === 'string' ? d
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;') : d;
     };
 
     // Common logic for moment, luxon or a date action
@@ -14793,9 +14116,7 @@
                 return null;
             }
         } else if (window.luxon) {
-            dt = format && typeof d === 'string'
-                ? window.luxon.DateTime.fromFormat(d, format)
-                : window.luxon.DateTime.fromISO(d);
+            dt = format && typeof d === 'string' ? window.luxon.DateTime.fromFormat(d, format) : window.luxon.DateTime.fromISO(d);
 
             if (!dt.isValid) {
                 return null;
@@ -14852,22 +14173,14 @@
                     var x = a.valueOf();
                     var y = b.valueOf();
 
-                    return x === y
-                        ? 0
-                        : x < y
-                            ? -1
-                            : 1;
+                    return x === y ? 0 : x < y ? -1 : 1;
                 }
 
                 DataTable.ext.type.order[typeName + '-desc'] = function (a, b) {
                     var x = a.valueOf();
                     var y = b.valueOf();
 
-                    return x === y
-                        ? 0
-                        : x > y
-                            ? -1
-                            : 1;
+                    return x === y ? 0 : x > y ? -1 : 1;
                 }
             }
 
@@ -14879,10 +14192,7 @@
                         // made, as such need to get the local date / time as if it were
                         // UTC
                         var local = new Date();
-                        d = new Date(Date.UTC(
-                            local.getFullYear(), local.getMonth(), local.getDate(),
-                            local.getHours(), local.getMinutes(), local.getSeconds()
-                        ));
+                        d = new Date(Date.UTC(local.getFullYear(), local.getMonth(), local.getDate(), local.getHours(), local.getMinutes(), local.getSeconds()));
                     } else {
                         d = '';
                     }
@@ -14894,9 +14204,7 @@
                 }
 
                 if (d === '') {
-                    return type !== 'sort'
-                        ? ''
-                        : __mldObj('0000-01-01 00:00:00', null, locale);
+                    return type !== 'sort' ? '' : __mldObj('0000-01-01 00:00:00', null, locale);
                 }
 
                 // Shortcut. If `from` and `to` are the same, we are using the renderer to
@@ -14915,14 +14223,10 @@
                     return dt;
                 }
 
-                var formatted = to === null
-                    ? __mld(dt, 'toDate', 'toJSDate', '')[localeString]()
-                    : __mld(dt, 'format', 'toFormat', 'toISOString', to);
+                var formatted = to === null ? __mld(dt, 'toDate', 'toJSDate', '')[localeString]() : __mld(dt, 'format', 'toFormat', 'toISOString', to);
 
                 // XSS protection
-                return type === 'display' ?
-                    __htmlEscapeEntities(formatted) :
-                    formatted;
+                return type === 'display' ? __htmlEscapeEntities(formatted) : formatted;
             };
         }
     }
@@ -15032,29 +14336,21 @@
                     d = Math.abs(flo);
 
                     var intPart = parseInt(d, 10);
-                    var floatPart = precision ?
-                        decimal + (d - intPart).toFixed(precision).substring(2) :
-                        '';
+                    var floatPart = precision ? decimal + (d - intPart).toFixed(precision).substring(2) : '';
 
                     // If zero, then can't have a negative prefix
                     if (intPart === 0 && parseFloat(floatPart) === 0) {
                         negative = '';
                     }
 
-                    return negative + (prefix || '') +
-                        intPart.toString().replace(
-                            /\B(?=(\d{3})+(?!\d))/g, thousands
-                        ) +
-                        floatPart +
-                        (postfix || '');
+                    return negative + (prefix || '') + intPart.toString().replace(/\B(?=(\d{3})+(?!\d))/g, thousands) + floatPart + (postfix || '');
                 }
             };
         },
 
         text: function () {
             return {
-                display: __htmlEscapeEntities,
-                filter: __htmlEscapeEntities
+                display: __htmlEscapeEntities, filter: __htmlEscapeEntities
             };
         }
     };
@@ -15074,9 +14370,7 @@
      */
     function _fnExternApiFunc(fn) {
         return function () {
-            var args = [_fnSettingsFromNode(this[DataTable.ext.iApiIndex])].concat(
-                Array.prototype.slice.call(arguments)
-            );
+            var args = [_fnSettingsFromNode(this[DataTable.ext.iApiIndex])].concat(Array.prototype.slice.call(arguments));
             return DataTable.ext.internal[fn].apply(this, args);
         };
     }

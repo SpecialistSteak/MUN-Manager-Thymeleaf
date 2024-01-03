@@ -5,9 +5,7 @@
 //! momentjs.com
 
 ;(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-        typeof define === 'function' && define.amd ? define(factory) :
-            global.moment = factory()
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.moment = factory()
 }(this, (function () {
     'use strict';
 
@@ -24,19 +22,13 @@
     }
 
     function isArray(input) {
-        return (
-            input instanceof Array ||
-            Object.prototype.toString.call(input) === '[object Array]'
-        );
+        return (input instanceof Array || Object.prototype.toString.call(input) === '[object Array]');
     }
 
     function isObject(input) {
         // IE8 will treat undefined and null as object if it wasn't for
         // input != null
-        return (
-            input != null &&
-            Object.prototype.toString.call(input) === '[object Object]'
-        );
+        return (input != null && Object.prototype.toString.call(input) === '[object Object]');
     }
 
     function hasOwnProp(a, b) {
@@ -62,23 +54,15 @@
     }
 
     function isNumber(input) {
-        return (
-            typeof input === 'number' ||
-            Object.prototype.toString.call(input) === '[object Number]'
-        );
+        return (typeof input === 'number' || Object.prototype.toString.call(input) === '[object Number]');
     }
 
     function isDate(input) {
-        return (
-            input instanceof Date ||
-            Object.prototype.toString.call(input) === '[object Date]'
-        );
+        return (input instanceof Date || Object.prototype.toString.call(input) === '[object Date]');
     }
 
     function map(arr, fn) {
-        var res = [],
-            i,
-            arrLen = arr.length;
+        var res = [], i, arrLen = arr.length;
         for (i = 0; i < arrLen; ++i) {
             res.push(fn(arr[i], i));
         }
@@ -141,9 +125,7 @@
         some = Array.prototype.some;
     } else {
         some = function (fun) {
-            var t = Object(this),
-                len = t.length >>> 0,
-                i;
+            var t = Object(this), len = t.length >>> 0, i;
 
             for (i = 0; i < len; i++) {
                 if (i in t && fun.call(this, t[i], i, t)) {
@@ -156,31 +138,15 @@
     }
 
     function isValid(m) {
-        var flags = null,
-            parsedParts = false,
-            isNowValid = m._d && !isNaN(m._d.getTime());
+        var flags = null, parsedParts = false, isNowValid = m._d && !isNaN(m._d.getTime());
         if (isNowValid) {
             flags = getParsingFlags(m);
             parsedParts = some.call(flags.parsedDateParts, function (i) {
                 return i != null;
             });
-            isNowValid =
-                flags.overflow < 0 &&
-                !flags.empty &&
-                !flags.invalidEra &&
-                !flags.invalidMonth &&
-                !flags.invalidWeekday &&
-                !flags.weekdayMismatch &&
-                !flags.nullInput &&
-                !flags.invalidFormat &&
-                !flags.userInvalidated &&
-                (!flags.meridiem || (flags.meridiem && parsedParts));
+            isNowValid = flags.overflow < 0 && !flags.empty && !flags.invalidEra && !flags.invalidMonth && !flags.invalidWeekday && !flags.weekdayMismatch && !flags.nullInput && !flags.invalidFormat && !flags.userInvalidated && (!flags.meridiem || (flags.meridiem && parsedParts));
             if (m._strict) {
-                isNowValid =
-                    isNowValid &&
-                    flags.charsLeftOver === 0 &&
-                    flags.unusedTokens.length === 0 &&
-                    flags.bigHour === undefined;
+                isNowValid = isNowValid && flags.charsLeftOver === 0 && flags.unusedTokens.length === 0 && flags.bigHour === undefined;
             }
         }
         if (Object.isFrozen == null || !Object.isFrozen(m)) {
@@ -204,14 +170,10 @@
 
     // Plugins that add properties should also add the key here (null value),
     // so we can properly clone ourselves.
-    var momentProperties = (hooks.momentProperties = []),
-        updateInProgress = false;
+    var momentProperties = (hooks.momentProperties = []), updateInProgress = false;
 
     function copyConfig(to, from) {
-        var i,
-            prop,
-            val,
-            momentPropertiesLen = momentProperties.length;
+        var i, prop, val, momentPropertiesLen = momentProperties.length;
 
         if (!isUndefined(from._isAMomentObject)) {
             to._isAMomentObject = from._isAMomentObject;
@@ -274,17 +236,11 @@
     }
 
     function isMoment(obj) {
-        return (
-            obj instanceof Moment || (obj != null && obj._isAMomentObject != null)
-        );
+        return (obj instanceof Moment || (obj != null && obj._isAMomentObject != null));
     }
 
     function warn(msg) {
-        if (
-            hooks.suppressDeprecationWarnings === false &&
-            typeof console !== 'undefined' &&
-            console.warn
-        ) {
+        if (hooks.suppressDeprecationWarnings === false && typeof console !== 'undefined' && console.warn) {
             console.warn('Deprecation warning: ' + msg);
         }
     }
@@ -297,11 +253,7 @@
                 hooks.deprecationHandler(null, msg);
             }
             if (firstTime) {
-                var args = [],
-                    arg,
-                    i,
-                    key,
-                    argLen = arguments.length;
+                var args = [], arg, i, key, argLen = arguments.length;
                 for (i = 0; i < argLen; i++) {
                     arg = '';
                     if (typeof arguments[i] === 'object') {
@@ -317,13 +269,7 @@
                     }
                     args.push(arg);
                 }
-                warn(
-                    msg +
-                    '\nArguments: ' +
-                    Array.prototype.slice.call(args).join('') +
-                    '\n' +
-                    new Error().stack
-                );
+                warn(msg + '\nArguments: ' + Array.prototype.slice.call(args).join('') + '\n' + new Error().stack);
                 firstTime = false;
             }
             return fn.apply(this, arguments);
@@ -346,10 +292,7 @@
     hooks.deprecationHandler = null;
 
     function isFunction(input) {
-        return (
-            (typeof Function !== 'undefined' && input instanceof Function) ||
-            Object.prototype.toString.call(input) === '[object Function]'
-        );
+        return ((typeof Function !== 'undefined' && input instanceof Function) || Object.prototype.toString.call(input) === '[object Function]');
     }
 
     function set(config) {
@@ -368,16 +311,11 @@
         // Lenient ordinal parsing accepts just a number in addition to
         // number + (possibly) stuff coming from _dayOfMonthOrdinalParse.
         // TODO: Remove "ordinalParse" fallback in next major release.
-        this._dayOfMonthOrdinalParseLenient = new RegExp(
-            (this._dayOfMonthOrdinalParse.source || this._ordinalParse.source) +
-            '|' +
-            /\d{1,2}/.source
-        );
+        this._dayOfMonthOrdinalParseLenient = new RegExp((this._dayOfMonthOrdinalParse.source || this._ordinalParse.source) + '|' + /\d{1,2}/.source);
     }
 
     function mergeConfigs(parentConfig, childConfig) {
-        var res = extend({}, parentConfig),
-            prop;
+        var res = extend({}, parentConfig), prop;
         for (prop in childConfig) {
             if (hasOwnProp(childConfig, prop)) {
                 if (isObject(parentConfig[prop]) && isObject(childConfig[prop])) {
@@ -392,11 +330,7 @@
             }
         }
         for (prop in parentConfig) {
-            if (
-                hasOwnProp(parentConfig, prop) &&
-                !hasOwnProp(childConfig, prop) &&
-                isObject(parentConfig[prop])
-            ) {
+            if (hasOwnProp(parentConfig, prop) && !hasOwnProp(childConfig, prop) && isObject(parentConfig[prop])) {
                 // make sure changes to properties don't modify parent config
                 res[prop] = extend({}, res[prop]);
             }
@@ -416,8 +350,7 @@
         keys = Object.keys;
     } else {
         keys = function (obj) {
-            var i,
-                res = [];
+            var i, res = [];
             for (i in obj) {
                 if (hasOwnProp(obj, i)) {
                     res.push(i);
@@ -442,20 +375,12 @@
     }
 
     function zeroFill(number, targetLength, forceSign) {
-        var absNumber = '' + Math.abs(number),
-            zerosToFill = targetLength - absNumber.length,
-            sign = number >= 0;
-        return (
-            (sign ? (forceSign ? '+' : '') : '-') +
-            Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) +
-            absNumber
-        );
+        var absNumber = '' + Math.abs(number), zerosToFill = targetLength - absNumber.length, sign = number >= 0;
+        return ((sign ? (forceSign ? '+' : '') : '-') + Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absNumber);
     }
 
-    var formattingTokens =
-            /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|N{1,5}|YYYYYY|YYYYY|YYYY|YY|y{2,4}|yo?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g,
-        localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g,
-        formatFunctions = {},
+    var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|N{1,5}|YYYYYY|YYYYY|YYYY|YY|y{2,4}|yo?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g,
+        localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, formatFunctions = {},
         formatTokenFunctions = {};
 
     // token:    'M'
@@ -479,10 +404,7 @@
         }
         if (ordinal) {
             formatTokenFunctions[ordinal] = function () {
-                return this.localeData().ordinal(
-                    func.apply(this, arguments),
-                    token
-                );
+                return this.localeData().ordinal(func.apply(this, arguments), token);
             };
         }
     }
@@ -495,9 +417,7 @@
     }
 
     function makeFormatFunction(format) {
-        var array = format.match(formattingTokens),
-            i,
-            length;
+        var array = format.match(formattingTokens), i, length;
 
         for (i = 0, length = array.length; i < length; i++) {
             if (formatTokenFunctions[array[i]]) {
@@ -508,12 +428,9 @@
         }
 
         return function (mom) {
-            var output = '',
-                i;
+            var output = '', i;
             for (i = 0; i < length; i++) {
-                output += isFunction(array[i])
-                    ? array[i].call(mom, format)
-                    : array[i];
+                output += isFunction(array[i]) ? array[i].call(mom, format) : array[i];
             }
             return output;
         };
@@ -526,8 +443,7 @@
         }
 
         format = expandFormat(format, m.localeData());
-        formatFunctions[format] =
-            formatFunctions[format] || makeFormatFunction(format);
+        formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
 
         return formatFunctions[format](m);
     }
@@ -541,10 +457,7 @@
 
         localFormattingTokens.lastIndex = 0;
         while (i >= 0 && localFormattingTokens.test(format)) {
-            format = format.replace(
-                localFormattingTokens,
-                replaceLongDateFormatTokens
-            );
+            format = format.replace(localFormattingTokens, replaceLongDateFormatTokens);
             localFormattingTokens.lastIndex = 0;
             i -= 1;
         }
@@ -562,8 +475,7 @@
     };
 
     function longDateFormat(key) {
-        var format = this._longDateFormat[key],
-            formatUpper = this._longDateFormat[key.toUpperCase()];
+        var format = this._longDateFormat[key], formatUpper = this._longDateFormat[key.toUpperCase()];
 
         if (format || !formatUpper) {
             return format;
@@ -572,12 +484,7 @@
         this._longDateFormat[key] = formatUpper
             .match(formattingTokens)
             .map(function (tok) {
-                if (
-                    tok === 'MMMM' ||
-                    tok === 'MM' ||
-                    tok === 'DD' ||
-                    tok === 'dddd'
-                ) {
+                if (tok === 'MMMM' || tok === 'MM' || tok === 'DD' || tok === 'dddd') {
                     return tok.slice(1);
                 }
                 return tok;
@@ -593,8 +500,7 @@
         return this._invalidDate;
     }
 
-    var defaultOrdinal = '%d',
-        defaultDayOfMonthOrdinalParse = /\d{1,2}/;
+    var defaultOrdinal = '%d', defaultDayOfMonthOrdinalParse = /\d{1,2}/;
 
     function ordinal(number) {
         return this._ordinal.replace('%d', number);
@@ -621,9 +527,7 @@
 
     function relativeTime(number, withoutSuffix, string, isFuture) {
         var output = this._relativeTime[string];
-        return isFunction(output)
-            ? output(number, withoutSuffix, string, isFuture)
-            : output.replace(/%d/i, number);
+        return isFunction(output) ? output(number, withoutSuffix, string, isFuture) : output.replace(/%d/i, number);
     }
 
     function pastFuture(diff, output) {
@@ -683,15 +587,11 @@
     };
 
     function normalizeUnits(units) {
-        return typeof units === 'string'
-            ? aliases[units] || aliases[units.toLowerCase()]
-            : undefined;
+        return typeof units === 'string' ? aliases[units] || aliases[units.toLowerCase()] : undefined;
     }
 
     function normalizeObjectUnits(inputObject) {
-        var normalizedInput = {},
-            normalizedProp,
-            prop;
+        var normalizedInput = {}, normalizedProp, prop;
 
         for (prop in inputObject) {
             if (hasOwnProp(inputObject, prop)) {
@@ -725,8 +625,7 @@
     };
 
     function getPrioritizedUnits(unitsObj) {
-        var units = [],
-            u;
+        var units = [], u;
         for (u in unitsObj) {
             if (hasOwnProp(unitsObj, u)) {
                 units.push({unit: u, priority: priorities[u]});
@@ -756,8 +655,7 @@
         matchTimestamp = /[+-]?\d+(\.\d{1,3})?/, // 123456789 123456789.123
         // any word (or two) characters or numbers including two/three word month in arabic.
         // includes scottish gaelic two word and hyphenated months
-        matchWord =
-            /[0-9]{0,256}['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFF07\uFF10-\uFFEF]{1,256}|[\u0600-\u06FF\/]{1,256}(\s*?[\u0600-\u06FF]{1,256}){1,2}/i,
+        matchWord = /[0-9]{0,256}['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFF07\uFF10-\uFFEF]{1,256}|[\u0600-\u06FF\/]{1,256}(\s*?[\u0600-\u06FF]{1,256}){1,2}/i,
         match1to2NoLeadingZero = /^[1-9]\d?/, //         1-99
         match1to2HasZero = /^([1-9]\d|\d)/, //           0-99
         regexes;
@@ -765,11 +663,9 @@
     regexes = {};
 
     function addRegexToken(token, regex, strictRegex) {
-        regexes[token] = isFunction(regex)
-            ? regex
-            : function (isStrict, localeData) {
-                return isStrict && strictRegex ? strictRegex : regex;
-            };
+        regexes[token] = isFunction(regex) ? regex : function (isStrict, localeData) {
+            return isStrict && strictRegex ? strictRegex : regex;
+        };
     }
 
     function getParseRegexForToken(token, config) {
@@ -782,16 +678,11 @@
 
     // Code from http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
     function unescapeFormat(s) {
-        return regexEscape(
-            s
-                .replace('\\', '')
-                .replace(
-                    /\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g,
-                    function (matched, p1, p2, p3, p4) {
-                        return p1 || p2 || p3 || p4;
-                    }
-                )
-        );
+        return regexEscape(s
+            .replace('\\', '')
+            .replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g, function (matched, p1, p2, p3, p4) {
+                return p1 || p2 || p3 || p4;
+            }));
     }
 
     function regexEscape(s) {
@@ -808,8 +699,7 @@
     }
 
     function toInt(argumentForCoercion) {
-        var coercedNumber = +argumentForCoercion,
-            value = 0;
+        var coercedNumber = +argumentForCoercion, value = 0;
 
         if (coercedNumber !== 0 && isFinite(coercedNumber)) {
             value = absFloor(coercedNumber);
@@ -821,9 +711,7 @@
     var tokens = {};
 
     function addParseToken(token, callback) {
-        var i,
-            func = callback,
-            tokenLen;
+        var i, func = callback, tokenLen;
         if (typeof token === 'string') {
             token = [token];
         }
@@ -855,15 +743,7 @@
         return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
     }
 
-    var YEAR = 0,
-        MONTH = 1,
-        DATE = 2,
-        HOUR = 3,
-        MINUTE = 4,
-        SECOND = 5,
-        MILLISECOND = 6,
-        WEEK = 7,
-        WEEKDAY = 8;
+    var YEAR = 0, MONTH = 1, DATE = 2, HOUR = 3, MINUTE = 4, SECOND = 5, MILLISECOND = 6, WEEK = 7, WEEKDAY = 8;
 
     // FORMATTING
 
@@ -890,8 +770,7 @@
 
     addParseToken(['YYYYY', 'YYYYYY'], YEAR);
     addParseToken('YYYY', function (input, array) {
-        array[YEAR] =
-            input.length === 2 ? hooks.parseTwoDigitYear(input) : toInt(input);
+        array[YEAR] = input.length === 2 ? hooks.parseTwoDigitYear(input) : toInt(input);
     });
     addParseToken('YY', function (input, array) {
         array[YEAR] = hooks.parseTwoDigitYear(input);
@@ -937,8 +816,7 @@
             return NaN;
         }
 
-        var d = mom._d,
-            isUTC = mom._isUTC;
+        var d = mom._d, isUTC = mom._isUTC;
 
         switch (unit) {
             case 'Milliseconds':
@@ -974,9 +852,7 @@
 
         switch (unit) {
             case 'Milliseconds':
-                return void (isUTC
-                    ? d.setUTCMilliseconds(value)
-                    : d.setMilliseconds(value));
+                return void (isUTC ? d.setUTCMilliseconds(value) : d.setMilliseconds(value));
             case 'Seconds':
                 return void (isUTC ? d.setUTCSeconds(value) : d.setSeconds(value));
             case 'Minutes':
@@ -999,9 +875,7 @@
         month = mom.month();
         date = mom.date();
         date = date === 29 && month === 1 && !isLeapYear(year) ? 28 : date;
-        void (isUTC
-            ? d.setUTCFullYear(year, month, date)
-            : d.setFullYear(year, month, date));
+        void (isUTC ? d.setUTCFullYear(year, month, date) : d.setFullYear(year, month, date));
     }
 
     // MOMENTS
@@ -1017,9 +891,7 @@
     function stringSet(units, value) {
         if (typeof units === 'object') {
             units = normalizeObjectUnits(units);
-            var prioritized = getPrioritizedUnits(units),
-                i,
-                prioritizedLen = prioritized.length;
+            var prioritized = getPrioritizedUnits(units), i, prioritizedLen = prioritized.length;
             for (i = 0; i < prioritizedLen; i++) {
                 this[prioritized[i].unit](units[prioritized[i].unit]);
             }
@@ -1059,11 +931,7 @@
         }
         var modMonth = mod(month, 12);
         year += (month - modMonth) / 12;
-        return modMonth === 1
-            ? isLeapYear(year)
-                ? 29
-                : 28
-            : 31 - ((modMonth % 7) % 2);
+        return modMonth === 1 ? isLeapYear(year) ? 29 : 28 : 31 - ((modMonth % 7) % 2);
     }
 
     // FORMATTING
@@ -1107,49 +975,27 @@
 
     // LOCALES
 
-    var defaultLocaleMonths =
-            'January_February_March_April_May_June_July_August_September_October_November_December'.split(
-                '_'
-            ),
-        defaultLocaleMonthsShort =
-            'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/,
-        defaultMonthsShortRegex = matchWord,
+    var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
+        defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
+        MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/, defaultMonthsShortRegex = matchWord,
         defaultMonthsRegex = matchWord;
 
     function localeMonths(m, format) {
         if (!m) {
-            return isArray(this._months)
-                ? this._months
-                : this._months['standalone'];
+            return isArray(this._months) ? this._months : this._months['standalone'];
         }
-        return isArray(this._months)
-            ? this._months[m.month()]
-            : this._months[
-                (this._months.isFormat || MONTHS_IN_FORMAT).test(format)
-                    ? 'format'
-                    : 'standalone'
-                ][m.month()];
+        return isArray(this._months) ? this._months[m.month()] : this._months[(this._months.isFormat || MONTHS_IN_FORMAT).test(format) ? 'format' : 'standalone'][m.month()];
     }
 
     function localeMonthsShort(m, format) {
         if (!m) {
-            return isArray(this._monthsShort)
-                ? this._monthsShort
-                : this._monthsShort['standalone'];
+            return isArray(this._monthsShort) ? this._monthsShort : this._monthsShort['standalone'];
         }
-        return isArray(this._monthsShort)
-            ? this._monthsShort[m.month()]
-            : this._monthsShort[
-                MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'
-                ][m.month()];
+        return isArray(this._monthsShort) ? this._monthsShort[m.month()] : this._monthsShort[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
     }
 
     function handleStrictParse(monthName, format, strict) {
-        var i,
-            ii,
-            mom,
-            llc = monthName.toLocaleLowerCase();
+        var i, ii, mom, llc = monthName.toLocaleLowerCase();
         if (!this._monthsParse) {
             // this is not used
             this._monthsParse = [];
@@ -1157,10 +1003,7 @@
             this._shortMonthsParse = [];
             for (i = 0; i < 12; ++i) {
                 mom = createUTC([2000, i]);
-                this._shortMonthsParse[i] = this.monthsShort(
-                    mom,
-                    ''
-                ).toLocaleLowerCase();
+                this._shortMonthsParse[i] = this.monthsShort(mom, '').toLocaleLowerCase();
                 this._longMonthsParse[i] = this.months(mom, '').toLocaleLowerCase();
             }
         }
@@ -1212,32 +1055,17 @@
             // make the regex if we don't have it already
             mom = createUTC([2000, i]);
             if (strict && !this._longMonthsParse[i]) {
-                this._longMonthsParse[i] = new RegExp(
-                    '^' + this.months(mom, '').replace('.', '') + '$',
-                    'i'
-                );
-                this._shortMonthsParse[i] = new RegExp(
-                    '^' + this.monthsShort(mom, '').replace('.', '') + '$',
-                    'i'
-                );
+                this._longMonthsParse[i] = new RegExp('^' + this.months(mom, '').replace('.', '') + '$', 'i');
+                this._shortMonthsParse[i] = new RegExp('^' + this.monthsShort(mom, '').replace('.', '') + '$', 'i');
             }
             if (!strict && !this._monthsParse[i]) {
-                regex =
-                    '^' + this.months(mom, '') + '|^' + this.monthsShort(mom, '');
+                regex = '^' + this.months(mom, '') + '|^' + this.monthsShort(mom, '');
                 this._monthsParse[i] = new RegExp(regex.replace('.', ''), 'i');
             }
             // test the regex
-            if (
-                strict &&
-                format === 'MMMM' &&
-                this._longMonthsParse[i].test(monthName)
-            ) {
+            if (strict && format === 'MMMM' && this._longMonthsParse[i].test(monthName)) {
                 return i;
-            } else if (
-                strict &&
-                format === 'MMM' &&
-                this._shortMonthsParse[i].test(monthName)
-            ) {
+            } else if (strict && format === 'MMM' && this._shortMonthsParse[i].test(monthName)) {
                 return i;
             } else if (!strict && this._monthsParse[i].test(monthName)) {
                 return i;
@@ -1265,13 +1093,10 @@
             }
         }
 
-        var month = value,
-            date = mom.date();
+        var month = value, date = mom.date();
 
         date = date < 29 ? date : Math.min(date, daysInMonth(mom.year(), month));
-        void (mom._isUTC
-            ? mom._d.setUTCMonth(month, date)
-            : mom._d.setMonth(month, date));
+        void (mom._isUTC ? mom._d.setUTCMonth(month, date) : mom._d.setMonth(month, date));
         return mom;
     }
 
@@ -1303,9 +1128,7 @@
             if (!hasOwnProp(this, '_monthsShortRegex')) {
                 this._monthsShortRegex = defaultMonthsShortRegex;
             }
-            return this._monthsShortStrictRegex && isStrict
-                ? this._monthsShortStrictRegex
-                : this._monthsShortRegex;
+            return this._monthsShortStrictRegex && isStrict ? this._monthsShortStrictRegex : this._monthsShortRegex;
         }
     }
 
@@ -1323,9 +1146,7 @@
             if (!hasOwnProp(this, '_monthsRegex')) {
                 this._monthsRegex = defaultMonthsRegex;
             }
-            return this._monthsStrictRegex && isStrict
-                ? this._monthsStrictRegex
-                : this._monthsRegex;
+            return this._monthsStrictRegex && isStrict ? this._monthsStrictRegex : this._monthsRegex;
         }
     }
 
@@ -1334,13 +1155,7 @@
             return b.length - a.length;
         }
 
-        var shortPieces = [],
-            longPieces = [],
-            mixedPieces = [],
-            i,
-            mom,
-            shortP,
-            longP;
+        var shortPieces = [], longPieces = [], mixedPieces = [], i, mom, shortP, longP;
         for (i = 0; i < 12; i++) {
             // make the regex if we don't have it already
             mom = createUTC([2000, i]);
@@ -1359,14 +1174,8 @@
 
         this._monthsRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
         this._monthsShortRegex = this._monthsRegex;
-        this._monthsStrictRegex = new RegExp(
-            '^(' + longPieces.join('|') + ')',
-            'i'
-        );
-        this._monthsShortStrictRegex = new RegExp(
-            '^(' + shortPieces.join('|') + ')',
-            'i'
-        );
+        this._monthsStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
+        this._monthsShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
     }
 
     function createDate(y, m, d, h, M, s, ms) {
@@ -1408,8 +1217,7 @@
     // start-of-first-week - start-of-year
     function firstWeekOffset(year, dow, doy) {
         var // first-week day -- which january is always in the first week (4 for iso, 1 for other)
-            fwd = 7 + dow - doy,
-            // first-week day local weekday -- which local weekday is fwd
+            fwd = 7 + dow - doy, // first-week day local weekday -- which local weekday is fwd
             fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
 
         return -fwdlw + fwd - 1;
@@ -1417,11 +1225,8 @@
 
     // https://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
     function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
-        var localWeekday = (7 + weekday - dow) % 7,
-            weekOffset = firstWeekOffset(year, dow, doy),
-            dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset,
-            resYear,
-            resDayOfYear;
+        var localWeekday = (7 + weekday - dow) % 7, weekOffset = firstWeekOffset(year, dow, doy),
+            dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset, resYear, resDayOfYear;
 
         if (dayOfYear <= 0) {
             resYear = year - 1;
@@ -1435,16 +1240,13 @@
         }
 
         return {
-            year: resYear,
-            dayOfYear: resDayOfYear,
+            year: resYear, dayOfYear: resDayOfYear,
         };
     }
 
     function weekOfYear(mom, dow, doy) {
         var weekOffset = firstWeekOffset(mom.year(), dow, doy),
-            week = Math.floor((mom.dayOfYear() - weekOffset - 1) / 7) + 1,
-            resWeek,
-            resYear;
+            week = Math.floor((mom.dayOfYear() - weekOffset - 1) / 7) + 1, resWeek, resYear;
 
         if (week < 1) {
             resYear = mom.year() - 1;
@@ -1458,14 +1260,12 @@
         }
 
         return {
-            week: resWeek,
-            year: resYear,
+            week: resWeek, year: resYear,
         };
     }
 
     function weeksInYear(year, dow, doy) {
-        var weekOffset = firstWeekOffset(year, dow, doy),
-            weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
+        var weekOffset = firstWeekOffset(year, dow, doy), weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
         return (daysInYear(year) - weekOffset + weekOffsetNext) / 7;
     }
 
@@ -1481,12 +1281,9 @@
     addRegexToken('W', match1to2, match1to2NoLeadingZero);
     addRegexToken('WW', match1to2, match2);
 
-    addWeekParseToken(
-        ['w', 'ww', 'W', 'WW'],
-        function (input, week, config, token) {
-            week[token.substr(0, 1)] = toInt(input);
-        }
-    );
+    addWeekParseToken(['w', 'ww', 'W', 'WW'], function (input, week, config, token) {
+        week[token.substr(0, 1)] = toInt(input);
+    });
 
     // HELPERS
 
@@ -1600,50 +1397,26 @@
         return ws.slice(n, 7).concat(ws.slice(0, n));
     }
 
-    var defaultLocaleWeekdays =
-            'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
+    var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
         defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
-        defaultWeekdaysRegex = matchWord,
-        defaultWeekdaysShortRegex = matchWord,
-        defaultWeekdaysMinRegex = matchWord;
+        defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'), defaultWeekdaysRegex = matchWord,
+        defaultWeekdaysShortRegex = matchWord, defaultWeekdaysMinRegex = matchWord;
 
     function localeWeekdays(m, format) {
-        var weekdays = isArray(this._weekdays)
-            ? this._weekdays
-            : this._weekdays[
-                m && m !== true && this._weekdays.isFormat.test(format)
-                    ? 'format'
-                    : 'standalone'
-                ];
-        return m === true
-            ? shiftWeekdays(weekdays, this._week.dow)
-            : m
-                ? weekdays[m.day()]
-                : weekdays;
+        var weekdays = isArray(this._weekdays) ? this._weekdays : this._weekdays[m && m !== true && this._weekdays.isFormat.test(format) ? 'format' : 'standalone'];
+        return m === true ? shiftWeekdays(weekdays, this._week.dow) : m ? weekdays[m.day()] : weekdays;
     }
 
     function localeWeekdaysShort(m) {
-        return m === true
-            ? shiftWeekdays(this._weekdaysShort, this._week.dow)
-            : m
-                ? this._weekdaysShort[m.day()]
-                : this._weekdaysShort;
+        return m === true ? shiftWeekdays(this._weekdaysShort, this._week.dow) : m ? this._weekdaysShort[m.day()] : this._weekdaysShort;
     }
 
     function localeWeekdaysMin(m) {
-        return m === true
-            ? shiftWeekdays(this._weekdaysMin, this._week.dow)
-            : m
-                ? this._weekdaysMin[m.day()]
-                : this._weekdaysMin;
+        return m === true ? shiftWeekdays(this._weekdaysMin, this._week.dow) : m ? this._weekdaysMin[m.day()] : this._weekdaysMin;
     }
 
     function handleStrictParse$1(weekdayName, format, strict) {
-        var i,
-            ii,
-            mom,
-            llc = weekdayName.toLocaleLowerCase();
+        var i, ii, mom, llc = weekdayName.toLocaleLowerCase();
         if (!this._weekdaysParse) {
             this._weekdaysParse = [];
             this._shortWeekdaysParse = [];
@@ -1651,14 +1424,8 @@
 
             for (i = 0; i < 7; ++i) {
                 mom = createUTC([2000, 1]).day(i);
-                this._minWeekdaysParse[i] = this.weekdaysMin(
-                    mom,
-                    ''
-                ).toLocaleLowerCase();
-                this._shortWeekdaysParse[i] = this.weekdaysShort(
-                    mom,
-                    ''
-                ).toLocaleLowerCase();
+                this._minWeekdaysParse[i] = this.weekdaysMin(mom, '').toLocaleLowerCase();
+                this._shortWeekdaysParse[i] = this.weekdaysShort(mom, '').toLocaleLowerCase();
                 this._weekdaysParse[i] = this.weekdays(mom, '').toLocaleLowerCase();
             }
         }
@@ -1731,47 +1498,20 @@
 
             mom = createUTC([2000, 1]).day(i);
             if (strict && !this._fullWeekdaysParse[i]) {
-                this._fullWeekdaysParse[i] = new RegExp(
-                    '^' + this.weekdays(mom, '').replace('.', '\\.?') + '$',
-                    'i'
-                );
-                this._shortWeekdaysParse[i] = new RegExp(
-                    '^' + this.weekdaysShort(mom, '').replace('.', '\\.?') + '$',
-                    'i'
-                );
-                this._minWeekdaysParse[i] = new RegExp(
-                    '^' + this.weekdaysMin(mom, '').replace('.', '\\.?') + '$',
-                    'i'
-                );
+                this._fullWeekdaysParse[i] = new RegExp('^' + this.weekdays(mom, '').replace('.', '\\.?') + '$', 'i');
+                this._shortWeekdaysParse[i] = new RegExp('^' + this.weekdaysShort(mom, '').replace('.', '\\.?') + '$', 'i');
+                this._minWeekdaysParse[i] = new RegExp('^' + this.weekdaysMin(mom, '').replace('.', '\\.?') + '$', 'i');
             }
             if (!this._weekdaysParse[i]) {
-                regex =
-                    '^' +
-                    this.weekdays(mom, '') +
-                    '|^' +
-                    this.weekdaysShort(mom, '') +
-                    '|^' +
-                    this.weekdaysMin(mom, '');
+                regex = '^' + this.weekdays(mom, '') + '|^' + this.weekdaysShort(mom, '') + '|^' + this.weekdaysMin(mom, '');
                 this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
             }
             // test the regex
-            if (
-                strict &&
-                format === 'dddd' &&
-                this._fullWeekdaysParse[i].test(weekdayName)
-            ) {
+            if (strict && format === 'dddd' && this._fullWeekdaysParse[i].test(weekdayName)) {
                 return i;
-            } else if (
-                strict &&
-                format === 'ddd' &&
-                this._shortWeekdaysParse[i].test(weekdayName)
-            ) {
+            } else if (strict && format === 'ddd' && this._shortWeekdaysParse[i].test(weekdayName)) {
                 return i;
-            } else if (
-                strict &&
-                format === 'dd' &&
-                this._minWeekdaysParse[i].test(weekdayName)
-            ) {
+            } else if (strict && format === 'dd' && this._minWeekdaysParse[i].test(weekdayName)) {
                 return i;
             } else if (!strict && this._weekdaysParse[i].test(weekdayName)) {
                 return i;
@@ -1834,9 +1574,7 @@
             if (!hasOwnProp(this, '_weekdaysRegex')) {
                 this._weekdaysRegex = defaultWeekdaysRegex;
             }
-            return this._weekdaysStrictRegex && isStrict
-                ? this._weekdaysStrictRegex
-                : this._weekdaysRegex;
+            return this._weekdaysStrictRegex && isStrict ? this._weekdaysStrictRegex : this._weekdaysRegex;
         }
     }
 
@@ -1854,9 +1592,7 @@
             if (!hasOwnProp(this, '_weekdaysShortRegex')) {
                 this._weekdaysShortRegex = defaultWeekdaysShortRegex;
             }
-            return this._weekdaysShortStrictRegex && isStrict
-                ? this._weekdaysShortStrictRegex
-                : this._weekdaysShortRegex;
+            return this._weekdaysShortStrictRegex && isStrict ? this._weekdaysShortStrictRegex : this._weekdaysShortRegex;
         }
     }
 
@@ -1874,9 +1610,7 @@
             if (!hasOwnProp(this, '_weekdaysMinRegex')) {
                 this._weekdaysMinRegex = defaultWeekdaysMinRegex;
             }
-            return this._weekdaysMinStrictRegex && isStrict
-                ? this._weekdaysMinStrictRegex
-                : this._weekdaysMinRegex;
+            return this._weekdaysMinStrictRegex && isStrict ? this._weekdaysMinStrictRegex : this._weekdaysMinRegex;
         }
     }
 
@@ -1885,15 +1619,7 @@
             return b.length - a.length;
         }
 
-        var minPieces = [],
-            shortPieces = [],
-            longPieces = [],
-            mixedPieces = [],
-            i,
-            mom,
-            minp,
-            shortp,
-            longp;
+        var minPieces = [], shortPieces = [], longPieces = [], mixedPieces = [], i, mom, minp, shortp, longp;
         for (i = 0; i < 7; i++) {
             // make the regex if we don't have it already
             mom = createUTC([2000, 1]).day(i);
@@ -1918,18 +1644,9 @@
         this._weekdaysShortRegex = this._weekdaysRegex;
         this._weekdaysMinRegex = this._weekdaysRegex;
 
-        this._weekdaysStrictRegex = new RegExp(
-            '^(' + longPieces.join('|') + ')',
-            'i'
-        );
-        this._weekdaysShortStrictRegex = new RegExp(
-            '^(' + shortPieces.join('|') + ')',
-            'i'
-        );
-        this._weekdaysMinStrictRegex = new RegExp(
-            '^(' + minPieces.join('|') + ')',
-            'i'
-        );
+        this._weekdaysStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
+        this._weekdaysShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
+        this._weekdaysMinStrictRegex = new RegExp('^(' + minPieces.join('|') + ')', 'i');
     }
 
     // FORMATTING
@@ -1951,12 +1668,7 @@
     });
 
     addFormatToken('hmmss', 0, 0, function () {
-        return (
-            '' +
-            hFormat.apply(this) +
-            zeroFill(this.minutes(), 2) +
-            zeroFill(this.seconds(), 2)
-        );
+        return ('' + hFormat.apply(this) + zeroFill(this.minutes(), 2) + zeroFill(this.seconds(), 2));
     });
 
     addFormatToken('Hmm', 0, 0, function () {
@@ -1964,21 +1676,12 @@
     });
 
     addFormatToken('Hmmss', 0, 0, function () {
-        return (
-            '' +
-            this.hours() +
-            zeroFill(this.minutes(), 2) +
-            zeroFill(this.seconds(), 2)
-        );
+        return ('' + this.hours() + zeroFill(this.minutes(), 2) + zeroFill(this.seconds(), 2));
     });
 
     function meridiem(token, lowercase) {
         addFormatToken(token, 0, 0, function () {
-            return this.localeData().meridiem(
-                this.hours(),
-                this.minutes(),
-                lowercase
-            );
+            return this.localeData().meridiem(this.hours(), this.minutes(), lowercase);
         });
     }
 
@@ -2025,8 +1728,7 @@
         getParsingFlags(config).bigHour = true;
     });
     addParseToken('hmmss', function (input, array, config) {
-        var pos1 = input.length - 4,
-            pos2 = input.length - 2;
+        var pos1 = input.length - 4, pos2 = input.length - 2;
         array[HOUR] = toInt(input.substr(0, pos1));
         array[MINUTE] = toInt(input.substr(pos1, 2));
         array[SECOND] = toInt(input.substr(pos2));
@@ -2038,8 +1740,7 @@
         array[MINUTE] = toInt(input.substr(pos));
     });
     addParseToken('Hmmss', function (input, array, config) {
-        var pos1 = input.length - 4,
-            pos2 = input.length - 2;
+        var pos1 = input.length - 4, pos2 = input.length - 2;
         array[HOUR] = toInt(input.substr(0, pos1));
         array[MINUTE] = toInt(input.substr(pos1, 2));
         array[SECOND] = toInt(input.substr(pos2));
@@ -2053,8 +1754,7 @@
         return (input + '').toLowerCase().charAt(0) === 'p';
     }
 
-    var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i,
-        // Setting the hour should keep the time, because the user explicitly
+    var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i, // Setting the hour should keep the time, because the user explicitly
         // specified which hour they want. So trying to maintain the same hour (in
         // a new timezone) makes sense. Adding/subtracting hours does not follow
         // this rule.
@@ -2089,13 +1789,10 @@
     };
 
     // internal storage for locale config files
-    var locales = {},
-        localeFamilies = {},
-        globalLocale;
+    var locales = {}, localeFamilies = {}, globalLocale;
 
     function commonPrefix(arr1, arr2) {
-        var i,
-            minl = Math.min(arr1.length, arr2.length);
+        var i, minl = Math.min(arr1.length, arr2.length);
         for (i = 0; i < minl; i += 1) {
             if (arr1[i] !== arr2[i]) {
                 return i;
@@ -2112,11 +1809,7 @@
     // try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the list trying each
     // substring from most specific to least, but move to the next array item if it's a more specific variant than the current root
     function chooseLocale(names) {
-        var i = 0,
-            j,
-            next,
-            locale,
-            split;
+        var i = 0, j, next, locale, split;
 
         while (i < names.length) {
             split = normalizeLocale(names[i]).split('-');
@@ -2128,11 +1821,7 @@
                 if (locale) {
                     return locale;
                 }
-                if (
-                    next &&
-                    next.length >= j &&
-                    commonPrefix(split, next) >= j - 1
-                ) {
+                if (next && next.length >= j && commonPrefix(split, next) >= j - 1) {
                     //the next array item is better than a shallower substring of this one
                     break;
                 }
@@ -2150,16 +1839,9 @@
     }
 
     function loadLocale(name) {
-        var oldLocale = null,
-            aliasedRequire;
+        var oldLocale = null, aliasedRequire;
         // TODO: Find a better way to register and load all the locales in Node
-        if (
-            locales[name] === undefined &&
-            typeof module !== 'undefined' &&
-            module &&
-            module.exports &&
-            isLocaleNameSane(name)
-        ) {
+        if (locales[name] === undefined && typeof module !== 'undefined' && module && module.exports && isLocaleNameSane(name)) {
             try {
                 oldLocale = globalLocale._abbr;
                 aliasedRequire = require;
@@ -2192,9 +1874,7 @@
             } else {
                 if (typeof console !== 'undefined' && console.warn) {
                     //warn user if arguments are passed but the locale could not be set
-                    console.warn(
-                        'Locale ' + key + ' not found. Did you forget to load it?'
-                    );
+                    console.warn('Locale ' + key + ' not found. Did you forget to load it?');
                 }
             }
         }
@@ -2204,17 +1884,10 @@
 
     function defineLocale(name, config) {
         if (config !== null) {
-            var locale,
-                parentConfig = baseConfig;
+            var locale, parentConfig = baseConfig;
             config.abbr = name;
             if (locales[name] != null) {
-                deprecateSimple(
-                    'defineLocaleOverride',
-                    'use moment.updateLocale(localeName, config) to change ' +
-                    'an existing locale. moment.defineLocale(localeName, ' +
-                    'config) should only be used for creating a new locale ' +
-                    'See http://momentjs.com/guides/#/warnings/define-locale/ for more info.'
-                );
+                deprecateSimple('defineLocaleOverride', 'use moment.updateLocale(localeName, config) to change ' + 'an existing locale. moment.defineLocale(localeName, ' + 'config) should only be used for creating a new locale ' + 'See http://momentjs.com/guides/#/warnings/define-locale/ for more info.');
                 parentConfig = locales[name]._config;
             } else if (config.parentLocale != null) {
                 if (locales[config.parentLocale] != null) {
@@ -2228,8 +1901,7 @@
                             localeFamilies[config.parentLocale] = [];
                         }
                         localeFamilies[config.parentLocale].push({
-                            name: name,
-                            config: config,
+                            name: name, config: config,
                         });
                         return null;
                     }
@@ -2258,9 +1930,7 @@
 
     function updateLocale(name, config) {
         if (config != null) {
-            var locale,
-                tmpLocale,
-                parentConfig = baseConfig;
+            var locale, tmpLocale, parentConfig = baseConfig;
 
             if (locales[name] != null && locales[name].parentLocale != null) {
                 // Update existing child locale in-place to avoid memory-leaks
@@ -2330,34 +2000,12 @@
     }
 
     function checkOverflow(m) {
-        var overflow,
-            a = m._a;
+        var overflow, a = m._a;
 
         if (a && getParsingFlags(m).overflow === -2) {
-            overflow =
-                a[MONTH] < 0 || a[MONTH] > 11
-                    ? MONTH
-                    : a[DATE] < 1 || a[DATE] > daysInMonth(a[YEAR], a[MONTH])
-                        ? DATE
-                        : a[HOUR] < 0 ||
-                        a[HOUR] > 24 ||
-                        (a[HOUR] === 24 &&
-                            (a[MINUTE] !== 0 ||
-                                a[SECOND] !== 0 ||
-                                a[MILLISECOND] !== 0))
-                            ? HOUR
-                            : a[MINUTE] < 0 || a[MINUTE] > 59
-                                ? MINUTE
-                                : a[SECOND] < 0 || a[SECOND] > 59
-                                    ? SECOND
-                                    : a[MILLISECOND] < 0 || a[MILLISECOND] > 999
-                                        ? MILLISECOND
-                                        : -1;
+            overflow = a[MONTH] < 0 || a[MONTH] > 11 ? MONTH : a[DATE] < 1 || a[DATE] > daysInMonth(a[YEAR], a[MONTH]) ? DATE : a[HOUR] < 0 || a[HOUR] > 24 || (a[HOUR] === 24 && (a[MINUTE] !== 0 || a[SECOND] !== 0 || a[MILLISECOND] !== 0)) ? HOUR : a[MINUTE] < 0 || a[MINUTE] > 59 ? MINUTE : a[SECOND] < 0 || a[SECOND] > 59 ? SECOND : a[MILLISECOND] < 0 || a[MILLISECOND] > 999 ? MILLISECOND : -1;
 
-            if (
-                getParsingFlags(m)._overflowDayOfYear &&
-                (overflow < YEAR || overflow > DATE)
-            ) {
+            if (getParsingFlags(m)._overflowDayOfYear && (overflow < YEAR || overflow > DATE)) {
                 overflow = DATE;
             }
             if (getParsingFlags(m)._overflowWeeks && overflow === -1) {
@@ -2375,42 +2023,13 @@
 
     // iso 8601 regex
     // 0000-00-00 0000-W00 or 0000-W00-0 + T + 00 or 00:00 or 00:00:00 or 00:00:00.000 + +00:00 or +0000 or +00)
-    var extendedIsoRegex =
-            /^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([+-]\d\d(?::?\d\d)?|\s*Z)?)?$/,
-        basicIsoRegex =
-            /^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d|))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)([+-]\d\d(?::?\d\d)?|\s*Z)?)?$/,
+    var extendedIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([+-]\d\d(?::?\d\d)?|\s*Z)?)?$/,
+        basicIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d|))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)([+-]\d\d(?::?\d\d)?|\s*Z)?)?$/,
         tzRegex = /Z|[+-]\d\d(?::?\d\d)?/,
-        isoDates = [
-            ['YYYYYY-MM-DD', /[+-]\d{6}-\d\d-\d\d/],
-            ['YYYY-MM-DD', /\d{4}-\d\d-\d\d/],
-            ['GGGG-[W]WW-E', /\d{4}-W\d\d-\d/],
-            ['GGGG-[W]WW', /\d{4}-W\d\d/, false],
-            ['YYYY-DDD', /\d{4}-\d{3}/],
-            ['YYYY-MM', /\d{4}-\d\d/, false],
-            ['YYYYYYMMDD', /[+-]\d{10}/],
-            ['YYYYMMDD', /\d{8}/],
-            ['GGGG[W]WWE', /\d{4}W\d{3}/],
-            ['GGGG[W]WW', /\d{4}W\d{2}/, false],
-            ['YYYYDDD', /\d{7}/],
-            ['YYYYMM', /\d{6}/, false],
-            ['YYYY', /\d{4}/, false],
-        ],
-        // iso time formats and regexes
-        isoTimes = [
-            ['HH:mm:ss.SSSS', /\d\d:\d\d:\d\d\.\d+/],
-            ['HH:mm:ss,SSSS', /\d\d:\d\d:\d\d,\d+/],
-            ['HH:mm:ss', /\d\d:\d\d:\d\d/],
-            ['HH:mm', /\d\d:\d\d/],
-            ['HHmmss.SSSS', /\d\d\d\d\d\d\.\d+/],
-            ['HHmmss,SSSS', /\d\d\d\d\d\d,\d+/],
-            ['HHmmss', /\d\d\d\d\d\d/],
-            ['HHmm', /\d\d\d\d/],
-            ['HH', /\d\d/],
-        ],
-        aspNetJsonRegex = /^\/?Date\((-?\d+)/i,
-        // RFC 2822 regex: For details see https://tools.ietf.org/html/rfc2822#section-3.3
-        rfc2822 =
-            /^(?:(Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d{1,2})\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{2,4})\s(\d\d):(\d\d)(?::(\d\d))?\s(?:(UT|GMT|[ECMP][SD]T)|([Zz])|([+-]\d{4}))$/,
+        isoDates = [['YYYYYY-MM-DD', /[+-]\d{6}-\d\d-\d\d/], ['YYYY-MM-DD', /\d{4}-\d\d-\d\d/], ['GGGG-[W]WW-E', /\d{4}-W\d\d-\d/], ['GGGG-[W]WW', /\d{4}-W\d\d/, false], ['YYYY-DDD', /\d{4}-\d{3}/], ['YYYY-MM', /\d{4}-\d\d/, false], ['YYYYYYMMDD', /[+-]\d{10}/], ['YYYYMMDD', /\d{8}/], ['GGGG[W]WWE', /\d{4}W\d{3}/], ['GGGG[W]WW', /\d{4}W\d{2}/, false], ['YYYYDDD', /\d{7}/], ['YYYYMM', /\d{6}/, false], ['YYYY', /\d{4}/, false],], // iso time formats and regexes
+        isoTimes = [['HH:mm:ss.SSSS', /\d\d:\d\d:\d\d\.\d+/], ['HH:mm:ss,SSSS', /\d\d:\d\d:\d\d,\d+/], ['HH:mm:ss', /\d\d:\d\d:\d\d/], ['HH:mm', /\d\d:\d\d/], ['HHmmss.SSSS', /\d\d\d\d\d\d\.\d+/], ['HHmmss,SSSS', /\d\d\d\d\d\d,\d+/], ['HHmmss', /\d\d\d\d\d\d/], ['HHmm', /\d\d\d\d/], ['HH', /\d\d/],],
+        aspNetJsonRegex = /^\/?Date\((-?\d+)/i, // RFC 2822 regex: For details see https://tools.ietf.org/html/rfc2822#section-3.3
+        rfc2822 = /^(?:(Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d{1,2})\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{2,4})\s(\d\d):(\d\d)(?::(\d\d))?\s(?:(UT|GMT|[ECMP][SD]T)|([Zz])|([+-]\d{4}))$/,
         obsOffsets = {
             UT: 0,
             GMT: 0,
@@ -2426,16 +2045,8 @@
 
     // date from iso format
     function configFromISO(config) {
-        var i,
-            l,
-            string = config._i,
-            match = extendedIsoRegex.exec(string) || basicIsoRegex.exec(string),
-            allowTime,
-            dateFormat,
-            timeFormat,
-            tzFormat,
-            isoDatesLen = isoDates.length,
-            isoTimesLen = isoTimes.length;
+        var i, l, string = config._i, match = extendedIsoRegex.exec(string) || basicIsoRegex.exec(string), allowTime,
+            dateFormat, timeFormat, tzFormat, isoDatesLen = isoDates.length, isoTimesLen = isoTimes.length;
 
         if (match) {
             getParsingFlags(config).iso = true;
@@ -2482,21 +2093,8 @@
         }
     }
 
-    function extractFromRFC2822Strings(
-        yearStr,
-        monthStr,
-        dayStr,
-        hourStr,
-        minuteStr,
-        secondStr
-    ) {
-        var result = [
-            untruncateYear(yearStr),
-            defaultLocaleMonthsShort.indexOf(monthStr),
-            parseInt(dayStr, 10),
-            parseInt(hourStr, 10),
-            parseInt(minuteStr, 10),
-        ];
+    function extractFromRFC2822Strings(yearStr, monthStr, dayStr, hourStr, minuteStr, secondStr) {
+        var result = [untruncateYear(yearStr), defaultLocaleMonthsShort.indexOf(monthStr), parseInt(dayStr, 10), parseInt(hourStr, 10), parseInt(minuteStr, 10),];
 
         if (secondStr) {
             result.push(parseInt(secondStr, 10));
@@ -2528,11 +2126,7 @@
         if (weekdayStr) {
             // TODO: Replace the vanilla JS Date object with an independent day-of-week check.
             var weekdayProvided = defaultLocaleWeekdaysShort.indexOf(weekdayStr),
-                weekdayActual = new Date(
-                    parsedInput[0],
-                    parsedInput[1],
-                    parsedInput[2]
-                ).getDay();
+                weekdayActual = new Date(parsedInput[0], parsedInput[1], parsedInput[2]).getDay();
             if (weekdayProvided !== weekdayActual) {
                 getParsingFlags(config).weekdayMismatch = true;
                 config._isValid = false;
@@ -2549,26 +2143,16 @@
             // the only allowed military tz is Z
             return 0;
         } else {
-            var hm = parseInt(numOffset, 10),
-                m = hm % 100,
-                h = (hm - m) / 100;
+            var hm = parseInt(numOffset, 10), m = hm % 100, h = (hm - m) / 100;
             return h * 60 + m;
         }
     }
 
     // date and time from ref 2822 format
     function configFromRFC2822(config) {
-        var match = rfc2822.exec(preprocessRFC2822(config._i)),
-            parsedArray;
+        var match = rfc2822.exec(preprocessRFC2822(config._i)), parsedArray;
         if (match) {
-            parsedArray = extractFromRFC2822Strings(
-                match[4],
-                match[3],
-                match[2],
-                match[5],
-                match[6],
-                match[7]
-            );
+            parsedArray = extractFromRFC2822Strings(match[4], match[3], match[2], match[5], match[6], match[7]);
             if (!checkWeekday(match[1], parsedArray, config)) {
                 return;
             }
@@ -2615,14 +2199,9 @@
         }
     }
 
-    hooks.createFromInputFallback = deprecate(
-        'value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), ' +
-        'which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are ' +
-        'discouraged. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.',
-        function (config) {
-            config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
-        }
-    );
+    hooks.createFromInputFallback = deprecate('value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), ' + 'which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are ' + 'discouraged. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.', function (config) {
+        config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
+    });
 
     // Pick the first defined of two or three arguments.
     function defaults(a, b, c) {
@@ -2639,11 +2218,7 @@
         // hooks is actually the exported moment object
         var nowValue = new Date(hooks.now());
         if (config._useUTC) {
-            return [
-                nowValue.getUTCFullYear(),
-                nowValue.getUTCMonth(),
-                nowValue.getUTCDate(),
-            ];
+            return [nowValue.getUTCFullYear(), nowValue.getUTCMonth(), nowValue.getUTCDate(),];
         }
         return [nowValue.getFullYear(), nowValue.getMonth(), nowValue.getDate()];
     }
@@ -2653,12 +2228,7 @@
     // note: all values past the year are optional and will default to the lowest possible value.
     // [year, month, day , hour, minute, second, millisecond]
     function configFromArray(config) {
-        var i,
-            date,
-            input = [],
-            currentDate,
-            expectedWeekday,
-            yearToUse;
+        var i, date, input = [], currentDate, expectedWeekday, yearToUse;
 
         if (config._d) {
             return;
@@ -2675,10 +2245,7 @@
         if (config._dayOfYear != null) {
             yearToUse = defaults(config._a[YEAR], currentDate[YEAR]);
 
-            if (
-                config._dayOfYear > daysInYear(yearToUse) ||
-                config._dayOfYear === 0
-            ) {
+            if (config._dayOfYear > daysInYear(yearToUse) || config._dayOfYear === 0) {
                 getParsingFlags(config)._overflowDayOfYear = true;
             }
 
@@ -2698,28 +2265,17 @@
 
         // Zero out whatever was not defaulted, including time
         for (; i < 7; i++) {
-            config._a[i] = input[i] =
-                config._a[i] == null ? (i === 2 ? 1 : 0) : config._a[i];
+            config._a[i] = input[i] = config._a[i] == null ? (i === 2 ? 1 : 0) : config._a[i];
         }
 
         // Check for 24:00:00.000
-        if (
-            config._a[HOUR] === 24 &&
-            config._a[MINUTE] === 0 &&
-            config._a[SECOND] === 0 &&
-            config._a[MILLISECOND] === 0
-        ) {
+        if (config._a[HOUR] === 24 && config._a[MINUTE] === 0 && config._a[SECOND] === 0 && config._a[MILLISECOND] === 0) {
             config._nextDay = true;
             config._a[HOUR] = 0;
         }
 
-        config._d = (config._useUTC ? createUTCDate : createDate).apply(
-            null,
-            input
-        );
-        expectedWeekday = config._useUTC
-            ? config._d.getUTCDay()
-            : config._d.getDay();
+        config._d = (config._useUTC ? createUTCDate : createDate).apply(null, input);
+        expectedWeekday = config._useUTC ? config._d.getUTCDay() : config._d.getDay();
 
         // Apply timezone offset from input. The actual utcOffset can be changed
         // with parseZone.
@@ -2732,11 +2288,7 @@
         }
 
         // check for mismatching day of week
-        if (
-            config._w &&
-            typeof config._w.d !== 'undefined' &&
-            config._w.d !== expectedWeekday
-        ) {
+        if (config._w && typeof config._w.d !== 'undefined' && config._w.d !== expectedWeekday) {
             getParsingFlags(config).weekdayMismatch = true;
         }
     }
@@ -2753,11 +2305,7 @@
             // how we interpret now (local, utc, fixed offset). So create
             // a now version of current config (take local/utc/offset flags, and
             // create now).
-            weekYear = defaults(
-                w.GG,
-                config._a[YEAR],
-                weekOfYear(createLocal(), 1, 4).year
-            );
+            weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(createLocal(), 1, 4).year);
             week = defaults(w.W, 1);
             weekday = defaults(w.E, 1);
             if (weekday < 1 || weekday > 7) {
@@ -2825,32 +2373,20 @@
         getParsingFlags(config).empty = true;
 
         // This array is used to make a Date, either with `new Date` or `Date.UTC`
-        var string = '' + config._i,
-            i,
-            parsedInput,
-            tokens,
-            token,
-            skipped,
-            stringLength = string.length,
-            totalParsedInputLength = 0,
-            era,
-            tokenLen;
+        var string = '' + config._i, i, parsedInput, tokens, token, skipped, stringLength = string.length,
+            totalParsedInputLength = 0, era, tokenLen;
 
-        tokens =
-            expandFormat(config._f, config._locale).match(formattingTokens) || [];
+        tokens = expandFormat(config._f, config._locale).match(formattingTokens) || [];
         tokenLen = tokens.length;
         for (i = 0; i < tokenLen; i++) {
             token = tokens[i];
-            parsedInput = (string.match(getParseRegexForToken(token, config)) ||
-                [])[0];
+            parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0];
             if (parsedInput) {
                 skipped = string.substr(0, string.indexOf(parsedInput));
                 if (skipped.length > 0) {
                     getParsingFlags(config).unusedInput.push(skipped);
                 }
-                string = string.slice(
-                    string.indexOf(parsedInput) + parsedInput.length
-                );
+                string = string.slice(string.indexOf(parsedInput) + parsedInput.length);
                 totalParsedInputLength += parsedInput.length;
             }
             // don't parse if it's not a known token
@@ -2867,29 +2403,20 @@
         }
 
         // add remaining unparsed input length to the string
-        getParsingFlags(config).charsLeftOver =
-            stringLength - totalParsedInputLength;
+        getParsingFlags(config).charsLeftOver = stringLength - totalParsedInputLength;
         if (string.length > 0) {
             getParsingFlags(config).unusedInput.push(string);
         }
 
         // clear _12h flag if hour is <= 12
-        if (
-            config._a[HOUR] <= 12 &&
-            getParsingFlags(config).bigHour === true &&
-            config._a[HOUR] > 0
-        ) {
+        if (config._a[HOUR] <= 12 && getParsingFlags(config).bigHour === true && config._a[HOUR] > 0) {
             getParsingFlags(config).bigHour = undefined;
         }
 
         getParsingFlags(config).parsedDateParts = config._a.slice(0);
         getParsingFlags(config).meridiem = config._meridiem;
         // handle meridiem
-        config._a[HOUR] = meridiemFixWrap(
-            config._locale,
-            config._a[HOUR],
-            config._meridiem
-        );
+        config._a[HOUR] = meridiemFixWrap(config._locale, config._a[HOUR], config._meridiem);
 
         // handle era
         era = getParsingFlags(config).era;
@@ -2928,13 +2455,7 @@
 
     // date from string and array of format strings
     function configFromStringAndArray(config) {
-        var tempConfig,
-            bestMoment,
-            scoreToBeat,
-            i,
-            currentScore,
-            validFormatFound,
-            bestFormatIsValid = false,
+        var tempConfig, bestMoment, scoreToBeat, i, currentScore, validFormatFound, bestFormatIsValid = false,
             configfLen = config._f.length;
 
         if (configfLen === 0) {
@@ -2966,11 +2487,7 @@
             getParsingFlags(tempConfig).score = currentScore;
 
             if (!bestFormatIsValid) {
-                if (
-                    scoreToBeat == null ||
-                    currentScore < scoreToBeat ||
-                    validFormatFound
-                ) {
+                if (scoreToBeat == null || currentScore < scoreToBeat || validFormatFound) {
                     scoreToBeat = currentScore;
                     bestMoment = tempConfig;
                     if (validFormatFound) {
@@ -2993,14 +2510,10 @@
             return;
         }
 
-        var i = normalizeObjectUnits(config._i),
-            dayOrDate = i.day === undefined ? i.date : i.day;
-        config._a = map(
-            [i.year, i.month, dayOrDate, i.hour, i.minute, i.second, i.millisecond],
-            function (obj) {
-                return obj && parseInt(obj, 10);
-            }
-        );
+        var i = normalizeObjectUnits(config._i), dayOrDate = i.day === undefined ? i.date : i.day;
+        config._a = map([i.year, i.month, dayOrDate, i.hour, i.minute, i.second, i.millisecond], function (obj) {
+            return obj && parseInt(obj, 10);
+        });
 
         configFromArray(config);
     }
@@ -3017,8 +2530,7 @@
     }
 
     function prepareConfig(config) {
-        var input = config._i,
-            format = config._f;
+        var input = config._i, format = config._f;
 
         config._locale = config._locale || getLocale(config._l);
 
@@ -3085,10 +2597,7 @@
             locale = undefined;
         }
 
-        if (
-            (isObject(input) && isObjectEmpty(input)) ||
-            (isArray(input) && input.length === 0)
-        ) {
+        if ((isObject(input) && isObjectEmpty(input)) || (isArray(input) && input.length === 0)) {
             input = undefined;
         }
         // object construction must be done this way.
@@ -3107,28 +2616,22 @@
         return createLocalOrUTC(input, format, locale, strict, false);
     }
 
-    var prototypeMin = deprecate(
-            'moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/',
-            function () {
-                var other = createLocal.apply(null, arguments);
-                if (this.isValid() && other.isValid()) {
-                    return other < this ? this : other;
-                } else {
-                    return createInvalid();
-                }
+    var prototypeMin = deprecate('moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/', function () {
+            var other = createLocal.apply(null, arguments);
+            if (this.isValid() && other.isValid()) {
+                return other < this ? this : other;
+            } else {
+                return createInvalid();
             }
-        ),
-        prototypeMax = deprecate(
-            'moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/',
-            function () {
-                var other = createLocal.apply(null, arguments);
-                if (this.isValid() && other.isValid()) {
-                    return other > this ? this : other;
-                } else {
-                    return createInvalid();
-                }
+        }),
+        prototypeMax = deprecate('moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/', function () {
+            var other = createLocal.apply(null, arguments);
+            if (this.isValid() && other.isValid()) {
+                return other > this ? this : other;
+            } else {
+                return createInvalid();
             }
-        );
+        });
 
     // Pick a moment m from moments so that m[fn](other) is true for all
     // other. This relies on the function fn to be transitive.
@@ -3169,31 +2672,12 @@
         return Date.now ? Date.now() : +new Date();
     };
 
-    var ordering = [
-        'year',
-        'quarter',
-        'month',
-        'week',
-        'day',
-        'hour',
-        'minute',
-        'second',
-        'millisecond',
-    ];
+    var ordering = ['year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond',];
 
     function isDurationValid(m) {
-        var key,
-            unitHasDecimal = false,
-            i,
-            orderLen = ordering.length;
+        var key, unitHasDecimal = false, i, orderLen = ordering.length;
         for (key in m) {
-            if (
-                hasOwnProp(m, key) &&
-                !(
-                    indexOf.call(ordering, key) !== -1 &&
-                    (m[key] == null || !isNaN(m[key]))
-                )
-            ) {
+            if (hasOwnProp(m, key) && !(indexOf.call(ordering, key) !== -1 && (m[key] == null || !isNaN(m[key])))) {
                 return false;
             }
         }
@@ -3221,23 +2705,16 @@
     }
 
     function Duration(duration) {
-        var normalizedInput = normalizeObjectUnits(duration),
-            years = normalizedInput.year || 0,
-            quarters = normalizedInput.quarter || 0,
-            months = normalizedInput.month || 0,
-            weeks = normalizedInput.week || normalizedInput.isoWeek || 0,
-            days = normalizedInput.day || 0,
-            hours = normalizedInput.hour || 0,
-            minutes = normalizedInput.minute || 0,
-            seconds = normalizedInput.second || 0,
-            milliseconds = normalizedInput.millisecond || 0;
+        var normalizedInput = normalizeObjectUnits(duration), years = normalizedInput.year || 0,
+            quarters = normalizedInput.quarter || 0, months = normalizedInput.month || 0,
+            weeks = normalizedInput.week || normalizedInput.isoWeek || 0, days = normalizedInput.day || 0,
+            hours = normalizedInput.hour || 0, minutes = normalizedInput.minute || 0,
+            seconds = normalizedInput.second || 0, milliseconds = normalizedInput.millisecond || 0;
 
         this._isValid = isDurationValid(normalizedInput);
 
         // representation for dateAddRemove
-        this._milliseconds =
-            +milliseconds +
-            seconds * 1e3 + // 1000
+        this._milliseconds = +milliseconds + seconds * 1e3 + // 1000
             minutes * 6e4 + // 1000 * 60
             hours * 1000 * 60 * 60; //using 1000 * 60 * 60 instead of 36e5 to avoid floating point rounding errors https://github.com/moment/moment/issues/2978
         // Because of dateAddRemove treats 24 hours as different from a
@@ -3269,15 +2746,10 @@
 
     // compare two arrays, return the number of differences
     function compareArrays(array1, array2, dontConvert) {
-        var len = Math.min(array1.length, array2.length),
-            lengthDiff = Math.abs(array1.length - array2.length),
-            diffs = 0,
-            i;
+        var len = Math.min(array1.length, array2.length), lengthDiff = Math.abs(array1.length - array2.length),
+            diffs = 0, i;
         for (i = 0; i < len; i++) {
-            if (
-                (dontConvert && array1[i] !== array2[i]) ||
-                (!dontConvert && toInt(array1[i]) !== toInt(array2[i]))
-            ) {
+            if ((dontConvert && array1[i] !== array2[i]) || (!dontConvert && toInt(array1[i]) !== toInt(array2[i]))) {
                 diffs++;
             }
         }
@@ -3288,18 +2760,12 @@
 
     function offset(token, separator) {
         addFormatToken(token, 0, 0, function () {
-            var offset = this.utcOffset(),
-                sign = '+';
+            var offset = this.utcOffset(), sign = '+';
             if (offset < 0) {
                 offset = -offset;
                 sign = '-';
             }
-            return (
-                sign +
-                zeroFill(~~(offset / 60), 2) +
-                separator +
-                zeroFill(~~offset % 60, 2)
-            );
+            return (sign + zeroFill(~~(offset / 60), 2) + separator + zeroFill(~~offset % 60, 2));
         });
     }
 
@@ -3323,10 +2789,7 @@
     var chunkOffset = /([\+\-]|\d\d)/gi;
 
     function offsetFromString(matcher, string) {
-        var matches = (string || '').match(matcher),
-            chunk,
-            parts,
-            minutes;
+        var matches = (string || '').match(matcher), chunk, parts, minutes;
 
         if (matches === null) {
             return null;
@@ -3344,10 +2807,7 @@
         var res, diff;
         if (model._isUTC) {
             res = model.clone();
-            diff =
-                (isMoment(input) || isDate(input)
-                    ? input.valueOf()
-                    : createLocal(input).valueOf()) - res.valueOf();
+            diff = (isMoment(input) || isDate(input) ? input.valueOf() : createLocal(input).valueOf()) - res.valueOf();
             // Use low-level api, because this fn is low-level api.
             res._d.setTime(res._d.valueOf() + diff);
             hooks.updateOffset(res, false);
@@ -3383,8 +2843,7 @@
     // _changeInProgress == true case, then we have to adjust, because
     // there is no such time in the given timezone.
     function getSetOffset(input, keepLocalTime, keepMinutes) {
-        var offset = this._offset || 0,
-            localAdjust;
+        var offset = this._offset || 0, localAdjust;
         if (!this.isValid()) {
             return input != null ? this : NaN;
         }
@@ -3407,12 +2866,7 @@
             }
             if (offset !== input) {
                 if (!keepLocalTime || this._changeInProgress) {
-                    addSubtract(
-                        this,
-                        createDuration(input - offset, 'm'),
-                        1,
-                        false
-                    );
+                    addSubtract(this, createDuration(input - offset, 'm'), 1, false);
                 } else if (!this._changeInProgress) {
                     this._changeInProgress = true;
                     hooks.updateOffset(this, true);
@@ -3479,10 +2933,7 @@
     }
 
     function isDaylightSavingTime() {
-        return (
-            this.utcOffset() > this.clone().month(0).utcOffset() ||
-            this.utcOffset() > this.clone().month(5).utcOffset()
-        );
+        return (this.utcOffset() > this.clone().month(0).utcOffset() || this.utcOffset() > this.clone().month(5).utcOffset());
     }
 
     function isDaylightSavingTimeShifted() {
@@ -3490,16 +2941,14 @@
             return this._isDSTShifted;
         }
 
-        var c = {},
-            other;
+        var c = {}, other;
 
         copyConfig(c, this);
         c = prepareConfig(c);
 
         if (c._a) {
             other = c._isUTC ? createUTC(c._a) : createLocal(c._a);
-            this._isDSTShifted =
-                this.isValid() && compareArrays(c._a, other.toArray()) > 0;
+            this._isDSTShifted = this.isValid() && compareArrays(c._a, other.toArray()) > 0;
         } else {
             this._isDSTShifted = false;
         }
@@ -3520,26 +2969,18 @@
     }
 
     // ASP.NET json date format regex
-    var aspNetRegex = /^(-|\+)?(?:(\d*)[. ])?(\d+):(\d+)(?::(\d+)(\.\d*)?)?$/,
-        // from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+    var aspNetRegex = /^(-|\+)?(?:(\d*)[. ])?(\d+):(\d+)(?::(\d+)(\.\d*)?)?$/, // from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
         // somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
         // and further modified to allow for strings containing both week and day
-        isoRegex =
-            /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/;
+        isoRegex = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/;
 
     function createDuration(input, key) {
-        var duration = input,
-            // matching against regexp is expensive, do it on demand
-            match = null,
-            sign,
-            ret,
-            diffRes;
+        var duration = input, // matching against regexp is expensive, do it on demand
+            match = null, sign, ret, diffRes;
 
         if (isDuration(input)) {
             duration = {
-                ms: input._milliseconds,
-                d: input._days,
-                M: input._months,
+                ms: input._milliseconds, d: input._days, M: input._months,
             };
         } else if (isNumber(input) || !isNaN(+input)) {
             duration = {};
@@ -3572,14 +3013,8 @@
         } else if (duration == null) {
             // checks for null or undefined
             duration = {};
-        } else if (
-            typeof duration === 'object' &&
-            ('from' in duration || 'to' in duration)
-        ) {
-            diffRes = momentsDifference(
-                createLocal(duration.from),
-                createLocal(duration.to)
-            );
+        } else if (typeof duration === 'object' && ('from' in duration || 'to' in duration)) {
+            diffRes = momentsDifference(createLocal(duration.from), createLocal(duration.to));
 
             duration = {};
             duration.ms = diffRes.milliseconds;
@@ -3614,8 +3049,7 @@
     function positiveMomentsDifference(base, other) {
         var res = {};
 
-        res.months =
-            other.month() - base.month() + (other.year() - base.year()) * 12;
+        res.months = other.month() - base.month() + (other.year() - base.year()) * 12;
         if (base.clone().add(res.months, 'M').isAfter(other)) {
             --res.months;
         }
@@ -3649,15 +3083,7 @@
             var dur, tmp;
             //invert the arguments, but complain about it
             if (period !== null && !isNaN(+period)) {
-                deprecateSimple(
-                    name,
-                    'moment().' +
-                    name +
-                    '(period, number) is deprecated. Please use moment().' +
-                    name +
-                    '(number, period). ' +
-                    'See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.'
-                );
+                deprecateSimple(name, 'moment().' + name + '(period, number) is deprecated. Please use moment().' + name + '(number, period). ' + 'See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.');
                 tmp = val;
                 val = period;
                 period = tmp;
@@ -3670,9 +3096,7 @@
     }
 
     function addSubtract(mom, duration, isAdding, updateOffset) {
-        var milliseconds = duration._milliseconds,
-            days = absRound(duration._days),
-            months = absRound(duration._months);
+        var milliseconds = duration._milliseconds, days = absRound(duration._days), months = absRound(duration._months);
 
         if (!mom.isValid()) {
             // No op
@@ -3695,8 +3119,7 @@
         }
     }
 
-    var add = createAdder(1, 'add'),
-        subtract = createAdder(-1, 'subtract');
+    var add = createAdder(1, 'add'), subtract = createAdder(-1, 'subtract');
 
     function isString(input) {
         return typeof input === 'string' || input instanceof String;
@@ -3704,50 +3127,13 @@
 
     // type MomentInput = Moment | Date | string | number | (number | string)[] | MomentInputObject | void; // null | undefined
     function isMomentInput(input) {
-        return (
-            isMoment(input) ||
-            isDate(input) ||
-            isString(input) ||
-            isNumber(input) ||
-            isNumberOrStringArray(input) ||
-            isMomentInputObject(input) ||
-            input === null ||
-            input === undefined
-        );
+        return (isMoment(input) || isDate(input) || isString(input) || isNumber(input) || isNumberOrStringArray(input) || isMomentInputObject(input) || input === null || input === undefined);
     }
 
     function isMomentInputObject(input) {
-        var objectTest = isObject(input) && !isObjectEmpty(input),
-            propertyTest = false,
-            properties = [
-                'years',
-                'year',
-                'y',
-                'months',
-                'month',
-                'M',
-                'days',
-                'day',
-                'd',
-                'dates',
-                'date',
-                'D',
-                'hours',
-                'hour',
-                'h',
-                'minutes',
-                'minute',
-                'm',
-                'seconds',
-                'second',
-                's',
-                'milliseconds',
-                'millisecond',
-                'ms',
-            ],
-            i,
-            property,
-            propertyLen = properties.length;
+        var objectTest = isObject(input) && !isObjectEmpty(input), propertyTest = false,
+            properties = ['years', 'year', 'y', 'months', 'month', 'M', 'days', 'day', 'd', 'dates', 'date', 'D', 'hours', 'hour', 'h', 'minutes', 'minute', 'm', 'seconds', 'second', 's', 'milliseconds', 'millisecond', 'ms',],
+            i, property, propertyLen = properties.length;
 
         for (i = 0; i < propertyLen; i += 1) {
             property = properties[i];
@@ -3758,30 +3144,18 @@
     }
 
     function isNumberOrStringArray(input) {
-        var arrayTest = isArray(input),
-            dataTypeTest = false;
+        var arrayTest = isArray(input), dataTypeTest = false;
         if (arrayTest) {
-            dataTypeTest =
-                input.filter(function (item) {
-                    return !isNumber(item) && isString(input);
-                }).length === 0;
+            dataTypeTest = input.filter(function (item) {
+                return !isNumber(item) && isString(input);
+            }).length === 0;
         }
         return arrayTest && dataTypeTest;
     }
 
     function isCalendarSpec(input) {
-        var objectTest = isObject(input) && !isObjectEmpty(input),
-            propertyTest = false,
-            properties = [
-                'sameDay',
-                'nextDay',
-                'lastDay',
-                'nextWeek',
-                'lastWeek',
-                'sameElse',
-            ],
-            i,
-            property;
+        var objectTest = isObject(input) && !isObjectEmpty(input), propertyTest = false,
+            properties = ['sameDay', 'nextDay', 'lastDay', 'nextWeek', 'lastWeek', 'sameElse',], i, property;
 
         for (i = 0; i < properties.length; i += 1) {
             property = properties[i];
@@ -3793,19 +3167,7 @@
 
     function getCalendarFormat(myMoment, now) {
         var diff = myMoment.diff(now, 'days', true);
-        return diff < -6
-            ? 'sameElse'
-            : diff < -1
-                ? 'lastWeek'
-                : diff < 0
-                    ? 'lastDay'
-                    : diff < 1
-                        ? 'sameDay'
-                        : diff < 2
-                            ? 'nextDay'
-                            : diff < 7
-                                ? 'nextWeek'
-                                : 'sameElse';
+        return diff < -6 ? 'sameElse' : diff < -1 ? 'lastWeek' : diff < 0 ? 'lastDay' : diff < 1 ? 'sameDay' : diff < 2 ? 'nextDay' : diff < 7 ? 'nextWeek' : 'sameElse';
     }
 
     function calendar$1(time, formats) {
@@ -3824,18 +3186,11 @@
         }
         // We want to compare the start of today, vs this.
         // Getting start-of-today depends on whether we're local/utc/offset or not.
-        var now = time || createLocal(),
-            sod = cloneWithOffset(now, this).startOf('day'),
+        var now = time || createLocal(), sod = cloneWithOffset(now, this).startOf('day'),
             format = hooks.calendarFormat(this, sod) || 'sameElse',
-            output =
-                formats &&
-                (isFunction(formats[format])
-                    ? formats[format].call(this, now)
-                    : formats[format]);
+            output = formats && (isFunction(formats[format]) ? formats[format].call(this, now) : formats[format]);
 
-        return this.format(
-            output || this.localeData().calendar(format, this, createLocal(now))
-        );
+        return this.format(output || this.localeData().calendar(format, this, createLocal(now)));
     }
 
     function clone() {
@@ -3869,25 +3224,16 @@
     }
 
     function isBetween(from, to, units, inclusivity) {
-        var localFrom = isMoment(from) ? from : createLocal(from),
-            localTo = isMoment(to) ? to : createLocal(to);
+        var localFrom = isMoment(from) ? from : createLocal(from), localTo = isMoment(to) ? to : createLocal(to);
         if (!(this.isValid() && localFrom.isValid() && localTo.isValid())) {
             return false;
         }
         inclusivity = inclusivity || '()';
-        return (
-            (inclusivity[0] === '('
-                ? this.isAfter(localFrom, units)
-                : !this.isBefore(localFrom, units)) &&
-            (inclusivity[1] === ')'
-                ? this.isBefore(localTo, units)
-                : !this.isAfter(localTo, units))
-        );
+        return ((inclusivity[0] === '(' ? this.isAfter(localFrom, units) : !this.isBefore(localFrom, units)) && (inclusivity[1] === ')' ? this.isBefore(localTo, units) : !this.isAfter(localTo, units)));
     }
 
     function isSame(input, units) {
-        var localInput = isMoment(input) ? input : createLocal(input),
-            inputMs;
+        var localInput = isMoment(input) ? input : createLocal(input), inputMs;
         if (!(this.isValid() && localInput.isValid())) {
             return false;
         }
@@ -3896,10 +3242,7 @@
             return this.valueOf() === localInput.valueOf();
         } else {
             inputMs = localInput.valueOf();
-            return (
-                this.clone().startOf(units).valueOf() <= inputMs &&
-                inputMs <= this.clone().endOf(units).valueOf()
-            );
+            return (this.clone().startOf(units).valueOf() <= inputMs && inputMs <= this.clone().endOf(units).valueOf());
         }
     }
 
@@ -3967,11 +3310,8 @@
             return -monthDiff(b, a);
         }
         // difference in months
-        var wholeMonthDiff = (b.year() - a.year()) * 12 + (b.month() - a.month()),
-            // b is in (anchor - 1 month, anchor + 1 month)
-            anchor = a.clone().add(wholeMonthDiff, 'months'),
-            anchor2,
-            adjust;
+        var wholeMonthDiff = (b.year() - a.year()) * 12 + (b.month() - a.month()), // b is in (anchor - 1 month, anchor + 1 month)
+            anchor = a.clone().add(wholeMonthDiff, 'months'), anchor2, adjust;
 
         if (b - anchor < 0) {
             anchor2 = a.clone().add(wholeMonthDiff - 1, 'months');
@@ -3998,15 +3338,9 @@
         if (!this.isValid()) {
             return null;
         }
-        var utc = keepOffset !== true,
-            m = utc ? this.clone().utc() : this;
+        var utc = keepOffset !== true, m = utc ? this.clone().utc() : this;
         if (m.year() < 0 || m.year() > 9999) {
-            return formatMoment(
-                m,
-                utc
-                    ? 'YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
-                    : 'YYYYYY-MM-DD[T]HH:mm:ss.SSSZ'
-            );
+            return formatMoment(m, utc ? 'YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]' : 'YYYYYY-MM-DD[T]HH:mm:ss.SSSZ');
         }
         if (isFunction(Date.prototype.toISOString)) {
             // native implementation is ~50x faster, use it when we can
@@ -4018,10 +3352,7 @@
                     .replace('Z', formatMoment(m, 'Z'));
             }
         }
-        return formatMoment(
-            m,
-            utc ? 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]' : 'YYYY-MM-DD[T]HH:mm:ss.SSSZ'
-        );
+        return formatMoment(m, utc ? 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]' : 'YYYY-MM-DD[T]HH:mm:ss.SSSZ');
     }
 
     /**
@@ -4034,12 +3365,7 @@
         if (!this.isValid()) {
             return 'moment.invalid(/* ' + this._i + ' */)';
         }
-        var func = 'moment',
-            zone = '',
-            prefix,
-            year,
-            datetime,
-            suffix;
+        var func = 'moment', zone = '', prefix, year, datetime, suffix;
         if (!this.isLocal()) {
             func = this.utcOffset() === 0 ? 'moment.utc' : 'moment.parseZone';
             zone = 'Z';
@@ -4054,19 +3380,14 @@
 
     function format(inputString) {
         if (!inputString) {
-            inputString = this.isUtc()
-                ? hooks.defaultFormatUtc
-                : hooks.defaultFormat;
+            inputString = this.isUtc() ? hooks.defaultFormatUtc : hooks.defaultFormat;
         }
         var output = formatMoment(this, inputString);
         return this.localeData().postformat(output);
     }
 
     function from(time, withoutSuffix) {
-        if (
-            this.isValid() &&
-            ((isMoment(time) && time.isValid()) || createLocal(time).isValid())
-        ) {
+        if (this.isValid() && ((isMoment(time) && time.isValid()) || createLocal(time).isValid())) {
             return createDuration({to: this, from: time})
                 .locale(this.locale())
                 .humanize(!withoutSuffix);
@@ -4080,10 +3401,7 @@
     }
 
     function to(time, withoutSuffix) {
-        if (
-            this.isValid() &&
-            ((isMoment(time) && time.isValid()) || createLocal(time).isValid())
-        ) {
+        if (this.isValid() && ((isMoment(time) && time.isValid()) || createLocal(time).isValid())) {
             return createDuration({from: this, to: time})
                 .locale(this.locale())
                 .humanize(!withoutSuffix);
@@ -4113,24 +3431,19 @@
         }
     }
 
-    var lang = deprecate(
-        'moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.',
-        function (key) {
-            if (key === undefined) {
-                return this.localeData();
-            } else {
-                return this.locale(key);
-            }
+    var lang = deprecate('moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.', function (key) {
+        if (key === undefined) {
+            return this.localeData();
+        } else {
+            return this.locale(key);
         }
-    );
+    });
 
     function localeData() {
         return this._locale;
     }
 
-    var MS_PER_SECOND = 1000,
-        MS_PER_MINUTE = 60 * MS_PER_SECOND,
-        MS_PER_HOUR = 60 * MS_PER_MINUTE,
+    var MS_PER_SECOND = 1000, MS_PER_MINUTE = 60 * MS_PER_SECOND, MS_PER_HOUR = 60 * MS_PER_MINUTE,
         MS_PER_400_YEARS = (365 * 400 + 97) * 24 * MS_PER_HOUR;
 
     // actual modulo - handles negative numbers (for dates before 1970):
@@ -4172,28 +3485,16 @@
                 time = startOfDate(this.year(), 0, 1);
                 break;
             case 'quarter':
-                time = startOfDate(
-                    this.year(),
-                    this.month() - (this.month() % 3),
-                    1
-                );
+                time = startOfDate(this.year(), this.month() - (this.month() % 3), 1);
                 break;
             case 'month':
                 time = startOfDate(this.year(), this.month(), 1);
                 break;
             case 'week':
-                time = startOfDate(
-                    this.year(),
-                    this.month(),
-                    this.date() - this.weekday()
-                );
+                time = startOfDate(this.year(), this.month(), this.date() - this.weekday());
                 break;
             case 'isoWeek':
-                time = startOfDate(
-                    this.year(),
-                    this.month(),
-                    this.date() - (this.isoWeekday() - 1)
-                );
+                time = startOfDate(this.year(), this.month(), this.date() - (this.isoWeekday() - 1));
                 break;
             case 'day':
             case 'date':
@@ -4201,10 +3502,7 @@
                 break;
             case 'hour':
                 time = this._d.valueOf();
-                time -= mod$1(
-                    time + (this._isUTC ? 0 : this.utcOffset() * MS_PER_MINUTE),
-                    MS_PER_HOUR
-                );
+                time -= mod$1(time + (this._isUTC ? 0 : this.utcOffset() * MS_PER_MINUTE), MS_PER_HOUR);
                 break;
             case 'minute':
                 time = this._d.valueOf();
@@ -4235,31 +3533,16 @@
                 time = startOfDate(this.year() + 1, 0, 1) - 1;
                 break;
             case 'quarter':
-                time =
-                    startOfDate(
-                        this.year(),
-                        this.month() - (this.month() % 3) + 3,
-                        1
-                    ) - 1;
+                time = startOfDate(this.year(), this.month() - (this.month() % 3) + 3, 1) - 1;
                 break;
             case 'month':
                 time = startOfDate(this.year(), this.month() + 1, 1) - 1;
                 break;
             case 'week':
-                time =
-                    startOfDate(
-                        this.year(),
-                        this.month(),
-                        this.date() - this.weekday() + 7
-                    ) - 1;
+                time = startOfDate(this.year(), this.month(), this.date() - this.weekday() + 7) - 1;
                 break;
             case 'isoWeek':
-                time =
-                    startOfDate(
-                        this.year(),
-                        this.month(),
-                        this.date() - (this.isoWeekday() - 1) + 7
-                    ) - 1;
+                time = startOfDate(this.year(), this.month(), this.date() - (this.isoWeekday() - 1) + 7) - 1;
                 break;
             case 'day':
             case 'date':
@@ -4267,13 +3550,7 @@
                 break;
             case 'hour':
                 time = this._d.valueOf();
-                time +=
-                    MS_PER_HOUR -
-                    mod$1(
-                        time + (this._isUTC ? 0 : this.utcOffset() * MS_PER_MINUTE),
-                        MS_PER_HOUR
-                    ) -
-                    1;
+                time += MS_PER_HOUR - mod$1(time + (this._isUTC ? 0 : this.utcOffset() * MS_PER_MINUTE), MS_PER_HOUR) - 1;
                 break;
             case 'minute':
                 time = this._d.valueOf();
@@ -4304,15 +3581,7 @@
 
     function toArray() {
         var m = this;
-        return [
-            m.year(),
-            m.month(),
-            m.date(),
-            m.hour(),
-            m.minute(),
-            m.second(),
-            m.millisecond(),
-        ];
+        return [m.year(), m.month(), m.date(), m.hour(), m.minute(), m.second(), m.millisecond(),];
     }
 
     function toObject() {
@@ -4347,11 +3616,7 @@
 
     function creationData() {
         return {
-            input: this._i,
-            format: this._f,
-            locale: this._locale,
-            isUTC: this._isUTC,
-            strict: this._strict,
+            input: this._i, format: this._f, locale: this._locale, isUTC: this._isUTC, strict: this._strict,
         };
     }
 
@@ -4372,17 +3637,14 @@
     addRegexToken('NNNN', matchEraName);
     addRegexToken('NNNNN', matchEraNarrow);
 
-    addParseToken(
-        ['N', 'NN', 'NNN', 'NNNN', 'NNNNN'],
-        function (input, array, config, token) {
-            var era = config._locale.erasParse(input, token, config._strict);
-            if (era) {
-                getParsingFlags(config).era = era;
-            } else {
-                getParsingFlags(config).invalidEra = input;
-            }
+    addParseToken(['N', 'NN', 'NNN', 'NNNN', 'NNNNN'], function (input, array, config, token) {
+        var era = config._locale.erasParse(input, token, config._strict);
+        if (era) {
+            getParsingFlags(config).era = era;
+        } else {
+            getParsingFlags(config).invalidEra = input;
         }
-    );
+    });
 
     addRegexToken('y', matchUnsigned);
     addRegexToken('yy', matchUnsigned);
@@ -4405,10 +3667,7 @@
     });
 
     function localeEras(m, format) {
-        var i,
-            l,
-            date,
-            eras = this._eras || getLocale('en')._eras;
+        var i, l, date, eras = this._eras || getLocale('en')._eras;
         for (i = 0, l = eras.length; i < l; ++i) {
             switch (typeof eras[i].since) {
                 case 'string':
@@ -4433,12 +3692,7 @@
     }
 
     function localeErasParse(eraName, format, strict) {
-        var i,
-            l,
-            eras = this.eras(),
-            name,
-            abbr,
-            narrow;
+        var i, l, eras = this.eras(), name, abbr, narrow;
         eraName = eraName.toUpperCase();
 
         for (i = 0, l = eras.length; i < l; ++i) {
@@ -4484,10 +3738,7 @@
     }
 
     function getEraName() {
-        var i,
-            l,
-            val,
-            eras = this.localeData().eras();
+        var i, l, val, eras = this.localeData().eras();
         for (i = 0, l = eras.length; i < l; ++i) {
             // truncate time
             val = this.clone().startOf('day').valueOf();
@@ -4504,10 +3755,7 @@
     }
 
     function getEraNarrow() {
-        var i,
-            l,
-            val,
-            eras = this.localeData().eras();
+        var i, l, val, eras = this.localeData().eras();
         for (i = 0, l = eras.length; i < l; ++i) {
             // truncate time
             val = this.clone().startOf('day').valueOf();
@@ -4524,10 +3772,7 @@
     }
 
     function getEraAbbr() {
-        var i,
-            l,
-            val,
-            eras = this.localeData().eras();
+        var i, l, val, eras = this.localeData().eras();
         for (i = 0, l = eras.length; i < l; ++i) {
             // truncate time
             val = this.clone().startOf('day').valueOf();
@@ -4544,25 +3789,15 @@
     }
 
     function getEraYear() {
-        var i,
-            l,
-            dir,
-            val,
-            eras = this.localeData().eras();
+        var i, l, dir, val, eras = this.localeData().eras();
         for (i = 0, l = eras.length; i < l; ++i) {
             dir = eras[i].since <= eras[i].until ? +1 : -1;
 
             // truncate time
             val = this.clone().startOf('day').valueOf();
 
-            if (
-                (eras[i].since <= val && val <= eras[i].until) ||
-                (eras[i].until <= val && val <= eras[i].since)
-            ) {
-                return (
-                    (this.year() - hooks(eras[i].since).year()) * dir +
-                    eras[i].offset
-                );
+            if ((eras[i].since <= val && val <= eras[i].until) || (eras[i].until <= val && val <= eras[i].since)) {
+                return ((this.year() - hooks(eras[i].since).year()) * dir + eras[i].offset);
             }
         }
 
@@ -4607,15 +3842,7 @@
     }
 
     function computeErasParse() {
-        var abbrPieces = [],
-            namePieces = [],
-            narrowPieces = [],
-            mixedPieces = [],
-            i,
-            l,
-            erasName,
-            erasAbbr,
-            erasNarrow,
+        var abbrPieces = [], namePieces = [], narrowPieces = [], mixedPieces = [], i, l, erasName, erasAbbr, erasNarrow,
             eras = this.eras();
 
         for (i = 0, l = eras.length; i < l; ++i) {
@@ -4634,10 +3861,7 @@
         this._erasRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
         this._erasNameRegex = new RegExp('^(' + namePieces.join('|') + ')', 'i');
         this._erasAbbrRegex = new RegExp('^(' + abbrPieces.join('|') + ')', 'i');
-        this._erasNarrowRegex = new RegExp(
-            '^(' + narrowPieces.join('|') + ')',
-            'i'
-        );
+        this._erasNarrowRegex = new RegExp('^(' + narrowPieces.join('|') + ')', 'i');
     }
 
     // FORMATTING
@@ -4672,12 +3896,9 @@
     addRegexToken('GGGGG', match1to6, match6);
     addRegexToken('ggggg', match1to6, match6);
 
-    addWeekParseToken(
-        ['gggg', 'ggggg', 'GGGG', 'GGGGG'],
-        function (input, week, config, token) {
-            week[token.substr(0, 2)] = toInt(input);
-        }
-    );
+    addWeekParseToken(['gggg', 'ggggg', 'GGGG', 'GGGGG'], function (input, week, config, token) {
+        week[token.substr(0, 2)] = toInt(input);
+    });
 
     addWeekParseToken(['gg', 'GG'], function (input, week, config, token) {
         week[token] = hooks.parseTwoDigitYear(input);
@@ -4686,25 +3907,11 @@
     // MOMENTS
 
     function getSetWeekYear(input) {
-        return getSetWeekYearHelper.call(
-            this,
-            input,
-            this.week(),
-            this.weekday() + this.localeData()._week.dow,
-            this.localeData()._week.dow,
-            this.localeData()._week.doy
-        );
+        return getSetWeekYearHelper.call(this, input, this.week(), this.weekday() + this.localeData()._week.dow, this.localeData()._week.dow, this.localeData()._week.doy);
     }
 
     function getSetISOWeekYear(input) {
-        return getSetWeekYearHelper.call(
-            this,
-            input,
-            this.isoWeek(),
-            this.isoWeekday(),
-            1,
-            4
-        );
+        return getSetWeekYearHelper.call(this, input, this.isoWeek(), this.isoWeekday(), 1, 4);
     }
 
     function getISOWeeksInYear() {
@@ -4762,9 +3969,7 @@
     // MOMENTS
 
     function getSetQuarter(input) {
-        return input == null
-            ? Math.ceil((this.month() + 1) / 3)
-            : this.month((input - 1) * 3 + (this.month() % 3));
+        return input == null ? Math.ceil((this.month() + 1) / 3) : this.month((input - 1) * 3 + (this.month() % 3));
     }
 
     // FORMATTING
@@ -4777,9 +3982,7 @@
     addRegexToken('DD', match1to2, match2);
     addRegexToken('Do', function (isStrict, locale) {
         // TODO: Remove "ordinalParse" fallback in next major release.
-        return isStrict
-            ? locale._dayOfMonthOrdinalParse || locale._ordinalParse
-            : locale._dayOfMonthOrdinalParseLenient;
+        return isStrict ? locale._dayOfMonthOrdinalParse || locale._ordinalParse : locale._dayOfMonthOrdinalParseLenient;
     });
 
     addParseToken(['D', 'DD'], DATE);
@@ -4808,10 +4011,7 @@
     // MOMENTS
 
     function getSetDayOfYear(input) {
-        var dayOfYear =
-            Math.round(
-                (this.clone().startOf('day') - this.clone().startOf('year')) / 864e5
-            ) + 1;
+        var dayOfYear = Math.round((this.clone().startOf('day') - this.clone().startOf('year')) / 864e5) + 1;
         return input == null ? dayOfYear : this.add(input - dayOfYear, 'd');
     }
 
@@ -4992,26 +4192,11 @@
     proto.isUTC = isUtc;
     proto.zoneAbbr = getZoneAbbr;
     proto.zoneName = getZoneName;
-    proto.dates = deprecate(
-        'dates accessor is deprecated. Use date instead.',
-        getSetDayOfMonth
-    );
-    proto.months = deprecate(
-        'months accessor is deprecated. Use month instead',
-        getSetMonth
-    );
-    proto.years = deprecate(
-        'years accessor is deprecated. Use year instead',
-        getSetYear
-    );
-    proto.zone = deprecate(
-        'moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/',
-        getSetZone
-    );
-    proto.isDSTShifted = deprecate(
-        'isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information',
-        isDaylightSavingTimeShifted
-    );
+    proto.dates = deprecate('dates accessor is deprecated. Use date instead.', getSetDayOfMonth);
+    proto.months = deprecate('months accessor is deprecated. Use month instead', getSetMonth);
+    proto.years = deprecate('years accessor is deprecated. Use year instead', getSetYear);
+    proto.zone = deprecate('moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/', getSetZone);
+    proto.isDSTShifted = deprecate('isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information', isDaylightSavingTimeShifted);
 
     function createUnix(input) {
         return createLocal(input * 1000);
@@ -5065,8 +4250,7 @@
     proto$1.meridiem = localeMeridiem;
 
     function get$1(format, index, field, setter) {
-        var locale = getLocale(),
-            utc = createUTC().set(setter, index);
+        var locale = getLocale(), utc = createUTC().set(setter, index);
         return locale[field](utc, format);
     }
 
@@ -5082,8 +4266,7 @@
             return get$1(format, index, field, 'month');
         }
 
-        var i,
-            out = [];
+        var i, out = [];
         for (i = 0; i < 12; i++) {
             out[i] = get$1(format, i, field, 'month');
         }
@@ -5119,10 +4302,7 @@
             format = format || '';
         }
 
-        var locale = getLocale(),
-            shift = localeSorted ? locale._week.dow : 0,
-            i,
-            out = [];
+        var locale = getLocale(), shift = localeSorted ? locale._week.dow : 0, i, out = [];
 
         if (index != null) {
             return get$1(format, (index + shift) % 7, field, 'day');
@@ -5155,51 +4335,21 @@
     }
 
     getSetGlobalLocale('en', {
-        eras: [
-            {
-                since: '0001-01-01',
-                until: +Infinity,
-                offset: 1,
-                name: 'Anno Domini',
-                narrow: 'AD',
-                abbr: 'AD',
-            },
-            {
-                since: '0000-12-31',
-                until: -Infinity,
-                offset: 1,
-                name: 'Before Christ',
-                narrow: 'BC',
-                abbr: 'BC',
-            },
-        ],
-        dayOfMonthOrdinalParse: /\d{1,2}(th|st|nd|rd)/,
-        ordinal: function (number) {
+        eras: [{
+            since: '0001-01-01', until: +Infinity, offset: 1, name: 'Anno Domini', narrow: 'AD', abbr: 'AD',
+        }, {
+            since: '0000-12-31', until: -Infinity, offset: 1, name: 'Before Christ', narrow: 'BC', abbr: 'BC',
+        },], dayOfMonthOrdinalParse: /\d{1,2}(th|st|nd|rd)/, ordinal: function (number) {
             var b = number % 10,
-                output =
-                    toInt((number % 100) / 10) === 1
-                        ? 'th'
-                        : b === 1
-                            ? 'st'
-                            : b === 2
-                                ? 'nd'
-                                : b === 3
-                                    ? 'rd'
-                                    : 'th';
+                output = toInt((number % 100) / 10) === 1 ? 'th' : b === 1 ? 'st' : b === 2 ? 'nd' : b === 3 ? 'rd' : 'th';
             return number + output;
         },
     });
 
     // Side effect imports
 
-    hooks.lang = deprecate(
-        'moment.lang is deprecated. Use moment.locale instead.',
-        getSetGlobalLocale
-    );
-    hooks.langData = deprecate(
-        'moment.langData is deprecated. Use moment.localeData instead.',
-        getLocale
-    );
+    hooks.lang = deprecate('moment.lang is deprecated. Use moment.locale instead.', getSetGlobalLocale);
+    hooks.langData = deprecate('moment.langData is deprecated. Use moment.localeData instead.', getLocale);
 
     var mathAbs = Math.abs;
 
@@ -5249,24 +4399,12 @@
     }
 
     function bubble() {
-        var milliseconds = this._milliseconds,
-            days = this._days,
-            months = this._months,
-            data = this._data,
-            seconds,
-            minutes,
-            hours,
-            years,
-            monthsFromDays;
+        var milliseconds = this._milliseconds, days = this._days, months = this._months, data = this._data, seconds,
+            minutes, hours, years, monthsFromDays;
 
         // if we have a mix of positive and negative values, bubble down first
         // check: https://github.com/moment/moment/issues/2166
-        if (
-            !(
-                (milliseconds >= 0 && days >= 0 && months >= 0) ||
-                (milliseconds <= 0 && days <= 0 && months <= 0)
-            )
-        ) {
+        if (!((milliseconds >= 0 && days >= 0 && months >= 0) || (milliseconds <= 0 && days <= 0 && months <= 0))) {
             milliseconds += absCeil(monthsToDays(months) + days) * 864e5;
             days = 0;
             months = 0;
@@ -5318,9 +4456,7 @@
         if (!this.isValid()) {
             return NaN;
         }
-        var days,
-            months,
-            milliseconds = this._milliseconds;
+        var days, months, milliseconds = this._milliseconds;
 
         units = normalizeUnits(units);
 
@@ -5364,16 +4500,9 @@
         };
     }
 
-    var asMilliseconds = makeAs('ms'),
-        asSeconds = makeAs('s'),
-        asMinutes = makeAs('m'),
-        asHours = makeAs('h'),
-        asDays = makeAs('d'),
-        asWeeks = makeAs('w'),
-        asMonths = makeAs('M'),
-        asQuarters = makeAs('Q'),
-        asYears = makeAs('y'),
-        valueOf$1 = asMilliseconds;
+    var asMilliseconds = makeAs('ms'), asSeconds = makeAs('s'), asMinutes = makeAs('m'), asHours = makeAs('h'),
+        asDays = makeAs('d'), asWeeks = makeAs('w'), asMonths = makeAs('M'), asQuarters = makeAs('Q'),
+        asYears = makeAs('y'), valueOf$1 = asMilliseconds;
 
     function clone$1() {
         return createDuration(this);
@@ -5390,28 +4519,23 @@
         };
     }
 
-    var milliseconds = makeGetter('milliseconds'),
-        seconds = makeGetter('seconds'),
-        minutes = makeGetter('minutes'),
-        hours = makeGetter('hours'),
-        days = makeGetter('days'),
-        months = makeGetter('months'),
+    var milliseconds = makeGetter('milliseconds'), seconds = makeGetter('seconds'), minutes = makeGetter('minutes'),
+        hours = makeGetter('hours'), days = makeGetter('days'), months = makeGetter('months'),
         years = makeGetter('years');
 
     function weeks() {
         return absFloor(this.days() / 7);
     }
 
-    var round = Math.round,
-        thresholds = {
-            ss: 44, // a few seconds to seconds
-            s: 45, // seconds to minute
-            m: 45, // minutes to hour
-            h: 22, // hours to day
-            d: 26, // days to month/week
-            w: null, // weeks to month
-            M: 11, // months to year
-        };
+    var round = Math.round, thresholds = {
+        ss: 44, // a few seconds to seconds
+        s: 45, // seconds to minute
+        m: 45, // minutes to hour
+        h: 22, // hours to day
+        d: 26, // days to month/week
+        w: null, // weeks to month
+        M: 11, // months to year
+    };
 
     // helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
     function substituteTimeAgo(string, number, withoutSuffix, isFuture, locale) {
@@ -5419,34 +4543,15 @@
     }
 
     function relativeTime$1(posNegDuration, withoutSuffix, thresholds, locale) {
-        var duration = createDuration(posNegDuration).abs(),
-            seconds = round(duration.as('s')),
-            minutes = round(duration.as('m')),
-            hours = round(duration.as('h')),
-            days = round(duration.as('d')),
-            months = round(duration.as('M')),
-            weeks = round(duration.as('w')),
-            years = round(duration.as('y')),
-            a =
-                (seconds <= thresholds.ss && ['s', seconds]) ||
-                (seconds < thresholds.s && ['ss', seconds]) ||
-                (minutes <= 1 && ['m']) ||
-                (minutes < thresholds.m && ['mm', minutes]) ||
-                (hours <= 1 && ['h']) ||
-                (hours < thresholds.h && ['hh', hours]) ||
-                (days <= 1 && ['d']) ||
-                (days < thresholds.d && ['dd', days]);
+        var duration = createDuration(posNegDuration).abs(), seconds = round(duration.as('s')),
+            minutes = round(duration.as('m')), hours = round(duration.as('h')), days = round(duration.as('d')),
+            months = round(duration.as('M')), weeks = round(duration.as('w')), years = round(duration.as('y')),
+            a = (seconds <= thresholds.ss && ['s', seconds]) || (seconds < thresholds.s && ['ss', seconds]) || (minutes <= 1 && ['m']) || (minutes < thresholds.m && ['mm', minutes]) || (hours <= 1 && ['h']) || (hours < thresholds.h && ['hh', hours]) || (days <= 1 && ['d']) || (days < thresholds.d && ['dd', days]);
 
         if (thresholds.w != null) {
-            a =
-                a ||
-                (weeks <= 1 && ['w']) ||
-                (weeks < thresholds.w && ['ww', weeks]);
+            a = a || (weeks <= 1 && ['w']) || (weeks < thresholds.w && ['ww', weeks]);
         }
-        a = a ||
-            (months <= 1 && ['M']) ||
-            (months < thresholds.M && ['MM', months]) ||
-            (years <= 1 && ['y']) || ['yy', years];
+        a = a || (months <= 1 && ['M']) || (months < thresholds.M && ['MM', months]) || (years <= 1 && ['y']) || ['yy', years];
 
         a[2] = withoutSuffix;
         a[3] = +posNegDuration > 0;
@@ -5486,10 +4591,7 @@
             return this.localeData().invalidDate();
         }
 
-        var withSuffix = false,
-            th = thresholds,
-            locale,
-            output;
+        var withSuffix = false, th = thresholds, locale, output;
 
         if (typeof argWithSuffix === 'object') {
             argThresholds = argWithSuffix;
@@ -5533,18 +4635,8 @@
             return this.localeData().invalidDate();
         }
 
-        var seconds = abs$1(this._milliseconds) / 1000,
-            days = abs$1(this._days),
-            months = abs$1(this._months),
-            minutes,
-            hours,
-            years,
-            s,
-            total = this.asSeconds(),
-            totalSign,
-            ymSign,
-            daysSign,
-            hmsSign;
+        var seconds = abs$1(this._milliseconds) / 1000, days = abs$1(this._days), months = abs$1(this._months), minutes,
+            hours, years, s, total = this.asSeconds(), totalSign, ymSign, daysSign, hmsSign;
 
         if (!total) {
             // this is the same as C#'s (Noda) and python (isodate)...
@@ -5570,17 +4662,7 @@
         daysSign = sign(this._days) !== sign(total) ? '-' : '';
         hmsSign = sign(this._milliseconds) !== sign(total) ? '-' : '';
 
-        return (
-            totalSign +
-            'P' +
-            (years ? ymSign + years + 'Y' : '') +
-            (months ? ymSign + months + 'M' : '') +
-            (days ? daysSign + days + 'D' : '') +
-            (hours || minutes || seconds ? 'T' : '') +
-            (hours ? hmsSign + hours + 'H' : '') +
-            (minutes ? hmsSign + minutes + 'M' : '') +
-            (seconds ? hmsSign + s + 'S' : '')
-        );
+        return (totalSign + 'P' + (years ? ymSign + years + 'Y' : '') + (months ? ymSign + months + 'M' : '') + (days ? daysSign + days + 'D' : '') + (hours || minutes || seconds ? 'T' : '') + (hours ? hmsSign + hours + 'H' : '') + (minutes ? hmsSign + minutes + 'M' : '') + (seconds ? hmsSign + s + 'S' : ''));
     }
 
     var proto$2 = Duration.prototype;
@@ -5618,10 +4700,7 @@
     proto$2.locale = locale;
     proto$2.localeData = localeData;
 
-    proto$2.toIsoString = deprecate(
-        'toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)',
-        toISOString$1
-    );
+    proto$2.toIsoString = deprecate('toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)', toISOString$1);
     proto$2.lang = lang;
 
     // FORMATTING

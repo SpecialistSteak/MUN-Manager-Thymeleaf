@@ -16,7 +16,7 @@ public class Assignment {
 
     @ManyToOne
     @JoinColumn(name = "conference_id")
-    private Conference conference;
+    private Conference conferenceId;
 
     @Column(name = "due_date")
     private String dueDate;
