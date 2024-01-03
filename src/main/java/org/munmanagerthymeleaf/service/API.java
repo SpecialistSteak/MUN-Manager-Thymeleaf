@@ -15,6 +15,8 @@ public class API {
 
     private final DataService dataService;
 
+    public static int lastStudentId = 0;
+
     @Autowired
     public API(DataService dataService) {
         this.dataService = dataService;
@@ -32,37 +34,46 @@ public class API {
         return validAssignments;
     }
 
-    @GetMapping("/api/getStudentAssignmentsByStudent")
-    public List<StudentAssignment> getStudentAssignmentsByStudent(@RequestParam("studentId") int studentId) {
-        List<StudentAssignment> studentAssignments = dataService.getStudentAssignments();
-        List<Assignment> assignments = dataService.getAssignments();
-        List<StudentAssignment> validStudentAssignments = new ArrayList<>();
-        for (StudentAssignment studentAssignment : studentAssignments) {
-            if (studentAssignment.getStudent().getStudentId() == studentId) {
-                for (Assignment assignment : assignments) {
-                    if (assignment.getAssignmentId() == studentAssignment.getAssignment().getAssignmentId()) {
-                        validStudentAssignments.add(studentAssignment);
-                    }
-                }
-            }
-        }
-        return validStudentAssignments;
-    }
-
     @GetMapping("/api/getAssignmentsByStudent")
-    public List<Assignment> getAssignmentsByStudent(@RequestParam("studentId") int studentId) {
+    public List<StudentAssignment> getAssignmentsByStudent(@RequestParam("studentId") int studentId) {
         List<StudentAssignment> studentAssignments = dataService.getStudentAssignments();
         List<Assignment> assignments = dataService.getAssignments();
-        List<Assignment> validAssignments = new ArrayList<>();
+        List<StudentAssignment> validAssignments = new ArrayList<>();
         for (StudentAssignment studentAssignment : studentAssignments) {
             if (studentAssignment.getStudent().getStudentId() == studentId) {
                 for (Assignment assignment : assignments) {
                     if (assignment.getAssignmentId() == studentAssignment.getAssignment().getAssignmentId()) {
-                        validAssignments.add(assignment);
+                        validAssignments.add(studentAssignment);
                     }
                 }
             }
         }
         return validAssignments;
+    }
+
+    @GetMapping("/api/newStudentURL")
+    public int newStudentURL(@RequestParam("studentId") int studentId, @RequestParam("requestType") int requestType) {
+        if(requestType != 1 && requestType != -1) {
+            return -1;
+        }
+        int maxStudentId = 0;
+        for (int i = 0; i < dataService.getStudents().size(); i++) {
+            if (dataService.getStudents().get(i).getStudentId() > maxStudentId) {
+                maxStudentId = dataService.getStudents().get(i).getStudentId();
+            }
+        }
+        if (requestType == 1) {
+            if (studentId == maxStudentId) {
+                return 1;
+            } else {
+                return studentId + 1;
+            }
+        } else {
+            if (studentId == 1) {
+                return maxStudentId;
+            } else {
+                return studentId - 1;
+            }
+        }
     }
 }

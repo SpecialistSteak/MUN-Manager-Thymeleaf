@@ -61,3 +61,31 @@ body {
 #banner {
     background-color: #123fa4 !important;
 }
+
+#bottom-button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#bottom-button-container > * {
+    width: 33%;
+    border-radius: 5px;
+}
+
+#bottom-button-container > :first-child {
+    padding-left: 0;
+}
+
+#bottom-button-container > :last-child {
+    padding-right: 0;
+}
+
+.blackbox {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    min-height: 64vh;
+    min-width: 1vw;
+    opacity: 0.5;
+    border-radius: 4px;
+}

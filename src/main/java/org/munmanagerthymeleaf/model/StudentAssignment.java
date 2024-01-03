@@ -9,15 +9,15 @@ import java.sql.Date;
 @Entity
 @Table(name = "student_assignments")
 public class StudentAssignment {
-    @EmbeddedId
-    private StudentAssignmentId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "submission_id")
+    private int submissionId;
 
-    @MapsId("studentId")
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @MapsId("assignmentId")
     @ManyToOne
     @JoinColumn(name = "assignment_id")
     private Assignment assignment;

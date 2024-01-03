@@ -3,6 +3,8 @@ $(document).ready(function () {
     DataTable.datetime('MMMM dd, yyyy hh:mm a');
     $('.table').DataTable({
         "paging": true,
+        "lengthChange": false,
+        "pageLength": 12,
         "info": false,
         "searching": true
     });

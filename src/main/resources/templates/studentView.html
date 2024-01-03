@@ -38,31 +38,86 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" style="margin-top: 2rem;">
-        <div class="row">
-            <table aria-label="Table of student information" class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Assignment Name</th>
-                    <th>Submission Date</th>
-                    <th>Turnitin Score</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="studentAssignment : ${studentAssignmentsList}">
-                    <td th:text="${studentAssignment.getAssignmentName()}"></td>
-                    <td th:text="${studentAssignment.getDateSubmitted()}"></td>
-                    <td th:text="${studentAssignment.get}"></td>
-                </tr>
-                </tbody>
-            </table>
+    <div id="flex" style="display: flex; margin-top: 2rem;">
+        <div class="col-3">
+            <div class="container-fluid">
+                <table aria-label="Table of student information" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Assignment Name</th>
+                        <th>Submission Date</th>
+                        <th>Turnitin Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="studentAssignment : ${studentAssignmentsList}">
+                        <td th:text="${studentAssignment.getAssignment().getAssignmentName()}"></td>
+                        <td th:text="${studentAssignment.getDate_submitted()}"></td>
+                        <td th:text="${studentAssignment.getTurnitin_score() + '%'}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="blackbox"></div>
         </div>
     </div>
+</div>
+<div id="bottom-button-container" style="padding: 0 15px 15px;">
+    <script th:inline="javascript">
+        function currentStudentId() {
+            return parseInt(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+        }
+
+        function formUrl(studentId) {
+            let currentUrl = window.location.href;
+            return currentUrl.replaceAll(currentStudentId(), studentId);
+        }
+
+        function page(x) {
+            $.ajax({
+                type: "GET",
+                url: "/api/newStudentURL",
+                data: jQuery.param([
+                    {name: "studentId", value: currentStudentId()},
+                    {name: "requestType", value: x}
+                ]),
+            }).done(function (data) {
+                document.location.replace(formUrl(data));
+            })
+        }
+
+        function lastPage() {
+            page(-1);
+        }
+
+        function nextPage() {
+            page(1);
+        }
+
+        $(document).ready(function () {
+            $("#student-select").change(function () {
+                let value = $(this).val();
+                document.location.replace(formUrl(value))
+            });
+        });
+    </script>
+    <button class="btn btn-primary" th:onclick="lastPage()">Previous</button>
+    <select class="custom-select" id="student-select" name="student-select"
+            th:field="*{students}">
+        <option th:each="student : ${students}" th:if="${student.getStudentId() == studentId}"
+                th:text="${student.getStudentName()}" th:value="${student.getStudentId()}"></option>
+        <option th:each="student : ${students}" th:if="${student.getStudentId() != studentId}"
+                th:text="${student.getStudentName()}" th:value="${student.getStudentId()}"></option>
+    </select>
+    <button class="btn btn-primary" th:onclick="nextPage()">Next</button>
 </div>
 <div id="footer-container">
     <footer>
         <div id="footer">
-            <p style="margin: 0">MUN Manager <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span></p>
+            <p style="margin: 0">MUN Manager <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span>
+            </p>
         </div>
     </footer>
 </div>

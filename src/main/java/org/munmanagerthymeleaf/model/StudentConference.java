@@ -7,16 +7,19 @@ import lombok.Data;
 @Entity
 @Table(name = "student_conferences")
 public class StudentConference {
-    @EmbeddedId
-    private StudentConferenceId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "participation_id")
+    private int participationId;
 
-    @MapsId("studentId")
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @MapsId("conferenceId")
     @ManyToOne
     @JoinColumn(name = "conference_id")
     private Conference conference;
+
+    @Column(name = "delegation")
+    private String delegation;
 }

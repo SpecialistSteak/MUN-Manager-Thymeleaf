@@ -29,15 +29,14 @@ public class DataController {
     }
 
     @GetMapping("/studentView/{studentId}")
-    public String studentView(Model model, @PathVariable int studentId) {
+    public String studentView(Model model, @PathVariable(value = "studentId") int studentId) {
         API api = new API(dataService);
         model.addAttribute("conferences", dataService.getConferences());
         model.addAttribute("assignments", dataService.getAssignments());
         model.addAttribute("students", dataService.getStudents());
         model.addAttribute("studentConferences", dataService.getStudentConferences());
         model.addAttribute("studentAssignments", dataService.getStudentAssignments());
-        model.addAttribute("studentAssignmentsList", api.getStudentAssignmentsByStudent(studentId));
-        model.addAttribute("assignmentList", api.getAssignmentsByStudent(studentId));
+        model.addAttribute("studentAssignmentsList", api.getAssignmentsByStudent(studentId));
         return "studentView";
     }
 }
