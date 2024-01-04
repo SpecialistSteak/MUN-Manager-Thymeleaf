@@ -10,8 +10,6 @@ Isrc/main/java/org/munmanagerthymeleaf/MunmanagerthymeleafApplication.java,f\7\
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-`
-0src/main/java/org/munmanagerthymeleaf/index.java,3\f\3f66914c50cf909347b3f9f9bc86523c47aef2eb
 h
 8src/main/java/org/munmanagerthymeleaf/model/Student.java,f\2\f2ad229468078f589ad643a4ec0404eaac95560d
 k
@@ -28,10 +26,6 @@ Dsrc/main/java/org/munmanagerthymeleaf/controller/DataController.java,e\c\ec16f
 Nsrc/test/java/org/munmanagerthymeleaf/MunmanagerthymeleafApplicationTests.java,9\3\932065a6a4d5a8c818f9d606ca314736e74fe24b
 U
 %.mvn/wrapper/maven-wrapper.properties,3\2\32e074f71d16c1e88ac02aa83592ca6ad1fd98a8
-t
-Dsrc/main/java/org/munmanagerthymeleaf/model/StudentConferenceId.java,3\4\341a8905d714955b8d1cac62e57ba350d87f7211
-`
-0src/main/java/org/munmanagerthymeleaf/Index.java,0\2\02cbff4931be1f91c53459a79a774e4623389c06
 Å
 Q.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,2\c\2cabb939da04d3de3a200bf2b575690e1a16316d
 Å
@@ -62,8 +56,6 @@ Q.idea/sonarlint/securityhotspotstore/3/f/3f66914c50cf909347b3f9f9bc86523c47aef2
 Q.idea/sonarlint/securityhotspotstore/0/2/02cbff4931be1f91c53459a79a774e4623389c06,a\2\a221cee3c5186ec5c40467536da661bc557ae92d
 j
 :.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml,e\7\e757b4e75859326314ffc56354bdd2eb7362c386
-w
-G.idea/sonarlint/issuestore/0/2/02cbff4931be1f91c53459a79a774e4623389c06,d\2\d2aca192b02d8be4fd2c6baf36f16ed5341fab7f
 ù
 m.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500/storage_v2/_src_/schema/information_schema.FNRwLQ.meta,7\d\7debf55e9953a2272961fc8d0e8a97183c29e3d3
 ù
@@ -78,8 +70,6 @@ G
 Q.idea/sonarlint/securityhotspotstore/b/0/b0ab77172106f888e1d0058cc8debc59e1257dbe,4\1\414c62300a7bcc32fb44ff70adb7146d5a616640
 Å
 Q.idea/sonarlint/securityhotspotstore/3/4/341a8905d714955b8d1cac62e57ba350d87f7211,b\0\b00e4e3249eaa58b1018cbef7171f521cb753e2a
-w
-G.idea/sonarlint/issuestore/3/4/341a8905d714955b8d1cac62e57ba350d87f7211,6\3\63f8d8b831e7dcd91101d88f2032bbfd2f8aa21d
 Å
 Q.idea/sonarlint/securityhotspotstore/d/5/d573a8074718bb05806eeee2f935f2d745152196,8\7\876a053a4ddd8134f4df7ed636d61c29ae2937f6
 Å
@@ -100,8 +90,6 @@ G.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,8\6\86
 Q.idea/sonarlint/securityhotspotstore/f/2/f2ad229468078f589ad643a4ec0404eaac95560d,2\9\29719f3df5314e6850c0bc605862b8f27c4c7285
 r
 Bsrc/main/java/org/munmanagerthymeleaf/model/StudentAssignment.java,3\f\3fea28bbde85e6c9cb7d97f400dffdeb787fd7f1
-t
-Dsrc/main/java/org/munmanagerthymeleaf/model/StudentAssignmentId.java,9\b\9b52430f42a0c183d94b03c2eadb1318671c7d43
 z
 Jsrc/main/java/org/munmanagerthymeleaf/repository/AssignmentRepository.java,f\3\f392c2b21c2740e4c06c44b5d632e7313b0088ca
 z

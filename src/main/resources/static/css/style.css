@@ -89,3 +89,11 @@ body {
     opacity: 0.5;
     border-radius: 4px;
 }
+
+.sorting {
+    border-radius: 2px !important;
+}
+
+table.dataTable.no-footer {
+    border-radius: 2px !important;
+}

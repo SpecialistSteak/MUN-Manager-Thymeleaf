@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e1ea06a-dcc6-4b50-81db-2880ed97b9c4" name="Changes" comment="updated code">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/blue-banner-downsized.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/indexInit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/studentViewInit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/studentViewScript.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/jqueryDataTables.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/jqueryDataTables.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/Assignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/globalInit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/indexScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/studentView.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/studentView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/jqueryDataTables.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/jqueryDataTables.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +159,7 @@
       <workItem from="1704157158402" duration="442000" />
       <workItem from="1704157898337" duration="28000" />
       <workItem from="1704158036950" duration="832000" />
-      <workItem from="1704158898824" duration="30991000" />
+      <workItem from="1704158898824" duration="31918000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -268,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704323663936</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="updated code">
+      <option name="closed" value="true" />
+      <created>1704341759144</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1704341759144</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
