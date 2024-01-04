@@ -6,17 +6,15 @@ $(document).ready(function () {
         "lengthChange": false,
         "pageLength": 12,
         "info": false,
-        "searching": true
+        "searching": true,
     });
+    $('.paginate_button').addClass('dtableButton');
 });
 /*]]>*/
 
 $(document).ready(function () {
-    $('.table').on('click', 'tr', function () {
-        const id = $(this).attr('id');
-        console.log(id);
-    });
-})
+    $('thead').removeClass('pointer');
+});
 
 $(document).ready(function () {
     $('#assign-select').prop("disabled", true);

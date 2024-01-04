@@ -16,17 +16,19 @@
     <script th:src="@{/js/jqueryDataTables.js}" type="text/javascript"></script>
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <script th:src="@{/js/script.js}" type="text/javascript"></script>
+    <script th:src="@{/js/indexScript.js}" type="text/javascript"></script>
 
     <!--  I am using moment.js exclusively to sort dates on the datatable  -->
     <script th:src="@{/js/moment.js}" type="text/javascript"></script>
 
-    <script th:src="@{/js/init.js}" type="text/javascript"></script>
+    <script th:src="@{/js/globalInit.js}" type="text/javascript"></script>
+    <script th:src="@{/js/studentViewInit.js}" type="text/javascript"></script>
+    <script th:src="@{/js/studentViewScript.js}" type="text/javascript"></script>
 </head>
 <body>
 <div id="main-content">
     <div class="jumbotron jumbotron-fluid bg-primary text-white" id="banner"
-         style="background-image: url(/img/blue-banner.webp); background-size: cover; background-position: center; background-repeat: no-repeat; margin-bottom: 0; padding: 3rem 0 3rem 0">
+         style="background-image: url(/img/blue-banner-downsized.png); background-size: cover; background-position: center; background-repeat: no-repeat; margin-bottom: 0; padding: 3rem 0 3rem 0">
         <div class="container" style="margin-left: 0">
             <div class="row" style="margin-left: 50px">
                 <div class="col-2 pointer" onclick="document.location.replace(window.location.origin)">
@@ -65,44 +67,6 @@
     </div>
 </div>
 <div id="bottom-button-container" style="padding: 0 15px 15px;">
-    <script th:inline="javascript">
-        function currentStudentId() {
-            return parseInt(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
-        }
-
-        function formUrl(studentId) {
-            let currentUrl = window.location.href;
-            return currentUrl.replaceAll(currentStudentId(), studentId);
-        }
-
-        function page(x) {
-            $.ajax({
-                type: "GET",
-                url: "/api/newStudentURL",
-                data: jQuery.param([
-                    {name: "studentId", value: currentStudentId()},
-                    {name: "requestType", value: x}
-                ]),
-            }).done(function (data) {
-                document.location.replace(formUrl(data));
-            })
-        }
-
-        function lastPage() {
-            page(-1);
-        }
-
-        function nextPage() {
-            page(1);
-        }
-
-        $(document).ready(function () {
-            $("#student-select").change(function () {
-                let value = $(this).val();
-                document.location.replace(formUrl(value))
-            });
-        });
-    </script>
     <button class="btn btn-primary" th:onclick="lastPage()">Previous</button>
     <select class="custom-select" id="student-select" name="student-select"
             th:field="*{students}">
