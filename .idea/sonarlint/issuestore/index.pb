@@ -48,12 +48,8 @@ w
 G.idea/sonarlint/issuestore/5/d/5d837c4ed85ecaaf932c506e80ff5d7b9f3d590d,8\4\84e47ea35f445eb5238128908f068928322bf283
 w
 G.idea/sonarlint/issuestore/1/f/1f1763f358c257ea3515417352b82b0165647ad1,4\4\441e6168af36afe9568996929caf6842abd87b08
-Å
-Q.idea/sonarlint/securityhotspotstore/3/f/3f66914c50cf909347b3f9f9bc86523c47aef2eb,1\5\152bef6b2f5a13328442afc4d8e8f63911bc0f95
 >
 munmanager.iml,0\6\0690ecf79faac4e5f368f33a918a57646fd96506
-Å
-Q.idea/sonarlint/securityhotspotstore/0/2/02cbff4931be1f91c53459a79a774e4623389c06,a\2\a221cee3c5186ec5c40467536da661bc557ae92d
 j
 :.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml,e\7\e757b4e75859326314ffc56354bdd2eb7362c386
 ù
@@ -68,8 +64,6 @@ G
 munmanagerthymeleaf.iml,7\1\7111e7d0978109a6e7cab0aff375a07d244f9e07
 Å
 Q.idea/sonarlint/securityhotspotstore/b/0/b0ab77172106f888e1d0058cc8debc59e1257dbe,4\1\414c62300a7bcc32fb44ff70adb7146d5a616640
-Å
-Q.idea/sonarlint/securityhotspotstore/3/4/341a8905d714955b8d1cac62e57ba350d87f7211,b\0\b00e4e3249eaa58b1018cbef7171f521cb753e2a
 Å
 Q.idea/sonarlint/securityhotspotstore/d/5/d573a8074718bb05806eeee2f935f2d745152196,8\7\876a053a4ddd8134f4df7ed636d61c29ae2937f6
 Å

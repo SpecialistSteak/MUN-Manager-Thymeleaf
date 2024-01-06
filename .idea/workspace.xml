@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e1ea06a-dcc6-4b50-81db-2880ed97b9c4" name="Changes" comment="updated code">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/Assignment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/StudentAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/StudentAssignment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/studentViewInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/studentViewInit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/studentView.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/studentView.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/MunmanagerthymeleafApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/controller/DataController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/Assignment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/Conference.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/Student.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/model/StudentConference.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/munmanagerthymeleaf/service/DataService.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +39,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SpecialistSteak&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="539c6ab8-530a-4091-a8fa-5b1c5277761e" />
+        <option name="url" value="https://github.com/SpecialistSteak/MUN-Manager-Thymeleaf.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -43,42 +68,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JAR Application.munmanager-1.0T.jar.executor": "Run",
-    "Maven.munmanager [build].executor": "Run",
-    "Maven.munmanager [clean].executor": "Run",
-    "Maven.munmanager [spring-boot:build-image].executor": "Run",
-    "Notification.DisplayName-DoNotAsk-Material Theme Notifications": "Material theme UI notifications",
-    "Notification.DoNotAsk-Material Theme Notifications": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "Spring Boot.MunmanagerthymeleafApplication.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Luke/Documents/Code/munmanagerthymeleaf/src/main/resources/static",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "35e9d7a5bd796b105425eb716453e75c",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JAR Application.munmanager-1.0T.jar.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.munmanager [build].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.munmanager [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.munmanager [spring-boot:build-image].executor&quot;: &quot;Run&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-Material Theme Notifications&quot;: &quot;Material theme UI notifications&quot;,
+    &quot;Notification.DoNotAsk-Material Theme Notifications&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;Spring Boot.MunmanagerthymeleafApplication.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Luke/Documents/Code/munmanagerthymeleaf/src/main/resources/static&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;35e9d7a5bd796b105425eb716453e75c&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Luke\Documents\Code\munmanagerthymeleaf\src\main\resources\static" />
@@ -160,6 +185,11 @@
       <workItem from="1704157898337" duration="28000" />
       <workItem from="1704158036950" duration="832000" />
       <workItem from="1704158898824" duration="31918000" />
+      <workItem from="1704400526344" duration="5262000" />
+      <workItem from="1704542146207" duration="317000" />
+      <workItem from="1704542519105" duration="540000" />
+      <workItem from="1704543165799" duration="356000" />
+      <workItem from="1704546171178" duration="1463000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -265,7 +295,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704341759144</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="updated code">
+      <option name="closed" value="true" />
+      <created>1704400854310</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1704400854310</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

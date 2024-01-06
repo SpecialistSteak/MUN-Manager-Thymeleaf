@@ -3,7 +3,7 @@ package org.munmanagerthymeleaf.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Data
 @Entity
@@ -27,4 +27,7 @@ public class StudentAssignment {
 
     @Column(name = "turnitin_score")
     private int turnitin_score;
+
+    @Column(name = "word_count")
+    private int word_count;
 }

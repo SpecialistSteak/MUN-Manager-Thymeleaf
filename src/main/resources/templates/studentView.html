@@ -49,20 +49,24 @@
                         <th>Assignment Name</th>
                         <th>Submission Date</th>
                         <th>Turnitin Score</th>
+                        <th>Word Count</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="studentAssignment : ${studentAssignmentsList}">
                         <td th:text="${studentAssignment.getAssignment().getAssignmentName()}"></td>
-                        <td th:text="${studentAssignment.getDate_submitted()}"></td>
+                        <td th:text="${#dates.format(studentAssignment.getDate_submitted(), 'h:mm a, MMMM yyyy')}"></td>
                         <td th:text="${studentAssignment.getTurnitin_score() + '%'}"></td>
+                        <td th:text="${studentAssignment.getWord_count()}"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col-9">
-            <div class="blackbox"></div>
+        <div class="col-9" th:style="'width=100%'">
+            <iframe
+                    th:style="'border: 1px solid gray; border-radius: 5px; height: 62.5vh; width:100%'"
+                    th:src="${'https://docs.google.com/document/d/e/2PACX-1vT3LfhJcDpTmqfYcnenBfldjIieX9U2mCF1-pUGM7TR1T5jKzmpo7lAqe8A2YCSRibL3Gs_p-vp5xiM/pub?embedded=true'}"></iframe>
         </div>
     </div>
 </div>
