@@ -98,3 +98,5 @@ f
 6src/main/java/org/munmanagerthymeleaf/service/api.java,f\e\fe192c1c0f380fda9706888d53e2004cc0815976
 f
 6src/main/java/org/munmanagerthymeleaf/service/API.java,4\c\4c8aaf6627652cc7bff1ab35fea6b1721eb6826c
+t
+Dsrc/main/java/org/munmanagerthymeleaf/databaseManager/NullCheck.java,e\2\e2367e1622325e985847cbd2020c97fead8aed01

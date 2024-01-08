@@ -7,6 +7,11 @@ function submitProject() {
 }
 
 function logTest() {
-    console.log($('#assign-select').val());
-    console.log($('#conf-select').val());
+    $.ajax({
+        url: "/api/conferenceName/" + $("#conf-select").val(),
+        type: "GET",
+        success: function (data) {
+            $("#conference-title").text(data);
+        }
+    });
 }

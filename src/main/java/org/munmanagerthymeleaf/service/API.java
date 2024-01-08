@@ -1,9 +1,12 @@
 package org.munmanagerthymeleaf.service;
 
 import org.munmanagerthymeleaf.model.Assignment;
+import org.munmanagerthymeleaf.model.Conference;
 import org.munmanagerthymeleaf.model.StudentAssignment;
+import org.munmanagerthymeleaf.repository.ConferenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,8 +17,6 @@ import java.util.List;
 public class API {
 
     private final DataService dataService;
-
-    public static int lastStudentId = 0;
 
     @Autowired
     public API(DataService dataService) {
@@ -75,5 +76,15 @@ public class API {
                 return studentId - 1;
             }
         }
+    }
+
+    @GetMapping("/api/conference/{id}")
+    public Conference getConferenceById(@PathVariable("id") int id) {
+        return dataService.getConferenceById(id);
+    }
+
+    @GetMapping("/api/conferenceName/{id}")
+    public String getConferenceNameById(@PathVariable("id") int id) {
+        return dataService.getConferenceById(id).getConferenceName();
     }
 }

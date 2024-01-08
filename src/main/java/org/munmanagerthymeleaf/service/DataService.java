@@ -43,24 +43,8 @@ public class DataService {
     public List<StudentAssignment> getStudentAssignments() {
         return studentAssignmentRepository.findAll();
     }
-
-    public Conference updateConference(Conference conference) {
-        return conferenceRepository.save(conference);
-    }
-
-    public Assignment updateAssignment(Assignment assignment) {
-        return assignmentRepository.save(assignment);
-    }
-
-    public Student updateStudent(Student student) {
-        return studentRepository.save(student);
-    }
-
-    public StudentConference updateStudentConference(StudentConference studentConference) {
-        return studentConference;
-    }
-
-    public StudentAssignment updateStudentAssignment(StudentAssignment studentAssignment) {
-        return studentAssignment;
+    
+    public Conference getConferenceById(int id) {
+        return conferenceRepository.findById(id).orElse(null);
     }
 }

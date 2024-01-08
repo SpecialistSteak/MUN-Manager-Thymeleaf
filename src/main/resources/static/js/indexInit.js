@@ -5,3 +5,13 @@ $(document).ready(function () {
         window.location.href = '/studentView/' + id;
     });
 })
+
+$(document).ready(function () {
+    $.ajax({
+        url: "/api/conferenceName/" + $("#conf-select").val(),
+        type: "GET",
+        success: function (data) {
+            $("#conference-title").text(data);
+        }
+    });
+});
