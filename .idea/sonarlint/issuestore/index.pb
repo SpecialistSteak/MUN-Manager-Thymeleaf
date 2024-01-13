@@ -100,3 +100,7 @@ f
 6src/main/java/org/munmanagerthymeleaf/service/API.java,4\c\4c8aaf6627652cc7bff1ab35fea6b1721eb6826c
 t
 Dsrc/main/java/org/munmanagerthymeleaf/databaseManager/NullCheck.java,e\2\e2367e1622325e985847cbd2020c97fead8aed01
+t
+Dsrc/main/java/org/munmanagerthymeleaf/service/DBOperationRunner.java,2\9\29509fdb35f68e856b814deaddad59f844fe0eb5
+]
+-src/main/java/org/munmanagerthymeleaf/TODO.md,5\f\5f3da33d1064f19ff6aa657382ecc693286cd1b7

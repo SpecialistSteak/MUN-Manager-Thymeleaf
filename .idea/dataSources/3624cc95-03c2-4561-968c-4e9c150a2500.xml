@@ -1107,7 +1107,7 @@
     </schema>
     <schema id="325" parent="1" name="mun-manager">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-01-07.10:41:18</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-01-13.10:42:40</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_bin</CollationName>
     </schema>
     <schema id="326" parent="1" name="mysql">
@@ -1158,6 +1158,7 @@
       <CollationName>utf8mb4_bin</CollationName>
     </table>
     <column id="340" parent="335" name="assignment_id">
+      <AutoIncrement>31</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1180,7 +1181,7 @@
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <foreign-key id="345" parent="335" name="assignments_ibfk_1">
+    <foreign-key id="345" parent="335" name="fk_conference_id">
       <ColNames>conference_id</ColNames>
       <RefColNames>conference_id</RefColNames>
       <RefTableName>conferences</RefTableName>
@@ -1190,7 +1191,7 @@
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="347" parent="335" name="ConferenceId">
+    <index id="347" parent="335" name="fk_conference_id">
       <ColNames>conference_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1200,6 +1201,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="349" parent="336" name="conference_id">
+      <AutoIncrement>11</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1219,7 +1221,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="353" parent="337" name="submission_id">
-      <AutoIncrement>16</AutoIncrement>
+      <AutoIncrement>51</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1285,7 +1287,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="367" parent="338" name="participation_id">
-      <AutoIncrement>16</AutoIncrement>
+      <AutoIncrement>31</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1343,6 +1345,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="379" parent="339" name="student_id">
+      <AutoIncrement>31</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>

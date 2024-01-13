@@ -6,12 +6,12 @@ function submitProject() {
     console.log("submitProject");
 }
 
-function logTest() {
-    $.ajax({
-        url: "/api/conferenceName/" + $("#conf-select").val(),
-        type: "GET",
-        success: function (data) {
-            $("#conference-title").text(data);
-        }
-    });
+function pageSelect() {
+    const conf = document.getElementById("conf-select").value;
+    const assignment = document.getElementById("assign-select").value;
+    if (conf !== "default" && assignment != -1) {
+        window.location.href = "/c/" + conf + "/a/" + assignment;
+    } else if (conf !== "default") {
+        window.location.href = "/c/" + conf;
+    }
 }

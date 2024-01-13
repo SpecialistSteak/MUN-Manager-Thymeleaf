@@ -1,5 +1,6 @@
 package org.munmanagerthymeleaf.controller;
 
+import org.munmanagerthymeleaf.databaseManager.NullCheck;
 import org.munmanagerthymeleaf.service.API;
 import org.munmanagerthymeleaf.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,29 @@ public class DataController {
         model.addAttribute("students", dataService.getStudents());
         model.addAttribute("studentConferences", dataService.getStudentConferences());
         model.addAttribute("studentAssignments", dataService.getStudentAssignments());
+
+        return "index";
+    }
+
+    @GetMapping({"/c/{confID}", "/c/{confID}/"})
+    public String indexWithConf(Model model, @PathVariable(value = "confID") Integer confID) {
+        model.addAttribute("conferences", dataService.getConferences());
+        model.addAttribute("assignments", dataService.getAssignments());
+        model.addAttribute("students", dataService.getStudentsByConferenceId(confID));
+        model.addAttribute("studentConferences", dataService.getStudentConferences());
+        model.addAttribute("studentAssignments", dataService.getStudentAssignments());
+
+        return "index";
+    }
+
+    @GetMapping({"/c/{confID}/a/{assignID}", "/c/{confID}/a/{assignID}/"})
+    public String indexWithIds(Model model, @PathVariable(value = "confID") Integer confID, @PathVariable(value = "assignID") Integer assignID) {
+        model.addAttribute("conferences", dataService.getConferences());
+        model.addAttribute("assignments", dataService.getAssignments());
+        model.addAttribute("students", dataService.getStudentsByConferenceIdAndAssignmentId(confID, assignID));
+        model.addAttribute("studentConferences", dataService.getStudentConferences());
+        model.addAttribute("studentAssignments", dataService.getStudentAssignments());
+
         return "index";
     }
 
@@ -38,6 +62,12 @@ public class DataController {
         model.addAttribute("studentAssignments", dataService.getStudentAssignments());
         model.addAttribute("studentAssignmentsList", api.getAssignmentsByStudent(studentId));
         return "studentView";
+    }
+
+    @GetMapping("/NULLCHECK")
+    public String nullCheck() {
+        new NullCheck(dataService).checkForNulls();
+        return "redirect:/";
     }
 }
 
