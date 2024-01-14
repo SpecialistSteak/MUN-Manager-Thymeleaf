@@ -1,6 +1,8 @@
 package org.munmanagerthymeleaf.controller;
 
+import com.opencsv.CSVReader;
 import org.munmanagerthymeleaf.databaseManager.NullCheck;
+import org.munmanagerthymeleaf.model.Student;
 import org.munmanagerthymeleaf.service.API;
 import org.munmanagerthymeleaf.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 public class DataController {
@@ -26,6 +36,7 @@ public class DataController {
         model.addAttribute("students", dataService.getStudents());
         model.addAttribute("studentConferences", dataService.getStudentConferences());
         model.addAttribute("studentAssignments", dataService.getStudentAssignments());
+        model.addAttribute("confName", null);
 
         return "index";
     }
@@ -37,6 +48,7 @@ public class DataController {
         model.addAttribute("students", dataService.getStudentsByConferenceId(confID));
         model.addAttribute("studentConferences", dataService.getStudentConferences());
         model.addAttribute("studentAssignments", dataService.getStudentAssignments());
+        model.addAttribute("confName", dataService.getConferenceById(confID).getConferenceName());
 
         return "index";
     }
@@ -48,6 +60,7 @@ public class DataController {
         model.addAttribute("students", dataService.getStudentsByConferenceIdAndAssignmentId(confID, assignID));
         model.addAttribute("studentConferences", dataService.getStudentConferences());
         model.addAttribute("studentAssignments", dataService.getStudentAssignments());
+        model.addAttribute("confName", dataService.getConferenceById(confID).getConferenceName());
 
         return "index";
     }
@@ -61,13 +74,47 @@ public class DataController {
         model.addAttribute("studentConferences", dataService.getStudentConferences());
         model.addAttribute("studentAssignments", dataService.getStudentAssignments());
         model.addAttribute("studentAssignmentsList", api.getAssignmentsByStudent(studentId));
+        model.addAttribute("studentName", dataService.getStudentById(studentId));
+
         return "studentView";
     }
 
+    @GetMapping("/uploadCSV")
+    public String uploadCSV() {
+        return "uploadCSV";
+    }
+
+    @PostMapping("/api/uploadStudentCSV")
+    public String uploadCSV(Model model, @RequestParam("file") MultipartFile csv) {
+        List<Student> students = new ArrayList<>();
+        try {
+            CSVReader reader = new CSVReader(new InputStreamReader(csv.getInputStream()));
+            String[] nextLine;
+            boolean first = false;
+            while ((nextLine = reader.readNext()) != null) {
+                if (!first) {
+                    first = true;
+                    continue;
+                }
+                Student student = new Student();
+                student.setStudentName(nextLine[0]);
+                student.setStudentEmail(nextLine[1]);
+                students.add(student);
+            }
+            reader.close();
+        } catch (Exception e) {
+            Logger.getLogger("API").warning("Error while uploading CSV: " + e.getMessage());
+        }
+        for (Student student : students) {
+            this.dataService.addStudent(student);
+        }
+        return index(model);
+    }
+
     @GetMapping("/NULLCHECK")
-    public String nullCheck() {
+    public String nullCheck(Model model) {
         new NullCheck(dataService).checkForNulls();
-        return "redirect:/";
+        return index(model);
     }
 }
 

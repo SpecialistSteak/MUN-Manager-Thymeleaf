@@ -1,14 +1,15 @@
 package org.munmanagerthymeleaf.service;
 
-import com.google.api.client.util.store.AbstractMemoryDataStore;
 import org.munmanagerthymeleaf.model.*;
 import org.munmanagerthymeleaf.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 @Service
 public class DataService {
@@ -47,25 +48,6 @@ public class DataService {
         return studentAssignmentRepository.findAll();
     }
 
-    public Conference getConferenceById(int id) {
-        return conferenceRepository.findById(id).orElse(null);
-    }
-
-    public boolean addConference(Conference conference) {
-        conferenceRepository.save(conference);
-        return true;
-    }
-
-    public boolean addAssignment(Assignment assignment) {
-        assignmentRepository.save(assignment);
-        return true;
-    }
-
-    public boolean addStudentConference(StudentConference studentConference) {
-        studentConferenceRepository.save(studentConference);
-        return true;
-    }
-
     public List<Student> getStudentsByConferenceId(int confID) {
         List<StudentConference> studentConferences = studentConferenceRepository.findAll();
         List<Student> students = new ArrayList<>();
@@ -93,5 +75,38 @@ public class DataService {
             }
         }
         return students;
+    }
+
+    public boolean addStudent(Student student) {
+        studentRepository.save(student);
+        return true;
+    }
+
+    public boolean addConference(Conference conference) {
+        conferenceRepository.save(conference);
+        return true;
+    }
+
+    public boolean addAssignment(Assignment assignment) {
+        assignmentRepository.save(assignment);
+        return true;
+    }
+
+    public boolean addStudentConference(StudentConference studentConference) {
+        studentConferenceRepository.save(studentConference);
+        return true;
+    }
+
+    public boolean addStudentAssignment(StudentAssignment studentAssignment) {
+        studentAssignmentRepository.save(studentAssignment);
+        return true;
+    }
+
+    public String getStudentById(int studentId) {
+        return requireNonNull(studentRepository.findById(studentId).orElse(null)).getStudentName();
+    }
+
+    public Conference getConferenceById(int id) {
+        return conferenceRepository.findById(id).orElse(null);
     }
 }

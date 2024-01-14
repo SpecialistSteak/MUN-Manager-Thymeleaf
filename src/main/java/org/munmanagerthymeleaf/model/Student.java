@@ -14,4 +14,7 @@ public class Student {
 
     @Column(name = "student_name")
     private String studentName;
+
+    @Column(name = "student_email")
+    private String studentEmail;
 }

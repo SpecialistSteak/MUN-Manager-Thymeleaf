@@ -35,7 +35,8 @@
                     <img alt="Conference Image" class="img-fluid" th:src="@{/img/LOGO2.webp}">
                 </div>
                 <div class="col-10">
-                    <h1 class="display-4" id="conference-title"></h1>
+                    <h1 class="display-4" id="conference-title"
+                        th:text="${confName != null ? confName : 'Conference View'}"></h1>
                 </div>
             </div>
         </div>
@@ -58,7 +59,7 @@
                             style="margin-top: 20px; margin-bottom: 20px">Submit
                     </button>
                     <hr class="default-hr" style="margin-bottom: 20px"/>
-                    <div id="dual-button-holder">
+                    <div id="dual-button-holder" style="margin-bottom: 20px">
                         <button class="btn btn-primary half-button" data-target="#projectModal" data-toggle="modal"
                                 type="button">
                             Create New Conference
@@ -97,7 +98,8 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" data-dismiss="modal" onclick="submitConference()"
+                                        <button class="btn btn-primary" data-dismiss="modal"
+                                                onclick="submitConference()"
                                                 type="button">Submit
                                         </button>
                                         <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel
@@ -154,6 +156,11 @@
                             </div>
                         </div>
                     </div>
+                    <hr class="default-hr" style="margin-bottom: 20px"/>
+                    <button id="student-upload" class="btn btn-primary btn-block"
+                            onclick="window.location.href = window.location.origin + '/uploadCSV';">
+                        Upload New Students List
+                    </button>
                 </div>
             </div>
             <div class="col-9">

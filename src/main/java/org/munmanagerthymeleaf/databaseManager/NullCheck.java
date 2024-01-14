@@ -12,10 +12,12 @@ import java.util.logging.Logger;
 public class NullCheck {
 
     private final DataService dataService;
+    private final Logger logger;
 
     @Autowired
     public NullCheck(DataService dataService) {
         this.dataService = dataService;
+        this.logger = Logger.getLogger("NullCheck");
     }
 
     public void checkForNulls() {
@@ -34,11 +36,10 @@ public class NullCheck {
                 try {
                     Object value = field.get(dataItem);
                     if (value == null) {
-                        Logger.getLogger("NullCheck")
-                                .warning(dataTypeName + " " + field.getName() + " is null for: " + dataItem);
+                        logger.warning(dataTypeName + " " + field.getName() + " is null for: " + dataItem);
                     }
                 } catch (IllegalAccessException e) {
-                    Logger.getLogger("NullCheck").warning("Error while checking for null values: " + e.getMessage());
+                    logger.warning("Error while checking for null values: " + e.getMessage());
                 }
             }
         }

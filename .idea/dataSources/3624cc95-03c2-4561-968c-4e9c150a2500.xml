@@ -1107,7 +1107,7 @@
     </schema>
     <schema id="325" parent="1" name="mun-manager">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-01-13.10:42:40</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-01-14.09:28:15</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_bin</CollationName>
     </schema>
     <schema id="326" parent="1" name="mysql">
@@ -1158,7 +1158,7 @@
       <CollationName>utf8mb4_bin</CollationName>
     </table>
     <column id="340" parent="335" name="assignment_id">
-      <AutoIncrement>31</AutoIncrement>
+      <AutoIncrement>32</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1201,7 +1201,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="349" parent="336" name="conference_id">
-      <AutoIncrement>11</AutoIncrement>
+      <AutoIncrement>16</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1287,7 +1287,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="367" parent="338" name="participation_id">
-      <AutoIncrement>31</AutoIncrement>
+      <AutoIncrement>163</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1354,12 +1354,17 @@
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <index id="381" parent="339" name="PRIMARY">
+    <column id="381" parent="339" name="student_email">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <index id="382" parent="339" name="PRIMARY">
       <ColNames>student_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="382" parent="339" name="PRIMARY">
+    <key id="383" parent="339" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

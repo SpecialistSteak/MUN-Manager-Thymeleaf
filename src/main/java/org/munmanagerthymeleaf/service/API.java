@@ -27,8 +27,8 @@ public class API {
         List<Assignment> assignments = dataService.getAssignments();
         List<Assignment> validAssignments = new ArrayList<>();
         for (Assignment assignment : assignments) {
-            if (assignment.getConference() != null ){
-                if(assignment.getConference().getConferenceId() == confId) {
+            if (assignment.getConference() != null) {
+                if (assignment.getConference().getConferenceId() == confId) {
                     validAssignments.add(assignment);
                 }
             } else {
@@ -37,6 +37,8 @@ public class API {
         }
         return validAssignments;
     }
+
+//    ISSUE WITH RETURNING INDEX AND RESUBMITTING FORM
 
     @GetMapping("/api/getAssignmentsByStudent")
     public List<StudentAssignment> getAssignmentsByStudent(@RequestParam("studentId") int studentId) {
