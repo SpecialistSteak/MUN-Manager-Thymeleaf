@@ -34,7 +34,8 @@ public class NullCheck {
                 try {
                     Object value = field.get(dataItem);
                     if (value == null) {
-                        Logger.getLogger("NullCheck").warning(dataTypeName + " " + field.getName() + " is null for: " + dataItem);
+                        Logger.getLogger("NullCheck")
+                                .warning(dataTypeName + " " + field.getName() + " is null for: " + dataItem);
                     }
                 } catch (IllegalAccessException e) {
                     Logger.getLogger("NullCheck").warning("Error while checking for null values: " + e.getMessage());

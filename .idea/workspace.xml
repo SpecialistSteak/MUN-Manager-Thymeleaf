@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3e1ea06a-dcc6-4b50-81db-2880ed97b9c4" name="Changes" comment="updated code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/DataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/globalInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/globalInit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/indexInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/indexInit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/indexScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/indexScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/databaseManager/NullCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/databaseManager/NullCheck.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +231,7 @@
       <workItem from="1704705778407" duration="2545000" />
       <workItem from="1704868666661" duration="8698000" />
       <workItem from="1705119849260" duration="970000" />
-      <workItem from="1705136485541" duration="13257000" />
+      <workItem from="1705136485541" duration="13335000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -375,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705145148849</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="updated code">
+      <option name="closed" value="true" />
+      <created>1705224100634</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1705224100634</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
