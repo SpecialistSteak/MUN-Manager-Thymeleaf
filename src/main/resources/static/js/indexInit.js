@@ -6,6 +6,7 @@ $(document).ready(function () {
     });
 })
 
+// MUST WORK ON THIS
 $(document).ready(function () {
     $.ajax({
         url: "/api/conferenceName/" + $("#conf-select").val(),

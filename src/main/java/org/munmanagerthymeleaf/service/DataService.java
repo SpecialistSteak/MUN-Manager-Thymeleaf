@@ -61,6 +61,11 @@ public class DataService {
         return true;
     }
 
+    public boolean addStudentConference(StudentConference studentConference) {
+        studentConferenceRepository.save(studentConference);
+        return true;
+    }
+
     public List<Student> getStudentsByConferenceId(int confID) {
         List<StudentConference> studentConferences = studentConferenceRepository.findAll();
         List<Student> students = new ArrayList<>();

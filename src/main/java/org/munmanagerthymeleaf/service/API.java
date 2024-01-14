@@ -3,6 +3,7 @@ package org.munmanagerthymeleaf.service;
 import org.munmanagerthymeleaf.model.Assignment;
 import org.munmanagerthymeleaf.model.Conference;
 import org.munmanagerthymeleaf.model.StudentAssignment;
+import org.munmanagerthymeleaf.model.StudentConference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,10 +92,23 @@ public class API {
     }
 
     @PostMapping("/api/newConference")
-    public void newConference(@RequestParam("conferenceName") String conferenceName) {
+    public void newConference(@RequestParam("conferenceName") String conferenceName, @RequestParam("excludedStudents") List<Integer> excludedStudents) {
         Conference conference = new Conference();
         conference.setConferenceName(conferenceName);
+        List<StudentConference> studentConferences = new ArrayList<>();
+        for (int i = 0; i < dataService.getStudents().size(); i++) {
+            if (!excludedStudents.contains(dataService.getStudents().get(i).getStudentId())) {
+                StudentConference studentConference = new StudentConference();
+                studentConference.setStudent(dataService.getStudents().get(i));
+                studentConference.setConference(conference);
+                studentConference.setDelegation("Delegation " + (i + 1));
+                studentConferences.add(studentConference);
+            }
+        }
         dataService.addConference(conference);
+        for (StudentConference studentConference : studentConferences) {
+            dataService.addStudentConference(studentConference);
+        }
     }
 
     @PostMapping("/api/newAssignment")

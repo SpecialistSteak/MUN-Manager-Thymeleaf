@@ -44,7 +44,6 @@ $(document).ready(function () {
     });
 });
 
-
 function assignmentError() {
     console.log("ERROR");
     $('#assign-select')
