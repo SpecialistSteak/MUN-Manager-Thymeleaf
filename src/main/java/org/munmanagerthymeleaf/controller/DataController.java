@@ -41,6 +41,11 @@ public class DataController {
         return "index";
     }
 
+    @GetMapping({"/c", "/c/"})
+    public String emptyConf() {
+        return "redirect";
+    }
+
     @GetMapping({"/c/{confID}", "/c/{confID}/"})
     public String indexWithConf(Model model, @PathVariable(value = "confID") Integer confID) {
         model.addAttribute("conferences", dataService.getConferences());
@@ -56,13 +61,13 @@ public class DataController {
     @GetMapping({"/c/{confID}/a/{assignID}", "/c/{confID}/a/{assignID}/"})
     public String indexWithIds(Model model, @PathVariable(value = "confID") Integer confID, @PathVariable(value = "assignID") Integer assignID) {
         model.addAttribute("conferences", dataService.getConferences());
-        model.addAttribute("assignments", dataService.getAssignments());
         model.addAttribute("students", dataService.getStudentsByConferenceIdAndAssignmentId(confID, assignID));
-        model.addAttribute("studentConferences", dataService.getStudentConferences());
-        model.addAttribute("studentAssignments", dataService.getStudentAssignments());
+        model.addAttribute("allStudents", dataService.getStudents());
+        model.addAttribute("studentAssignments", dataService.getStudentAssignmentsByAssignmentId(assignID));
         model.addAttribute("confName", dataService.getConferenceById(confID).getConferenceName());
+        model.addAttribute("assignName", dataService.getAssignmentById(assignID).getAssignmentName());
 
-        return "index";
+        return "assignmentIndex";
     }
 
     @GetMapping("/studentView/{studentId}")
@@ -108,13 +113,13 @@ public class DataController {
         for (Student student : students) {
             this.dataService.addStudent(student);
         }
-        return index(model);
+        return "redirect";
     }
 
     @GetMapping("/NULLCHECK")
     public String nullCheck(Model model) {
         new NullCheck(dataService).checkForNulls();
-        return index(model);
+        return "redirect";
     }
 }
 

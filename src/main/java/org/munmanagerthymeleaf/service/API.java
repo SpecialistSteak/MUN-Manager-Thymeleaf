@@ -38,8 +38,6 @@ public class API {
         return validAssignments;
     }
 
-//    ISSUE WITH RETURNING INDEX AND RESUBMITTING FORM
-
     @GetMapping("/api/getAssignmentsByStudent")
     public List<StudentAssignment> getAssignmentsByStudent(@RequestParam("studentId") int studentId) {
         List<StudentAssignment> studentAssignments = dataService.getStudentAssignments();
@@ -118,8 +116,7 @@ public class API {
                               @RequestParam("conferenceId") int conferenceId,
                               @RequestParam("dueDate") Date dueDate,
                               @RequestParam("assignmentDescription") String assignmentDescription) {
-        dataService.addAssignment(
-                new Assignment(assignmentName,
+        dataService.addAssignment(new Assignment(assignmentName,
                         dataService.getConferenceById(conferenceId),
                         dueDate.toString(),
                         assignmentDescription));

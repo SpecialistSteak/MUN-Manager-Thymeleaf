@@ -1,6 +1,6 @@
 /*<![CDATA[*/
 $(document).ready(function () {
-    DataTable.datetime('MMMM dd, yyyy hh:mm a');
+    DataTable.datetime('h:mm a, MMMM dd yyyy');
     $('.table').DataTable({
         "paging": true,
         "lengthChange": false,
@@ -18,8 +18,8 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#assign-select').prop("disabled", true);
-    $('#conf-select').change(function () {
-        const confId = $(this).val();
+
+    function loadAssignments(confId) {
         $.ajax({
             url: '/api/getAssignmentsByConference',
             type: 'GET',
@@ -38,16 +38,23 @@ $(document).ready(function () {
                 }
             }
         }).fail(function (data) {
-            console.log(data.status + ": " + data.responseText);
-            assignmentError();
+            assignmentError(data.status);
         });
+    }
+
+    loadAssignments($('#conf-select').val());
+
+    $('#conf-select').change(function () {
+        loadAssignments($(this).val());
     });
 });
 
-function assignmentError() {
+function assignmentError(data) {
     console.log("ERROR");
     $('#assign-select')
         .empty()
-        .append('<option>' + "INTERNAL ERROR" + '</option>')
         .prop("disabled", true);
+    if (data != 400) {
+        $('#assign-select').append('<option>' + "INTERNAL ERROR" + '</option>')
+    }
 }

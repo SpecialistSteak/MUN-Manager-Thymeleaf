@@ -55,7 +55,7 @@
                     <tbody>
                     <tr th:each="studentAssignment : ${studentAssignmentsList}">
                         <td th:text="${studentAssignment.getAssignment().getAssignmentName()}"></td>
-                        <td th:text="${#dates.format(studentAssignment.getDate_submitted(), 'h:mm a, MMMM yyyy')}"></td>
+                        <td th:text="${#dates.format(studentAssignment.getDate_submitted(), 'h:mm a, MMMM dd yyyy')}"></td>
                         <td th:text="${studentAssignment.getTurnitin_score() + '%'}"></td>
                         <td th:text="${studentAssignment.getWord_count()}"></td>
                     </tr>

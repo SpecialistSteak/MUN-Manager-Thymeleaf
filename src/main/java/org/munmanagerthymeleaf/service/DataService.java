@@ -109,4 +109,19 @@ public class DataService {
     public Conference getConferenceById(int id) {
         return conferenceRepository.findById(id).orElse(null);
     }
+
+    public List<StudentAssignment> getStudentAssignmentsByAssignmentId(Integer assignID) {
+        List<StudentAssignment> studentAssignments = studentAssignmentRepository.findAll();
+        List<StudentAssignment> studentAssignmentsByAssignmentId = new ArrayList<>();
+        for (StudentAssignment studentAssignment : studentAssignments) {
+            if (studentAssignment.getAssignment().getAssignmentId() == assignID) {
+                studentAssignmentsByAssignmentId.add(studentAssignment);
+            }
+        }
+        return studentAssignmentsByAssignmentId;
+    }
+
+    public Assignment getAssignmentById(Integer assignID) {
+        return requireNonNull(assignmentRepository.findById(assignID).orElse(null));
+    }
 }
