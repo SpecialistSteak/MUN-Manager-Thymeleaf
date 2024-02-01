@@ -9,6 +9,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.services.docs.v1.Docs;
 import com.google.api.services.docs.v1.DocsScopes;
 
 import java.io.FileNotFoundException;
@@ -29,7 +30,7 @@ public class DocsService {
             Collections.singletonList(DocsScopes.DOCUMENTS_READONLY);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
-    static Credential docsGetCredentials(final NetHttpTransport HTTP_TRANSPORT)
+    protected static Credential docsGetCredentials(final NetHttpTransport HTTP_TRANSPORT)
             throws IOException {
         // Load client secrets.
         InputStream in = DocsService.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
@@ -46,8 +47,13 @@ public class DocsService {
                 .setAccessType("offline")
                 .build();
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
-        Credential credential = new AuthorizationCodeInstalledApp(flow, receiver).authorize("admin");
         //returns an authorized Credential object.
-        return credential;
+        return new AuthorizationCodeInstalledApp(flow, receiver).authorize("admin");
+    }
+
+    static Docs getDocsService(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
+        return new Docs.Builder(HTTP_TRANSPORT, JSON_FACTORY, docsGetCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
     }
 }

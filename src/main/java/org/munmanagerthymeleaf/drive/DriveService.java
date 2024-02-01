@@ -9,6 +9,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import lombok.experimental.UtilityClass;
 
@@ -18,6 +19,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
+
+import static org.munmanagerthymeleaf.drive.DocsService.APPLICATION_NAME;
 
 // Part of this code is taken from the Google Drive quickstart.
 @UtilityClass
@@ -39,7 +42,16 @@ public class DriveService {
                         .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
                         .setAccessType("offline").build();
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
-        Credential credential = new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
-        return credential;
+        return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
+    }
+
+    static Drive getDriveService(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
+        return new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, driveGetCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+    }
+
+    boolean makeNewFolder(){
+        return true;
     }
 }

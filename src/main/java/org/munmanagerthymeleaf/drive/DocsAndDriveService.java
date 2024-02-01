@@ -14,9 +14,9 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 
-import static org.munmanagerthymeleaf.drive.DocsService.APPLICATION_NAME;
-import static org.munmanagerthymeleaf.drive.DocsService.docsGetCredentials;
+import static org.munmanagerthymeleaf.drive.DocsService.*;
 import static org.munmanagerthymeleaf.drive.DriveService.driveGetCredentials;
+import static org.munmanagerthymeleaf.drive.DriveService.getDriveService;
 
 @UtilityClass
 public class DocsAndDriveService {
@@ -47,13 +47,8 @@ public class DocsAndDriveService {
 
     public static void main(String[] args) throws GeneralSecurityException, IOException {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-        Docs docsService = new Docs.Builder(HTTP_TRANSPORT, JSON_FACTORY, docsGetCredentials(HTTP_TRANSPORT))
-                .setApplicationName(APPLICATION_NAME)
-                .build();
-        Drive driveService = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, driveGetCredentials(HTTP_TRANSPORT))
-                .setApplicationName(APPLICATION_NAME)
-                .build();
+        Docs docsService = getDocsService(HTTP_TRANSPORT);
+        Drive driveService = getDriveService(HTTP_TRANSPORT);
 
         FileList result = driveService.files()
                 .list()
