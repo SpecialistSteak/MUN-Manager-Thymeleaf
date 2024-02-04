@@ -167,6 +167,7 @@
                 <table aria-label="Table of student information" class="table table-striped">
                     <thead>
                     <tr>
+                        <th>Flagged</th>
                         <th>Name</th>
                         <th>Date Submitted</th>
                         <th>Turnitin Score</th>
@@ -174,7 +175,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="pointer" th:each="sa : ${studentAssignments}" th:id="${sa.getStudent().getStudentId()}">
+                    <tr th:class="${sa.isFlagged()}" class="pointer"
+                        th:each="sa : ${studentAssignments}"
+                        th:id="${sa.getStudent().getStudentId()}">
+                        <td>
+                            <label>
+                                <input type="checkbox" th:checked="${sa.isFlagged()}" th:onclick="'toggleFlagged(' + ${sa.getSubmissionId()} + ')'" />
+                            </label>
+                        </td>
                         <td th:text="${sa.getStudent().getStudentName()}"></td>
                         <td th:text="${#dates.format(sa.getDate_submitted(), 'h:mm a, MMMM dd yyyy')}"></td>
                         <td th:text="${sa.getTurnitin_score() + '%'}"></td>

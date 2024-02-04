@@ -86,6 +86,13 @@ public class API {
         return dataService.getConferenceById(id);
     }
 
+    @PostMapping("/api/toggleFlagged")
+    public void toggleFlagged(@RequestParam("submissionId") int submissionId) {
+        StudentAssignment studentAssignment = dataService.getStudentAssignmentById(submissionId);
+        studentAssignment.setFlagged(!studentAssignment.isFlagged());
+        dataService.addStudentAssignment(studentAssignment);
+    }
+
     @GetMapping("/api/conferenceName/{id}")
     public String getConferenceNameById(@PathVariable("id") int id) {
         return dataService.getConferenceById(id).getConferenceName();
@@ -116,9 +123,32 @@ public class API {
                               @RequestParam("conferenceId") int conferenceId,
                               @RequestParam("dueDate") Date dueDate,
                               @RequestParam("assignmentDescription") String assignmentDescription) {
-        dataService.addAssignment(new Assignment(assignmentName,
-                        dataService.getConferenceById(conferenceId),
-                        dueDate.toString(),
-                        assignmentDescription));
+        Assignment assignment = new Assignment(assignmentName,
+                dataService.getConferenceById(conferenceId),
+                dueDate.toString(),
+                assignmentDescription);
+        int assignmentId = assignment.getAssignmentId();
+        dataService.addAssignment(assignment);
+        // this if-else is here to ensure the assignment is identical to the one in the database, to prevent errors
+        if (dataService.getAssignmentById(assignmentId) == null) {
+            throw new NullPointerException("Assignment is null. Check the database.");
+        } else {
+            assignment = dataService.getAssignmentById(assignmentId);
+        }
+        List<StudentAssignment> studentAssignments = new ArrayList<>();
+        for (StudentConference studentConference : dataService.getStudentConferences()) {
+            StudentAssignment studentAssignment = new StudentAssignment();
+            studentAssignment.setStudent(studentConference.getStudent());
+            // setting the assignment to the one just created
+            studentAssignment.setAssignment(assignment);
+            studentAssignment.setComplete(false);
+            studentAssignment.setFlagged(false);
+            studentAssignment.setTurnitin_score(0);
+            studentAssignment.setWord_count(0);
+            studentAssignments.add(studentAssignment);
+        }
+        for (StudentAssignment studentAssignment : studentAssignments) {
+            dataService.addStudentAssignment(studentAssignment);
+        }
     }
 }

@@ -63,7 +63,8 @@ public class DataController {
         model.addAttribute("conferences", dataService.getConferences());
         model.addAttribute("students", dataService.getStudentsByConferenceIdAndAssignmentId(confID, assignID));
         model.addAttribute("allStudents", dataService.getStudents());
-        model.addAttribute("studentAssignments", dataService.getStudentAssignmentsByAssignmentId(assignID));
+        var studentAssignments = dataService.getStudentAssignmentsByAssignmentId(assignID);
+        model.addAttribute("studentAssignments", studentAssignments);
         model.addAttribute("confName", dataService.getConferenceById(confID).getConferenceName());
         model.addAttribute("assignName", dataService.getAssignmentById(assignID).getAssignmentName());
 

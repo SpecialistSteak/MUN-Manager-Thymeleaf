@@ -56,4 +56,28 @@ public class DocsService {
                 .setApplicationName(APPLICATION_NAME)
                 .build();
     }
+
+    static int getWordCountOfGetBodyGetContentToString(String contentString) {
+        StringBuilder textContent = new StringBuilder();
+
+        while (contentString.contains("\"content\":\"")) {
+            int index = contentString.indexOf("\"content\":\"");
+            contentString = contentString.substring(index + 11);
+            int index2 = contentString.indexOf("\"");
+            String text = contentString.substring(0, index2);
+            textContent.append(text).append(" ");
+        }
+
+        String s = textContent.toString().replace("\\n", "")
+                .replace("\\t", "")
+                .replace("\\r", "")
+                .replace("\\\"", "")
+                .replace("\\", "");
+
+        while (s.contains("  ")) {
+            s = s.replace("  ", " ");
+        }
+
+        return s.isEmpty() ? 0 : s.split(" ").length;
+    }
 }

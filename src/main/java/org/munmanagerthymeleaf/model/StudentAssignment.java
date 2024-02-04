@@ -1,12 +1,14 @@
 package org.munmanagerthymeleaf.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
 @Entity
+@AllArgsConstructor
 @Table(name = "student_assignments")
 public class StudentAssignment {
     @Id
@@ -30,4 +32,13 @@ public class StudentAssignment {
 
     @Column(name = "word_count")
     private int word_count;
+
+    @Column(name = "flagged")
+    private boolean flagged;
+
+    @Column(name = "complete")
+    private boolean complete;
+
+    public StudentAssignment() {
+    }
 }

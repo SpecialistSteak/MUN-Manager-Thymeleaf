@@ -40,12 +40,13 @@
             </div>
         </div>
     </div>
-    <div id="flex" style="display: flex; margin-top: 2rem;">
+    <div id="flex" style="display: flex; margin-top: 2rem; gap: 5%;">
         <div class="col-3">
             <div class="container-fluid">
                 <table aria-label="Table of student information" class="table table-striped">
                     <thead>
                     <tr>
+                        <th>Flagged</th>
                         <th>Assignment Name</th>
                         <th>Submission Date</th>
                         <th>Turnitin Score</th>
@@ -53,7 +54,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="studentAssignment : ${studentAssignmentsList}">
+                    <tr th:class="${studentAssignment.isFlagged()}" th:each="studentAssignment : ${studentAssignmentsList}">
+                        <td>
+                            <label>
+                                <input type="checkbox" th:checked="${studentAssignment.isFlagged()}" th:onclick="'toggleFlagged(' + ${studentAssignment.getSubmissionId()} + ')'" />
+                            </label>
+                        </td>
                         <td th:text="${studentAssignment.getAssignment().getAssignmentName()}"></td>
                         <td th:text="${#dates.format(studentAssignment.getDate_submitted(), 'h:mm a, MMMM dd yyyy')}"></td>
                         <td th:text="${studentAssignment.getTurnitin_score() + '%'}"></td>
@@ -63,7 +69,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-9" th:style="'width=100%'">
+        <div class="col-8" th:style="'width=100%'">
             <iframe
                     th:style="'border: 1px solid gray; border-radius: 5px; height: 62.5vh; width:100%'"
                     th:src="${'https://docs.google.com/document/d/e/2PACX-1vT3LfhJcDpTmqfYcnenBfldjIieX9U2mCF1-pUGM7TR1T5jKzmpo7lAqe8A2YCSRibL3Gs_p-vp5xiM/pub?embedded=true'}"></iframe>

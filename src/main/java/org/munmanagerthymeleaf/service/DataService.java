@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
@@ -123,5 +122,9 @@ public class DataService {
 
     public Assignment getAssignmentById(Integer assignID) {
         return requireNonNull(assignmentRepository.findById(assignID).orElse(null));
+    }
+
+    public StudentAssignment getStudentAssignmentById(int submissionId) {
+        return studentAssignmentRepository.findById(submissionId).orElse(null);
     }
 }

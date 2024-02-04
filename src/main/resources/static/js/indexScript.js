@@ -43,3 +43,18 @@ function pageSelect() {
         window.location.href = "/c/" + conf;
     }
 }
+
+function toggleFlagged(submissionId) {
+    $.ajax({
+        url: '/api/toggleFlagged',
+        type: 'POST',
+        data: jQuery.param({
+            submissionId: submissionId
+        })
+    }).done(function (data) {
+        console.log("SUCCESS");
+        window.location.reload();
+    }).fail(function (data) {
+        console.log("ERROR");
+    });
+}

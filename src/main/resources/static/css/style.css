@@ -97,3 +97,7 @@ body {
 table.dataTable.no-footer {
     border-radius: 2px !important;
 }
+
+.true {
+    background-color: rgba(205, 92, 92, 0.65) !important;
+}
