@@ -110,10 +110,10 @@ public class API {
     }
 
     @PostMapping("/api/newConference")
-    public void newConference(@RequestParam("conferenceName") String conferenceName, @RequestParam("excludedStudents") List<Integer> excludedStudents) throws GeneralSecurityException, IOException {
+    public void newConference(@RequestParam("conferenceName") String conferenceName, @RequestParam("excludedStudents") List<Integer> excludedStudents) throws IOException {
         Conference conference = new Conference();
         conference.setConferenceName(conferenceName);
-        conference.setGoogleDriveFolderId(createFolder(driveService, conferenceName));
+        conference.setGoogleDriveFolderId(createNestedFolder("1iXrtaYFPvstjLWbeCzKCa4Lo8sNfabdC", driveService, conferenceName));
         List<StudentConference> studentConferences = new ArrayList<>();
         for (int i = 0; i < dataService.getStudents().size(); i++) {
             if (!excludedStudents.contains(dataService.getStudents().get(i).getStudentId())) {
@@ -134,7 +134,9 @@ public class API {
     public void newAssignment(@RequestParam("assignmentName") String assignmentName, @RequestParam("conferenceId") int conferenceId, @RequestParam("dueDate") Date dueDate, @RequestParam("assignmentDescription") String assignmentDescription) throws IOException {
         Assignment assignment = new Assignment(assignmentName, dataService.getConferenceById(conferenceId), dueDate.toString(), assignmentDescription);
         dataService.addAssignment(assignment);
+        String assignmentFolderId = createNestedFolder(dataService.getConferenceById(conferenceId).getGoogleDriveFolderId(), driveService, assignmentName);
         int assignmentId = assignment.getAssignmentId();
+        String confName = dataService.getConferenceById(conferenceId).getConferenceName();
         // this if-else is here to ensure the assignment is identical to the one in the database, to prevent errors
         if (dataService.getAssignmentById(assignmentId) == null) {
             throw new NullPointerException("Assignment is null. Check the database.");
@@ -153,10 +155,25 @@ public class API {
             studentAssignment.setWord_count(0);
             studentAssignments.add(studentAssignment);
         }
-        String conferenceGoogleDriveFolderId = dataService.getConferenceById(conferenceId).getGoogleDriveFolderId();
-        for (StudentAssignment studentAssignment : studentAssignments) {
-            studentAssignment.setAssignment_parent_folder_id(createNestedFolder(conferenceGoogleDriveFolderId, driveService, studentAssignment.getStudent().getStudentName() + " - " + assignmentName));
-            shareFile(driveService, studentAssignment.getAssignment_parent_folder_id(), studentAssignment.getStudent().getStudentEmail());
+//        filter out all students not in current conference from studentAssignments and put in new list
+
+        List<Integer> validStudents = new ArrayList<>();
+        List<StudentAssignment> validStudentAssignments = new ArrayList<>();
+        for(StudentConference studentConference : dataService.getStudentConferences()) {
+            if(studentConference.getConference().getConferenceId() == conferenceId) {
+                validStudents.add(studentConference.getStudent().getStudentId());
+            }
+        }
+        for(StudentAssignment studentAssignment : studentAssignments) {
+            if(validStudents.contains(studentAssignment.getStudent().getStudentId())) {
+                validStudentAssignments.add(studentAssignment);
+            }
+        }
+        for (StudentAssignment studentAssignment : validStudentAssignments) {
+            String parentFolderId = createNestedFolder(assignmentFolderId, driveService,
+                    studentAssignment.getStudent().getStudentName() + " - " + confName + " " + assignmentName);
+            studentAssignment.setAssignment_parent_folder_id(parentFolderId);
+            shareFile(driveService, parentFolderId, studentAssignment.getStudent().getStudentEmail().trim());
             dataService.addStudentAssignment(studentAssignment);
         }
     }
@@ -182,6 +199,7 @@ public class API {
     private void processFile(File file, int index, StudentAssignment studentAssignment, List<StudentAssignment> additionalAssignments) throws IOException {
         if (index == 0) {
             studentAssignment.setDate_submitted(new Date(file.getCreatedTime().getValue()));
+            System.out.println(file.toString());
             if (file.getMimeType().equals("application/vnd.google-apps.document")) {
                 studentAssignment.setWord_count(
                         getWordCountOfGetBodyGetContentToString(

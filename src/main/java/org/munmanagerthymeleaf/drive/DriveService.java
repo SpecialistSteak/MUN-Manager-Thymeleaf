@@ -87,7 +87,7 @@ public class DriveService {
         FileList result = driveService.files().list()
                 .setQ("'" + folderId + "' in parents")
                 .setPageSize(1000)
-                .setFields("nextPageToken, files(name, parents, createdTime)")
+                .setFields("nextPageToken, files(name, parents, createdTime, mimeType, id)")
                 .execute();
         return result.getFiles();
     }
