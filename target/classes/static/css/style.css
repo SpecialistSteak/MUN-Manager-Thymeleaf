@@ -101,3 +101,7 @@ table.dataTable.no-footer {
 .true {
     background-color: rgba(205, 92, 92, 0.65) !important;
 }
+
+.individual-student-assignment {
+    cursor: pointer;
+}

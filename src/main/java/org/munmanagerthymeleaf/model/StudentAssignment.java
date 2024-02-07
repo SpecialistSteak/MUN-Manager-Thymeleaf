@@ -42,6 +42,9 @@ public class StudentAssignment {
     @Column(name = "assignment_parent_folder_id")
     private String assignment_parent_folder_id;
 
+    @Column(name = "content_body")
+    private String content_body;
+
     public StudentAssignment() {
     }
 }

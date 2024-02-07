@@ -55,11 +55,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:class="${studentAssignment.isFlagged()}" th:each="studentAssignment : ${studentAssignmentsList}">
+                    <tr th:class="${studentAssignment.isFlagged()}" th:classappend="individual-student-assignment"
+                        th:each="studentAssignment : ${studentAssignmentsList}" th:id="${studentAssignment.getSubmissionId()}">
                         <td th:text="${studentAssignment.isComplete() ? '✅' : '❌'}"></td>
                         <td>
                             <label>
-                                <input type="checkbox" th:checked="${studentAssignment.isFlagged()}" th:onclick="'toggleFlagged(' + ${studentAssignment.getSubmissionId()} + ')'" />
+                                <input th:checked="${studentAssignment.isFlagged()}" th:onclick="'toggleFlagged(' + ${studentAssignment.getSubmissionId()} + ')'"
+                                       type="checkbox"/>
                             </label>
                         </td>
                         <td th:text="${studentAssignment.getAssignment().getAssignmentName()}"></td>
@@ -71,10 +73,9 @@
                 </table>
             </div>
         </div>
-        <div class="col-7" th:style="'width=100%'">
-            <iframe
-                    th:style="'border: 1px solid gray; border-radius: 5px; height: 62.5vh; width:100%'"
-                    th:src="${'https://docs.google.com/document/d/e/2PACX-1vT3LfhJcDpTmqfYcnenBfldjIieX9U2mCF1-pUGM7TR1T5jKzmpo7lAqe8A2YCSRibL3Gs_p-vp5xiM/pub?embedded=true'}"></iframe>
+        <div class="col-7" id="assignment-content"
+             th:style="'border: 1px solid gray; border-radius: 5px; height: 62.5vh; width:100%; overflow:scroll;'">
+            <p th:text="${(studentAssignments.isEmpty()) ? '' : (studentAssignments.getFirst().getContent_body() == null ? '' : studentAssignments.getFirst().getContent_body())}"></p>
         </div>
     </div>
 </div>

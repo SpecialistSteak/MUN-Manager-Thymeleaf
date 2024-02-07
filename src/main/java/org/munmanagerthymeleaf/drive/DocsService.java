@@ -63,6 +63,12 @@ public class DocsService {
     }
 
     public static int getWordCountOfGetBodyGetContentToString(String contentString) {
+        contentString = getContentBodyOfContentString(contentString);
+
+        return contentString.isEmpty() ? 0 : contentString.split(" ").length;
+    }
+
+    public static String getContentBodyOfContentString(String contentString) {
         StringBuilder textContent = new StringBuilder();
 
         while (contentString.contains("\"content\":\"")) {
@@ -82,7 +88,6 @@ public class DocsService {
         while (s.contains("  ")) {
             s = s.replace("  ", " ");
         }
-
-        return s.isEmpty() ? 0 : s.split(" ").length;
+        return s;
     }
 }

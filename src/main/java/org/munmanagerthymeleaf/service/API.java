@@ -16,6 +16,7 @@ import java.security.GeneralSecurityException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import static org.munmanagerthymeleaf.drive.DocsService.*;
@@ -104,6 +105,12 @@ public class API {
         dataService.addStudentAssignment(studentAssignment);
     }
 
+    @GetMapping("/api/getStudentAssignmentContentBodyById")
+    public String getStudentAssignmentContentBodyById(@RequestParam("submissionId") int submissionId) {
+        String contentBody = dataService.getStudentAssignmentById(submissionId).getContent_body();
+        return Objects.requireNonNullElse(contentBody, "");
+    }
+
     @GetMapping("/api/conferenceName/{id}")
     public String getConferenceNameById(@PathVariable("id") int id) {
         return dataService.getConferenceById(id).getConferenceName();
@@ -155,17 +162,16 @@ public class API {
             studentAssignment.setWord_count(0);
             studentAssignments.add(studentAssignment);
         }
-//        filter out all students not in current conference from studentAssignments and put in new list
 
         List<Integer> validStudents = new ArrayList<>();
         List<StudentAssignment> validStudentAssignments = new ArrayList<>();
-        for(StudentConference studentConference : dataService.getStudentConferences()) {
-            if(studentConference.getConference().getConferenceId() == conferenceId) {
+        for (StudentConference studentConference : dataService.getStudentConferences()) {
+            if (studentConference.getConference().getConferenceId() == conferenceId) {
                 validStudents.add(studentConference.getStudent().getStudentId());
             }
         }
-        for(StudentAssignment studentAssignment : studentAssignments) {
-            if(validStudents.contains(studentAssignment.getStudent().getStudentId())) {
+        for (StudentAssignment studentAssignment : studentAssignments) {
+            if (validStudents.contains(studentAssignment.getStudent().getStudentId())) {
                 validStudentAssignments.add(studentAssignment);
             }
         }
@@ -191,21 +197,21 @@ public class API {
                 }
             }
         }
-        for(StudentAssignment additionalAssignment : additionalAssignments) {
+        for (StudentAssignment additionalAssignment : additionalAssignments) {
             dataService.addStudentAssignment(additionalAssignment);
         }
+        System.out.println("Checked for submissions");
     }
 
     private void processFile(File file, int index, StudentAssignment studentAssignment, List<StudentAssignment> additionalAssignments) throws IOException {
         if (index == 0) {
             studentAssignment.setDate_submitted(new Date(file.getCreatedTime().getValue()));
-            System.out.println(file.toString());
             if (file.getMimeType().equals("application/vnd.google-apps.document")) {
-                studentAssignment.setWord_count(
-                        getWordCountOfGetBodyGetContentToString(
-                                getDocumentBodyContent(file.getId(), docsService).toString()));
-                dataService.addStudentAssignment(studentAssignment);
+                String docBodyToString = getDocumentBodyContent(file.getId(), docsService).toString();
+                studentAssignment.setWord_count(getWordCountOfGetBodyGetContentToString(docBodyToString));
+                studentAssignment.setContent_body(getContentBodyOfContentString(docBodyToString));
             }
+            dataService.addStudentAssignment(studentAssignment);
         } else {
             StudentAssignment additionalAssignment = new StudentAssignment();
             additionalAssignment.setStudent(studentAssignment.getStudent());
@@ -216,9 +222,9 @@ public class API {
             additionalAssignment.setAssignment_parent_folder_id(studentAssignment.getAssignment_parent_folder_id());
             additionalAssignment.setDate_submitted(new Date(file.getCreatedTime().getValue()));
             if (file.getMimeType().equals("application/vnd.google-apps.document")) {
-                additionalAssignment.setWord_count(
-                        getWordCountOfGetBodyGetContentToString(
-                                getDocumentBodyContent(file.getId(), docsService).toString()));
+                String docBodyToString = getDocumentBodyContent(file.getId(), docsService).toString();
+                additionalAssignment.setWord_count(getWordCountOfGetBodyGetContentToString(docBodyToString));
+                additionalAssignment.setContent_body(getContentBodyOfContentString(docBodyToString));
             }
             additionalAssignments.add(additionalAssignment);
         }
