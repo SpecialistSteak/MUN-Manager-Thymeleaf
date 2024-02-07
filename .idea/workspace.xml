@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e1ea06a-dcc6-4b50-81db-2880ed97b9c4" name="Changes" comment="Completed Project.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3624cc95-03c2-4561-968c-4e9c150a2500.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/databaseManager/students.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/databaseManager/students.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/drive/DocsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/drive/DocsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/StudentAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/model/StudentAssignment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/studentViewInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/studentViewInit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/studentView.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/studentView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
-    </list>
+    <list default="true" id="3e1ea06a-dcc6-4b50-81db-2880ed97b9c4" name="Changes" comment="Completed Project." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -310,7 +298,7 @@
       <workItem from="1706084681701" duration="501000" />
       <workItem from="1706170352983" duration="31544000" />
       <workItem from="1706964256137" duration="10829000" />
-      <workItem from="1707107018153" duration="20236000" />
+      <workItem from="1707107018153" duration="20858000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -536,7 +524,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707299981925</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Completed Project.">
+      <option name="closed" value="true" />
+      <created>1707304039102</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1707304039102</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
