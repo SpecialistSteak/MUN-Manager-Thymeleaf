@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -72,7 +74,7 @@ public class DataController {
     }
 
     @GetMapping("/studentView/{studentId}")
-    public String studentView(Model model, @PathVariable(value = "studentId") int studentId) {
+    public String studentView(Model model, @PathVariable(value = "studentId") int studentId) throws GeneralSecurityException, IOException {
         API api = new API(dataService);
         model.addAttribute("conferences", dataService.getConferences());
         model.addAttribute("assignments", dataService.getAssignments());

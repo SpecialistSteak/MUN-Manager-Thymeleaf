@@ -157,9 +157,14 @@
                         </div>
                     </div>
                     <hr class="default-hr" style="margin-bottom: 20px"/>
-                    <button id="student-upload" class="btn btn-primary btn-block"
+                    <button class="btn btn-primary btn-block" id="student-upload"
                             onclick="window.location.href = window.location.origin + '/uploadCSV';">
                         Upload New Students List
+                    </button>
+                    <hr class="default-hr" style="margin-bottom: 20px; margin-top: 20px"/>
+                    <button id="check-for-submissions" class="btn btn-primary btn-block"
+                            onclick="checkForSubmissions()">
+                        Check For Submissions
                     </button>
                 </div>
             </div>
@@ -167,6 +172,7 @@
                 <table aria-label="Table of student information" class="table table-striped">
                     <thead>
                     <tr>
+                        <th>Complete</th>
                         <th>Flagged</th>
                         <th>Name</th>
                         <th>Date Submitted</th>
@@ -175,12 +181,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:class="${sa.isFlagged()}" class="pointer"
+                    <tr class="pointer" th:class="${sa.isFlagged()}"
                         th:each="sa : ${studentAssignments}"
                         th:id="${sa.getStudent().getStudentId()}">
+                        <td th:text="${sa.isComplete() ? '✅' : '❌'}"></td>
                         <td>
                             <label>
-                                <input type="checkbox" th:checked="${sa.isFlagged()}" th:onclick="'toggleFlagged(' + ${sa.getSubmissionId()} + ')'" />
+                                <input th:checked="${sa.isFlagged()}" th:onclick="'toggleFlagged(' + ${sa.getSubmissionId()} + ')'"
+                                       type="checkbox"/>
                             </label>
                         </td>
                         <td th:text="${sa.getStudent().getStudentName()}"></td>

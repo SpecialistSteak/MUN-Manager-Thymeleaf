@@ -1,5 +1,9 @@
 package org.munmanagerthymeleaf.service;
 
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.services.docs.v1.Docs;
+import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.model.File;
 import org.munmanagerthymeleaf.model.Assignment;
 import org.munmanagerthymeleaf.model.Conference;
 import org.munmanagerthymeleaf.model.StudentAssignment;
@@ -7,18 +11,25 @@ import org.munmanagerthymeleaf.model.StudentConference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static org.munmanagerthymeleaf.drive.DocsService.*;
+import static org.munmanagerthymeleaf.drive.DriveService.*;
+
 @RestController
 public class API {
 
     private final DataService dataService;
+    protected Drive driveService = getDriveService(GoogleNetHttpTransport.newTrustedTransport());
+    protected Docs docsService = getDocsService(GoogleNetHttpTransport.newTrustedTransport());
 
     @Autowired
-    public API(DataService dataService) {
+    public API(DataService dataService) throws GeneralSecurityException, IOException {
         this.dataService = dataService;
     }
 
@@ -99,9 +110,10 @@ public class API {
     }
 
     @PostMapping("/api/newConference")
-    public void newConference(@RequestParam("conferenceName") String conferenceName, @RequestParam("excludedStudents") List<Integer> excludedStudents) {
+    public void newConference(@RequestParam("conferenceName") String conferenceName, @RequestParam("excludedStudents") List<Integer> excludedStudents) throws GeneralSecurityException, IOException {
         Conference conference = new Conference();
         conference.setConferenceName(conferenceName);
+        conference.setGoogleDriveFolderId(createFolder(driveService, conferenceName));
         List<StudentConference> studentConferences = new ArrayList<>();
         for (int i = 0; i < dataService.getStudents().size(); i++) {
             if (!excludedStudents.contains(dataService.getStudents().get(i).getStudentId())) {
@@ -119,16 +131,10 @@ public class API {
     }
 
     @PostMapping("/api/newAssignment")
-    public void newAssignment(@RequestParam("assignmentName") String assignmentName,
-                              @RequestParam("conferenceId") int conferenceId,
-                              @RequestParam("dueDate") Date dueDate,
-                              @RequestParam("assignmentDescription") String assignmentDescription) {
-        Assignment assignment = new Assignment(assignmentName,
-                dataService.getConferenceById(conferenceId),
-                dueDate.toString(),
-                assignmentDescription);
-        int assignmentId = assignment.getAssignmentId();
+    public void newAssignment(@RequestParam("assignmentName") String assignmentName, @RequestParam("conferenceId") int conferenceId, @RequestParam("dueDate") Date dueDate, @RequestParam("assignmentDescription") String assignmentDescription) throws IOException {
+        Assignment assignment = new Assignment(assignmentName, dataService.getConferenceById(conferenceId), dueDate.toString(), assignmentDescription);
         dataService.addAssignment(assignment);
+        int assignmentId = assignment.getAssignmentId();
         // this if-else is here to ensure the assignment is identical to the one in the database, to prevent errors
         if (dataService.getAssignmentById(assignmentId) == null) {
             throw new NullPointerException("Assignment is null. Check the database.");
@@ -147,8 +153,56 @@ public class API {
             studentAssignment.setWord_count(0);
             studentAssignments.add(studentAssignment);
         }
+        String conferenceGoogleDriveFolderId = dataService.getConferenceById(conferenceId).getGoogleDriveFolderId();
         for (StudentAssignment studentAssignment : studentAssignments) {
+            studentAssignment.setAssignment_parent_folder_id(createNestedFolder(conferenceGoogleDriveFolderId, driveService, studentAssignment.getStudent().getStudentName() + " - " + assignmentName));
+            shareFile(driveService, studentAssignment.getAssignment_parent_folder_id(), studentAssignment.getStudent().getStudentEmail());
             dataService.addStudentAssignment(studentAssignment);
+        }
+    }
+
+    @GetMapping("/api/checkForSubmissions")
+    public void checkForSubmissions() throws IOException {
+        List<StudentAssignment> studentAssignments = dataService.getStudentAssignments();
+        List<StudentAssignment> additionalAssignments = new ArrayList<>();
+        for (StudentAssignment studentAssignment : studentAssignments) {
+            List<File> files = getFilesInFolder(driveService, studentAssignment.getAssignment_parent_folder_id());
+            if (!files.isEmpty()) {
+                studentAssignment.setComplete(true);
+                for (int i = 0; i < files.size(); i++) {
+                    processFile(files.get(i), i, studentAssignment, additionalAssignments);
+                }
+            }
+        }
+        for(StudentAssignment additionalAssignment : additionalAssignments) {
+            dataService.addStudentAssignment(additionalAssignment);
+        }
+    }
+
+    private void processFile(File file, int index, StudentAssignment studentAssignment, List<StudentAssignment> additionalAssignments) throws IOException {
+        if (index == 0) {
+            studentAssignment.setDate_submitted(new Date(file.getCreatedTime().getValue()));
+            if (file.getMimeType().equals("application/vnd.google-apps.document")) {
+                studentAssignment.setWord_count(
+                        getWordCountOfGetBodyGetContentToString(
+                                getDocumentBodyContent(file.getId(), docsService).toString()));
+                dataService.addStudentAssignment(studentAssignment);
+            }
+        } else {
+            StudentAssignment additionalAssignment = new StudentAssignment();
+            additionalAssignment.setStudent(studentAssignment.getStudent());
+            additionalAssignment.setAssignment(studentAssignment.getAssignment());
+            additionalAssignment.setComplete(true);
+            additionalAssignment.setTurnitin_score(0);
+            additionalAssignment.setWord_count(0);
+            additionalAssignment.setAssignment_parent_folder_id(studentAssignment.getAssignment_parent_folder_id());
+            additionalAssignment.setDate_submitted(new Date(file.getCreatedTime().getValue()));
+            if (file.getMimeType().equals("application/vnd.google-apps.document")) {
+                additionalAssignment.setWord_count(
+                        getWordCountOfGetBodyGetContentToString(
+                                getDocumentBodyContent(file.getId(), docsService).toString()));
+            }
+            additionalAssignments.add(additionalAssignment);
         }
     }
 }

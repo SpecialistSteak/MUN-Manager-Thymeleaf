@@ -11,6 +11,7 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.docs.v1.Docs;
 import com.google.api.services.docs.v1.DocsScopes;
+import com.google.api.services.docs.v1.model.StructuralElement;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,14 +21,14 @@ import java.util.Collections;
 import java.util.List;
 
 
-/* class to demonstrate use of Docs get documents API */
+/* Some of this code is taken from the Google Drive Documentation and is not original code. */
 public class DocsService {
     static final String APPLICATION_NAME = "mun-management-application";
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
 
     private static final List<String> SCOPES =
-            Collections.singletonList(DocsScopes.DOCUMENTS_READONLY);
+            Collections.singletonList(DocsScopes.DOCUMENTS);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
     protected static Credential docsGetCredentials(final NetHttpTransport HTTP_TRANSPORT)
@@ -51,13 +52,17 @@ public class DocsService {
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("admin");
     }
 
-    static Docs getDocsService(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
+    public static Docs getDocsService(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         return new Docs.Builder(HTTP_TRANSPORT, JSON_FACTORY, docsGetCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
     }
 
-    static int getWordCountOfGetBodyGetContentToString(String contentString) {
+    public static List<StructuralElement> getDocumentBodyContent(String fileId, Docs docsService) throws IOException {
+        return docsService.documents().get(fileId).execute().getBody().getContent();
+    }
+
+    public static int getWordCountOfGetBodyGetContentToString(String contentString) {
         StringBuilder textContent = new StringBuilder();
 
         while (contentString.contains("\"content\":\"")) {

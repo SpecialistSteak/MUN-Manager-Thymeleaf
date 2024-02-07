@@ -58,3 +58,14 @@ function assignmentError(data) {
         $('#assign-select').append('<option>' + "INTERNAL ERROR" + '</option>')
     }
 }
+
+function checkForSubmissions() {
+    $.ajax({
+        url: '/api/checkForSubmissions',
+        type: 'GET'
+    }).done(function (data) {
+        console.log("SUBMISSIONS UPDATED");
+    }).fail(function (data) {
+        console.log("ERROR");
+    });
+}

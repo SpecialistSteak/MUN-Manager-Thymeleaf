@@ -39,6 +39,9 @@ public class StudentAssignment {
     @Column(name = "complete")
     private boolean complete;
 
+    @Column(name = "assignment_parent_folder_id")
+    private String assignment_parent_folder_id;
+
     public StudentAssignment() {
     }
 }

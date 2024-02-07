@@ -14,4 +14,7 @@ public class Conference {
 
     @Column(name = "conference_name")
     private String conferenceName;
+
+    @Column(name = "google_drive_folder_id")
+    private String googleDriveFolderId;
 }
