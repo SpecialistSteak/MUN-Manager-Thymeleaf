@@ -162,7 +162,7 @@
                         Upload New Students List
                     </button>
                     <hr class="default-hr" style="margin-bottom: 20px; margin-top: 20px"/>
-                    <button id="check-for-submissions" class="btn btn-primary btn-block"
+                    <button class="btn btn-primary btn-block" id="check-for-submissions"
                             onclick="checkForSubmissions()">
                         Check For Submissions
                     </button>
@@ -181,13 +181,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="pointer" th:class="${sa.isFlagged()}"
-                        th:each="sa : ${studentAssignments}"
-                        th:id="${sa.getStudent().getStudentId()}">
+                    <tr th:class="${sa.isFlagged()}"
+                        th:classappend="pointer"
+                        th:each="sa : ${studentAssignments}" th:id="${sa.getStudent().getStudentId()}">
                         <td th:text="${sa.isComplete() ? '✅' : '❌'}"></td>
                         <td>
                             <label>
-                                <input th:checked="${sa.isFlagged()}" th:onclick="'toggleFlagged(' + ${sa.getSubmissionId()} + ')'"
+                                <input th:checked="${sa.isFlagged()}"
+                                       th:onclick="'toggleFlagged(' + ${sa.getSubmissionId()} + ')'"
                                        type="checkbox"/>
                             </label>
                         </td>
