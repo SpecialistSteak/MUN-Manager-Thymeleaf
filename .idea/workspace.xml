@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e1ea06a-dcc6-4b50-81db-2880ed97b9c4" name="Changes" comment="Completed Project.">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/c/ec16f536a108bd8cea089c481d00c0baca7ecb05" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/c/ec16f536a108bd8cea089c481d00c0baca7ecb05" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/assignmentIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/assignmentIndex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/controller/DataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/databaseManager/NullCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/databaseManager/NullCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/drive/DocsAndDriveService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/drive/DocsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/drive/DocsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/drive/DriveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/drive/DriveService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/repository/AssignmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/repository/AssignmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/repository/ConferenceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/repository/ConferenceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/repository/StudentAssignmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/repository/StudentAssignmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/repository/StudentConferenceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/repository/StudentConferenceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/repository/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/munmanagerthymeleaf/service/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/globalInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/globalInit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/indexInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/indexInit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/indexScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/indexScript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/studentViewInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/studentViewInit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -302,7 +317,7 @@
       <workItem from="1706084681701" duration="501000" />
       <workItem from="1706170352983" duration="31544000" />
       <workItem from="1706964256137" duration="10829000" />
-      <workItem from="1707107018153" duration="23252000" />
+      <workItem from="1707107018153" duration="27798000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -544,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707306451218</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Completed Project.">
+      <option name="closed" value="true" />
+      <created>1707369199464</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1707369199464</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

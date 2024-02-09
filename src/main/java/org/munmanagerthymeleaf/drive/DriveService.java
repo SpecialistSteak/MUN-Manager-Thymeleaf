@@ -37,6 +37,11 @@ public class DriveService {
     private static final List<String> SCOPES = List.of(DriveScopes.DRIVE);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
+    /**
+     * Taken from google's quickstart.
+     * @param HTTP_TRANSPORT --.
+     * @return credentials
+     */
     static Credential driveGetCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         InputStream in = DriveService.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {

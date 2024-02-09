@@ -21,6 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+
+/**
+ * This is the controller class for all the data. It will do all the processing, then send it to thymeleaf to be used within the html.
+ */
 @Controller
 public class DataController {
 
@@ -43,11 +47,21 @@ public class DataController {
         return "index";
     }
 
+    /**
+     * This is made to handle errors, for example if the user tries to access nonexistent conference.
+     * @return Redirects to the main page.
+     */
     @GetMapping({"/c", "/c/"})
     public String emptyConf() {
         return "redirect";
     }
 
+    /**
+     * The conference page, with the conference ID attached. It returns index but with the updated data for it.
+     * @param model --.
+     * @param confID The conference ID the user is trying to access.
+     * @return The index page with the modified data for the conference.
+     */
     @GetMapping({"/c/{confID}", "/c/{confID}/"})
     public String indexWithConf(Model model, @PathVariable(value = "confID") Integer confID) {
         model.addAttribute("conferences", dataService.getConferences());
@@ -60,6 +74,9 @@ public class DataController {
         return "index";
     }
 
+    /**
+     * @see DataController#indexWithConf(Model, Integer)
+     */
     @GetMapping({"/c/{confID}/a/{assignID}", "/c/{confID}/a/{assignID}/"})
     public String indexWithIds(Model model, @PathVariable(value = "confID") Integer confID, @PathVariable(value = "assignID") Integer assignID) {
         model.addAttribute("conferences", dataService.getConferences());
@@ -73,6 +90,11 @@ public class DataController {
         return "assignmentIndex";
     }
 
+    /**
+     * Returns the student view page, with the student ID attached.
+     * @throws GeneralSecurityException
+     * @throws IOException
+     */
     @GetMapping("/studentView/{studentId}")
     public String studentView(Model model, @PathVariable(value = "studentId") int studentId) throws GeneralSecurityException, IOException {
         API api = new API(dataService);
@@ -87,11 +109,21 @@ public class DataController {
         return "studentView";
     }
 
+    /**
+     * @return the uploadCSV page.
+     */
     @GetMapping("/uploadCSV")
     public String uploadCSV() {
         return "uploadCSV";
     }
 
+    /**
+     * This is the method that handles the CSV upload. It will read the CSV, then add the students to the database.
+     * This method must be in the same class as the uploadCSV() method, as it is the POST method for it.
+     * @param model --.
+     * @param csv The CSV file that the user is trying to upload.
+     * @return Redirects to the main page.
+     */
     @PostMapping("/api/uploadStudentCSV")
     public String uploadCSV(Model model, @RequestParam("file") MultipartFile csv) {
         List<Student> students = new ArrayList<>();
@@ -100,10 +132,12 @@ public class DataController {
             String[] nextLine;
             boolean first = false;
             while ((nextLine = reader.readNext()) != null) {
+//                skip first line which contains column names
                 if (!first) {
                     first = true;
                     continue;
                 }
+//                add each student to the list of students
                 Student student = new Student();
                 student.setStudentName(nextLine[0]);
                 student.setStudentEmail(nextLine[1]);
@@ -113,12 +147,18 @@ public class DataController {
         } catch (Exception e) {
             Logger.getLogger("API").warning("Error while uploading CSV: " + e.getMessage());
         }
+//        add all students to the database
         for (Student student : students) {
             this.dataService.addStudent(student);
         }
         return "redirect";
     }
 
+    /**
+     * Admin method to print out all null values in the database.
+     * @param model --.
+     * @return Redirects to the main page.
+     */
     @GetMapping("/NULLCHECK")
     public String nullCheck(Model model) {
         new NullCheck(dataService).checkForNulls();

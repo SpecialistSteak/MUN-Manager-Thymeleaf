@@ -31,9 +31,11 @@ public class NullCheck {
     // using reflection to keep the code dynamic, even though it's slower and more complicated
     private <T> void checkNullValues(List<T> dataList, String dataTypeName) {
         for (T dataItem : dataList) {
+//          get each field in the class, set them to accessible to ensure we can get the value
             for (Field field : dataItem.getClass().getDeclaredFields()) {
                 field.setAccessible(true);
                 try {
+//                  get the value of the field and check if it's null
                     Object value = field.get(dataItem);
                     if (value == null) {
                         logger.warning(dataTypeName + " " + field.getName() + " is null for: " + dataItem);

@@ -1,3 +1,4 @@
+// a function to POST a new assignment to the server
 function submitAssignment() {
     $.ajax({
         url: '/api/newAssignment',
@@ -16,6 +17,7 @@ function submitAssignment() {
     });
 }
 
+// a function to POST a new conference to the server
 function submitConference() {
     let url = new URL('/api/newConference', window.location.origin);
     url.searchParams.append('conferenceName', $('#project-name').val());
@@ -44,6 +46,7 @@ function pageSelect() {
     }
 }
 
+// a function to call the flag submission API
 function toggleFlagged(submissionId) {
     $.ajax({
         url: '/api/toggleFlagged',

@@ -68,6 +68,11 @@ public class DocsService {
         return contentString.isEmpty() ? 0 : contentString.split(" ").length;
     }
 
+    /**
+     * This method goes through the whole json file, and gets all the text from each content body.
+     * @param contentString The string that is gotten from the get content body method.
+     * @return The clean text from the content body.
+     */
     public static String getContentBodyOfContentString(String contentString) {
         StringBuilder textContent = new StringBuilder();
 

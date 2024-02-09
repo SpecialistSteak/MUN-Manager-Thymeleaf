@@ -1,6 +1,7 @@
 /*<![CDATA[*/
 $(document).ready(function () {
     DataTable.datetime('h:mm a, MMMM dd yyyy');
+    // initialize all tables as dataTables
     $('.table').DataTable({
         "paging": true,
         "lengthChange": false,
@@ -13,12 +14,10 @@ $(document).ready(function () {
 /*]]>*/
 
 $(document).ready(function () {
-    $('thead').removeClass('pointer');
-});
-
-$(document).ready(function () {
     $('#assign-select').prop("disabled", true);
 
+    // load assignments for selected conference
+    // this is for when the conference selector is loaded to dynamically load assignments
     function loadAssignments(confId) {
         $.ajax({
             url: '/api/getAssignmentsByConference',
@@ -60,6 +59,7 @@ function assignmentError(data) {
 }
 
 function checkForSubmissions() {
+    // function to call API.
     $.ajax({
         url: '/api/checkForSubmissions',
         type: 'GET'
