@@ -185,7 +185,7 @@ public class API {
             assignment = dataService.getAssignmentById(assignmentId);
         }
         List<StudentAssignment> studentAssignments = new ArrayList<>();
-//        create a new student assignment for each student, leaving it empty to show that it's not complete
+        // create a new student assignment for each student, leaving it empty to show that it's not complete
         for (StudentConference studentConference : dataService.getStudentConferences()) {
             StudentAssignment studentAssignment = new StudentAssignment();
             studentAssignment.setStudent(studentConference.getStudent());
@@ -253,7 +253,7 @@ public class API {
      */
     private void processFile(File file, int index, StudentAssignment studentAssignment, List<StudentAssignment> additionalAssignments) throws IOException {
         if (index == 0) {
-            studentAssignment.setDate_submitted(new Date(file.getCreatedTime().getValue()));
+            studentAssignment.setDate_submitted(new Date(file.getModifiedTime().getValue()));
 //            it should be a document, if it is then get the word count and set the body content to the database
             if (file.getMimeType().equals("application/vnd.google-apps.document")) {
                 String docBodyToString = getDocumentBodyContent(file.getId(), docsService).toString();
@@ -270,7 +270,7 @@ public class API {
             additionalAssignment.setTurnitin_score(0);
             additionalAssignment.setWord_count(0);
             additionalAssignment.setAssignment_parent_folder_id(studentAssignment.getAssignment_parent_folder_id());
-            additionalAssignment.setDate_submitted(new Date(file.getCreatedTime().getValue()));
+            additionalAssignment.setDate_submitted(new Date(file.getModifiedTime().getValue()));
             if (file.getMimeType().equals("application/vnd.google-apps.document")) {
                 String docBodyToString = getDocumentBodyContent(file.getId(), docsService).toString();
                 additionalAssignment.setWord_count(getWordCountOfGetBodyGetContentToString(docBodyToString));

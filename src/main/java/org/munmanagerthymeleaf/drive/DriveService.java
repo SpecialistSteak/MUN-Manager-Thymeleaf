@@ -20,10 +20,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,7 +34,8 @@ public class DriveService {
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
     /**
-     * Taken from google's quickstart.
+     * Taken from Google's quickstart.
+     *
      * @param HTTP_TRANSPORT --.
      * @return credentials
      */
@@ -63,18 +60,6 @@ public class DriveService {
                 .build();
     }
 
-    public static String createFolder(Drive driveService, String folderName) throws IOException {
-        File fileMetadata = new File();
-        fileMetadata.setName(folderName);
-        fileMetadata.setMimeType("application/vnd.google-apps.folder");
-
-        File file = driveService.files().create(fileMetadata)
-                .setFields("id")
-                .execute();
-        System.out.println("Folder ID: " + file.getId());
-        return file.getId();
-    }
-
     public static String createNestedFolder(String parentFolderId, Drive driveService, String folderName) throws IOException {
         File fileMetadata = new File();
         fileMetadata.setName(folderName);
@@ -92,7 +77,7 @@ public class DriveService {
         FileList result = driveService.files().list()
                 .setQ("'" + folderId + "' in parents")
                 .setPageSize(1000)
-                .setFields("nextPageToken, files(name, parents, createdTime, mimeType, id)")
+                .setFields("nextPageToken, files(name, parents, createdTime, mimeType, id, modifiedTime)")
                 .execute();
         return result.getFiles();
     }
