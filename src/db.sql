@@ -3,15 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2024 at 08:56 AM
+-- Generation Time: Feb 10, 2024 at 05:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
-SET
-SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET
-time_zone = "+00:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -29,13 +27,12 @@ time_zone = "+00:00";
 -- Table structure for table `assignments`
 --
 
-CREATE TABLE `assignments`
-(
-    `assignment_id`          int(11) NOT NULL,
-    `assignment_name`        varchar(255)  DEFAULT NULL,
-    `conference_id`          int(11) DEFAULT NULL,
-    `due_date`               date NOT NULL DEFAULT current_timestamp(),
-    `assignment_description` varchar(255)  DEFAULT NULL
+CREATE TABLE `assignments` (
+                               `assignment_id` int(11) NOT NULL,
+                               `assignment_name` varchar(255) DEFAULT NULL,
+                               `conference_id` int(11) DEFAULT NULL,
+                               `due_date` date NOT NULL DEFAULT current_timestamp(),
+                               `assignment_description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -44,10 +41,10 @@ CREATE TABLE `assignments`
 -- Table structure for table `conferences`
 --
 
-CREATE TABLE `conferences`
-(
-    `conference_id`   int(11) NOT NULL,
-    `conference_name` varchar(255) DEFAULT NULL
+CREATE TABLE `conferences` (
+                               `conference_id` int(11) NOT NULL,
+                               `conference_name` varchar(255) DEFAULT NULL,
+                               `google_drive_folder_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -56,11 +53,10 @@ CREATE TABLE `conferences`
 -- Table structure for table `students`
 --
 
-CREATE TABLE `students`
-(
-    `student_id`    int(11) NOT NULL,
-    `student_name`  varchar(255) DEFAULT NULL,
-    `student_email` varchar(255) NOT NULL
+CREATE TABLE `students` (
+                            `student_id` int(11) NOT NULL,
+                            `student_name` varchar(255) DEFAULT NULL,
+                            `student_email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -69,18 +65,17 @@ CREATE TABLE `students`
 -- Table structure for table `student_assignments`
 --
 
-CREATE TABLE `student_assignments`
-(
-    `submission_id`               int(11) NOT NULL,
-    `student_id`                  int(11) NOT NULL,
-    `assignment_id`               int(11) NOT NULL,
-    `date_submitted`              datetime(6) DEFAULT NULL,
-    `turnitin_score`              int(11) DEFAULT NULL,
-    `word_count`                  int(11) DEFAULT NULL,
-    `flagged`                     tinyint(1) NOT NULL DEFAULT 0,
-    `complete`                    tinyint(1) NOT NULL DEFAULT 0,
-    `google_doc_id`               varchar(255) DEFAULT NULL,
-    `assignment_parent_folder_id` varchar(255) DEFAULT NULL
+CREATE TABLE `student_assignments` (
+                                       `submission_id` int(11) NOT NULL,
+                                       `student_id` int(11) NOT NULL,
+                                       `assignment_id` int(11) NOT NULL,
+                                       `date_submitted` datetime(6) DEFAULT NULL,
+                                       `turnitin_score` int(11) DEFAULT NULL,
+                                       `word_count` int(11) DEFAULT NULL,
+                                       `flagged` tinyint(1) NOT NULL DEFAULT 0,
+                                       `complete` tinyint(1) NOT NULL DEFAULT 0,
+                                       `assignment_parent_folder_id` varchar(255) DEFAULT NULL,
+                                       `content_body` mediumtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -89,12 +84,11 @@ CREATE TABLE `student_assignments`
 -- Table structure for table `student_conferences`
 --
 
-CREATE TABLE `student_conferences`
-(
-    `participation_id` int(11) NOT NULL,
-    `student_id`       int(11) NOT NULL,
-    `conference_id`    int(11) NOT NULL,
-    `delegation`       varchar(255) DEFAULT NULL
+CREATE TABLE `student_conferences` (
+                                       `participation_id` int(11) NOT NULL,
+                                       `student_id` int(11) NOT NULL,
+                                       `conference_id` int(11) NOT NULL,
+                                       `delegation` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
@@ -144,31 +138,31 @@ ALTER TABLE `student_conferences`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-    MODIFY `assignment_id` int (11) NOT NULL AUTO_INCREMENT;
+    MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `conferences`
 --
 ALTER TABLE `conferences`
-    MODIFY `conference_id` int (11) NOT NULL AUTO_INCREMENT;
+    MODIFY `conference_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-    MODIFY `student_id` int (11) NOT NULL AUTO_INCREMENT;
+    MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `student_assignments`
 --
 ALTER TABLE `student_assignments`
-    MODIFY `submission_id` int (11) NOT NULL AUTO_INCREMENT;
+    MODIFY `submission_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `student_conferences`
 --
 ALTER TABLE `student_conferences`
-    MODIFY `participation_id` int (11) NOT NULL AUTO_INCREMENT;
+    MODIFY `participation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
