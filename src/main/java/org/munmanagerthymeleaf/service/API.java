@@ -36,6 +36,7 @@ public class API {
 
     /**
      * This method will get all assignments from a conference and return them as a list.
+     *
      * @param confId the id of the conference to get the assignments from.
      * @return the list of assignments in confId.
      */
@@ -57,6 +58,7 @@ public class API {
 
     /**
      * This method gets a list of assignments for each student, it's used in the student view.
+     *
      * @param studentId the id of the student to get the assignments for.
      * @return the list of assignments for studentId.
      */
@@ -82,7 +84,8 @@ public class API {
     /**
      * This method returns an int that is the next or previous student id, depending on the request type.
      * It is used for the next and previous buttons to ensure that students are looked at by database id.
-     * @param studentId the id of the student to get the next or previous student id for.
+     *
+     * @param studentId   the id of the student to get the next or previous student id for.
      * @param requestType the type of request, 1 for next, -1 for previous.
      * @return the next or previous student id.
      */
@@ -136,9 +139,12 @@ public class API {
     }
 
     /**
-     * this will make a new conference with a name. The excluded students will not be added to the conference.
-     * I opted for this method as it's less data intensive than adding all students to the conference and then removing them.
-     * @param conferenceName the name of the conference.
+     * This will make a new conference with a name.
+     * The excluded students will not be added to the conference.
+     * I opted for this method as it's less data intensive
+     * than adding all students to the conference and then removing them.
+     *
+     * @param conferenceName   the name of the conference.
      * @param excludedStudents the students to exclude from the conference.
      */
     @PostMapping("/api/newConference")
@@ -149,10 +155,10 @@ public class API {
         List<StudentConference> studentConferences = new ArrayList<>();
         for (int i = 0; i < dataService.getStudents().size(); i++) {
             if (!excludedStudents.contains(dataService.getStudents().get(i).getStudentId())) {
-                StudentConference studentConference = new StudentConference();
-                studentConference.setStudent(dataService.getStudents().get(i));
-                studentConference.setConference(conference);
-                studentConference.setDelegation("Delegation " + (i + 1));
+                StudentConference studentConference = new StudentConference()
+                        .setStudent(dataService.getStudents().get(i))
+                        .setConference(conference)
+                        .setDelegation("Delegation " + (i + 1));
                 studentConferences.add(studentConference);
             }
         }
@@ -164,12 +170,13 @@ public class API {
 
     /**
      * This will make a new assignment with a name, conference id, due date, and description. It will then create the file
-     * in the google drive folder for the conference, and then create a folder for each student in the conference.
-     * @param assignmentName
-     * @param conferenceId
-     * @param dueDate
-     * @param assignmentDescription
-     * @throws IOException
+     * in the Google Drive folder for the conference, and then create a folder for each student in the conference.
+     *
+     * @param assignmentName      the name of the assignment.
+     * @param conferenceId       the id of the conference to add the assignment to.
+     * @param dueDate           the due date of the assignment.
+     * @param assignmentDescription the description of the assignment.
+     * @throws IOException if the file creation fails.
      */
     @PostMapping("/api/newAssignment")
     public void newAssignment(@RequestParam("assignmentName") String assignmentName, @RequestParam("conferenceId") int conferenceId, @RequestParam("dueDate") Date dueDate, @RequestParam("assignmentDescription") String assignmentDescription) throws IOException {
@@ -190,11 +197,11 @@ public class API {
             StudentAssignment studentAssignment = new StudentAssignment();
             studentAssignment.setStudent(studentConference.getStudent());
             // setting the assignment to the one just created
-            studentAssignment.setAssignment(assignment);
-            studentAssignment.setComplete(false);
-            studentAssignment.setFlagged(false);
-            studentAssignment.setTurnitin_score(0);
-            studentAssignment.setWord_count(0);
+            studentAssignment.setAssignment(assignment)
+                    .setComplete(false)
+                    .setFlagged(false)
+                    .setTurnitin_score(0)
+                    .setWord_count(0);
             studentAssignments.add(studentAssignment);
         }
 
@@ -228,16 +235,20 @@ public class API {
     @GetMapping("/api/checkForSubmissions")
     public void checkForSubmissions() throws IOException {
         List<StudentAssignment> studentAssignments = dataService.getStudentAssignments();
+        // additional assignments exist in case students have more than one file in their folder
         List<StudentAssignment> additionalAssignments = new ArrayList<>();
+        // foreach student assignment get the list of files in their assignment folder, process them if they exist
         for (StudentAssignment studentAssignment : studentAssignments) {
             List<File> files = getFilesInFolder(driveService, studentAssignment.getAssignment_parent_folder_id());
             if (!files.isEmpty()) {
                 studentAssignment.setComplete(true);
+                // loop through each submitted file and process it
                 for (int i = 0; i < files.size(); i++) {
                     processFile(files.get(i), i, studentAssignment, additionalAssignments);
                 }
             }
         }
+        // add all additional assignments to the database for persistence
         for (StudentAssignment additionalAssignment : additionalAssignments) {
             dataService.addStudentAssignment(additionalAssignment);
         }
@@ -246,35 +257,39 @@ public class API {
 
     /**
      * Helper method to process the file and add it to the database.
-     * @param file the file to process.
-     * @param index the index of the file in the list of files.
-     * @param studentAssignment the student assignment to add the file to.
+     *
+     * @param file                  the file to process.
+     * @param index                 the index of the file in the list of files.
+     * @param studentAssignment     the student assignment to add the file to.
      * @param additionalAssignments the list of additional assignments to add to the database.
      */
     private void processFile(File file, int index, StudentAssignment studentAssignment, List<StudentAssignment> additionalAssignments) throws IOException {
+        // if it's the very first file in the folder, then set the date submitted to the date modified of the file
         if (index == 0) {
             studentAssignment.setDate_submitted(new Date(file.getModifiedTime().getValue()));
-//            it should be a document, if it is then get the word count and set the body content to the database
+            // it should be a document, if it is then get the word count and set the body content to the database
+            // the file.getMimeType() method is from teh Google Drive api
             if (file.getMimeType().equals("application/vnd.google-apps.document")) {
                 String docBodyToString = getDocumentBodyContent(file.getId(), docsService).toString();
-                studentAssignment.setWord_count(getWordCountOfGetBodyGetContentToString(docBodyToString));
-                studentAssignment.setContent_body(getContentBodyOfContentString(docBodyToString));
+                studentAssignment.setWord_count(getWordCountOfGetBodyGetContentToString(docBodyToString))
+                        .setContent_body(getContentBodyOfContentString(docBodyToString));
             }
             dataService.addStudentAssignment(studentAssignment);
+            // or if it's not the first file,
+            // then make a new file with default values and add it to the list of additional assignments
         } else {
-//            make an additional assignment for each file in the folder
             StudentAssignment additionalAssignment = new StudentAssignment();
-            additionalAssignment.setStudent(studentAssignment.getStudent());
-            additionalAssignment.setAssignment(studentAssignment.getAssignment());
-            additionalAssignment.setComplete(true);
-            additionalAssignment.setTurnitin_score(0);
-            additionalAssignment.setWord_count(0);
-            additionalAssignment.setAssignment_parent_folder_id(studentAssignment.getAssignment_parent_folder_id());
-            additionalAssignment.setDate_submitted(new Date(file.getModifiedTime().getValue()));
+            additionalAssignment.setStudent(studentAssignment.getStudent()).setAssignment(studentAssignment.getAssignment())
+                    .setComplete(true)
+                    .setTurnitin_score(0)
+                    .setWord_count(0)
+                    .setAssignment_parent_folder_id(studentAssignment.getAssignment_parent_folder_id())
+                    .setDate_submitted(new Date(file.getModifiedTime().getValue()));
+            // update values if it's a document, otherwise take it as a "blank" submission for director review
             if (file.getMimeType().equals("application/vnd.google-apps.document")) {
                 String docBodyToString = getDocumentBodyContent(file.getId(), docsService).toString();
-                additionalAssignment.setWord_count(getWordCountOfGetBodyGetContentToString(docBodyToString));
-                additionalAssignment.setContent_body(getContentBodyOfContentString(docBodyToString));
+                additionalAssignment.setWord_count(getWordCountOfGetBodyGetContentToString(docBodyToString))
+                        .setContent_body(getContentBodyOfContentString(docBodyToString));
             }
             additionalAssignments.add(additionalAssignment);
         }

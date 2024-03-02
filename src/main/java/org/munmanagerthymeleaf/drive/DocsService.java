@@ -70,26 +70,32 @@ public class DocsService {
 
     /**
      * This method goes through the whole json file, and gets all the text from each content body.
+     * I have implemented it as the Google Docs api does not have a method to get all the text from a document.
      * @param contentString The string that is gotten from the get content body method.
      * @return The clean text from the content body.
      */
     public static String getContentBodyOfContentString(String contentString) {
+        // StringBuilder as appending to a string is inefficient.
         StringBuilder textContent = new StringBuilder();
 
+        // Appends the value of all content under "content" to textContent
         while (contentString.contains("\"content\":\"")) {
             int index = contentString.indexOf("\"content\":\"");
+            // +11 because that's the length of "content":"
             contentString = contentString.substring(index + 11);
             int index2 = contentString.indexOf("\"");
             String text = contentString.substring(0, index2);
             textContent.append(text).append(" ");
         }
 
+        // chained replace methods to remove some escape characters that Google Docs api adds
         String s = textContent.toString().replace("\\n", "")
                 .replace("\\t", "")
                 .replace("\\r", "")
                 .replace("\\\"", "")
                 .replace("\\", "");
 
+        // replace all double spaces with single spaces
         while (s.contains("  ")) {
             s = s.replace("  ", " ");
         }

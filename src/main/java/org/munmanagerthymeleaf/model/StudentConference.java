@@ -2,10 +2,12 @@ package org.munmanagerthymeleaf.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
 @Entity
 @Table(name = "student_conferences")
+@Accessors(chain = true)
 public class StudentConference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

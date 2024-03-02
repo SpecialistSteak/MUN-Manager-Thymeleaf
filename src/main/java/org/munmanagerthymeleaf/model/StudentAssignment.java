@@ -3,12 +3,15 @@ package org.munmanagerthymeleaf.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 
 @Data
 @Entity
 @AllArgsConstructor
+@Accessors(chain = true)
 @Table(name = "student_assignments")
 public class StudentAssignment {
     @Id

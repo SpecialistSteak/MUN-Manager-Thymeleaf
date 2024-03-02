@@ -28,7 +28,14 @@ public class NullCheck {
         checkNullValues(dataService.getStudentConferences(), "Student Conference");
     }
 
-    // using reflection to keep the code dynamic, even though it's slower and more complicated
+    /**
+     * This method checks for null values in the data and logs a warning if it finds any.
+     * I have opted to use reflection to keep the code dynamic, even though it's slower and more complicated.
+     * I have also used generics to ensure that the method can be used for any type of data for reusability.
+     * @param dataList the list of objects to check for null values
+     * @param dataTypeName the name of the data type to be used in the log message
+     * @param <T> the type of the data that is being checked
+     */
     private <T> void checkNullValues(List<T> dataList, String dataTypeName) {
         for (T dataItem : dataList) {
 //          get each field in the class, set them to accessible to ensure we can get the value
@@ -40,6 +47,8 @@ public class NullCheck {
                     if (value == null) {
                         logger.warning(dataTypeName + " " + field.getName() + " is null for: " + dataItem);
                     }
+                    // catch a IllegalAccessException if it occurs. no need to do anything with it, just log it,
+                    // as it will not harm the program in any way, the method will just continue to the next field.
                 } catch (IllegalAccessException e) {
                     logger.warning("Error while checking for null values: " + e.getMessage());
                 }
