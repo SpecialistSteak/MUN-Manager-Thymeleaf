@@ -1,9 +1,4 @@
-A Thymeleaf and Spring Boot based MUN Manager application which:
-- Integrates with Google Drive
-- Can manage hundreds of students
-- Allows administrators to create conferences, assign deadlines, and check work through a Drive-connected interface
-
-  This was a recently open-sourced project of mine, so I will update the documentation afterwards. Here is a temporary, AI-Generated overview of the project:
+I recently open-sourced this project, and am currently working on updating the documentation. In the meantime, here is a temporary, AI-Generated overview of the project:
 # MUN Manager: A Comprehensive Tool for Model UN Directors
 
 The MUN Manager application is designed to streamline and simplify the management of Model United Nations (MUN) conferences and assignments for MUN Directors. It provides a centralized platform to organize conferences, track student participation, manage assignments, and monitor student submissions.
